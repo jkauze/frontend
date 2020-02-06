@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../dashboard/dashboard.component';
+import { InfoSalaComponent } from 'app/info-sala/info-sala.component';
 
 import {
   MatButtonModule,
@@ -13,6 +14,7 @@ import {
   MatTooltipModule,
   MatSelectModule
 } from '@angular/material';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -27,7 +29,8 @@ import {
     MatTooltipModule,
   ],
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+    InfoSalaComponent
   ]
 })
 

@@ -15,6 +15,7 @@ import {
   AgmCoreModule
 } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { InfoSalaComponent } from './info-sala/info-sala.component';
 
 @NgModule({
   imports: [
