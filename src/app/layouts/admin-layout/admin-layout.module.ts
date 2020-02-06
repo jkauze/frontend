@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../dashboard/dashboard.component';
+import { RequestComponent } from '../../request/request.component';
+import { MatTableModule } from '@angular/material/table';
 
 import {
   MatButtonModule,
@@ -28,7 +30,8 @@ import {
     MatTableModule,
   ],
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+    RequestComponent,
   ]
 })
 
