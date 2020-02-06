@@ -11,6 +11,8 @@ import { IconsComponent } from '../../icons/icons.component';
 import { MapsComponent } from '../../maps/maps.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
+import { RequestComponent } from '../../request/request.component';
+import {MatTableModule} from '@angular/material/table';
 
 import {
   MatButtonModule,
@@ -32,6 +34,7 @@ import {
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
+    MatTableModule,
   ],
   declarations: [
     DashboardComponent,
@@ -42,6 +45,7 @@ import {
     MapsComponent,
     NotificationsComponent,
     UpgradeComponent,
+    RequestComponent,
   ]
 })
 

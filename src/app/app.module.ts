@@ -23,6 +23,8 @@ import {
 } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 
+
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -31,11 +33,13 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
     HttpModule,
     ComponentsModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
