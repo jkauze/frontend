@@ -1,3 +1,15 @@
+# Frontend
+
+Frontend del sistema de reserva de laboratorios F
+
+versiones
+------
+NodeJs 12.14.1
+
+Angular CLI 8.3.22
+
+Npm 6.13.4
+
 # [Material Dashboard Angular - Free Bootstrap Material Design Admin](https://www.creative-tim.com/product/material-dashboard-angular2)[![version][version-badge]][CHANGELOG]
 
 ![Product Gif](https://raw.githubusercontent.com/creativetimofficial/public-assets/master/material-dashboard-angular/material-dashboard-angular.gif)
