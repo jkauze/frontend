@@ -9,17 +9,18 @@ import { AppService } from 'app/app.service';
 export class InfoSalaComponent implements OnInit {
   public rooms = [];
   public items = [];
+  
   private url: string ='http://159.90.9.128/api/salas/';
-  private idroom: string = 'MYS-111';
+  private idroom: string = 'MYS-111'; // de aqui
   private urlitem: string = '/items';
-
   constructor(public json: AppService) { 
-    
+    // this.activatedRoute.snapshot.params['uid'];
   }
 
   ngOnInit() {
     this.json.getRooms(this.url + this.idroom).subscribe((data) => {
       this.rooms = data;
+      //this.imagen = this.imagen + this.rooms[0].image;
       console.log(data);
     });
     

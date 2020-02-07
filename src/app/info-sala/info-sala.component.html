@@ -1,8 +1,8 @@
 <div class="main-content">
   <div class="card">
     <div class="row no-gutters">
-      <div class="col-md-4">
-        <img src="assets/img/universidad.jpg" class="card-img" style="max-width: 100%;">
+      <div *ngFor ="let room of rooms" class="col-md-4">
+        <img src="{{room.pathimage}}" class="card-img" style="max-width: 100%;">
       </div>
       <div class="col-md-8">
         <div *ngFor="let room of rooms"  class="card-body">
@@ -16,7 +16,7 @@
     </div>
   </div>
 
-  <div class="card"> <!--Verificar con ngIf si items es vacio-->
+  <div *ngIf="items.length > 0" class="card"> <!--Verificar con ngIf si items es vacio-->
     <div class="card-header card-header-warning">
       <h4 class="card-title">Componentes</h4>
       <p class="card-category">Objetos que posee la sala</p>
@@ -25,12 +25,14 @@
       <table class="table">
         <thead class="text-danger">
           <th>Item</th>
-          <th>Cantidad</th>
+          <th class="text-center">Cantidad</th>
+          <th class="text-center">Descripcion</th>
         </thead>
         <tbody>
           <tr *ngFor="let item of items" >
             <td class="text-capitalize">{{item.name}}</td>
-            <td>{{item.quantity}}</td>
+            <td class="text-center">{{item.quantity}}</td>
+            <td class="text-center">{{item.description}}</td><!--item.description ||-->
           </tr>
         </tbody>
       </table>

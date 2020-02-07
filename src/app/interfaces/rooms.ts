@@ -8,4 +8,5 @@ export interface Rooms {
     type: string; //Sala o lab
     last_used?: Date;
     first_used?: Date;
+    pathimage: string;
 }
