@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  api_url: 'https://api.reserva.ac.labf.usb.ve/api/',
+  api_url: 'http://159.90.9.128/api/',
 };
