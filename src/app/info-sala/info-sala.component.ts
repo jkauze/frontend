@@ -11,7 +11,7 @@ export class InfoSalaComponent implements OnInit {
   public items = [];
   
   private url: string ='http://159.90.9.128/api/salas/';
-  private idroom: string = 'MYS-111'; // de aqui
+  private idroom: string = 'MYS-019'; // de aqui
   private urlitem: string = '/items';
   constructor(public json: AppService) { 
     // this.activatedRoute.snapshot.params['uid'];
