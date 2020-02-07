@@ -9,7 +9,7 @@ import { AppService } from 'app/app.service';
 export class InfoSalaComponent implements OnInit {
   public rooms = [];
   public items = [];
-  private url: string ='http://api.reserva.ac.labf.usb.ve/api/salas/';
+  private url: string ='http://159.90.9.128/api/salas/';
   private idroom: string = 'MYS-111';
   private urlitem: string = '/items';
 
