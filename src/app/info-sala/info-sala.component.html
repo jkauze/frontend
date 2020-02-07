@@ -1,17 +1,42 @@
 <div class="main-content">
-  <div class="card mb-3">
+  <div class="card">
     <div class="row no-gutters">
       <div class="col-md-4">
         <img src="assets/img/universidad.jpg" class="card-img" style="max-width: 100%;">
       </div>
       <div class="col-md-8">
-        <div class="card-body">
-          <h2 class="card-title">Card title</h2>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <div *ngFor="let room of rooms"  class="card-body">
+          <h2 class="card-title text-uppercase"><b>{{room.name}}</b></h2>
+          <p class="card-subtitle mb-1 text-muted font-italic">
+            <small>Esta sala pertenece a <a href="#" class="text-reset"><b>{{room.owner_id}}</b></a>.</small>
+          </p>
+          <p class="card-text">{{room.description}}</p>
         </div>
       </div>
     </div>
   </div>
+
+  <div class="card"> <!--Verificar con ngIf si items es vacio-->
+    <div class="card-header card-header-warning">
+      <h4 class="card-title">Componentes</h4>
+      <p class="card-category">Objetos que posee la sala</p>
+    </div>
+    <div class="card-content table-responsive table-full-width">
+      <table class="table">
+        <thead class="text-danger">
+          <th>Item</th>
+          <th>Cantidad</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of items" >
+            <td class="text-capitalize">{{item.name}}</td>
+            <td>{{item.quantity}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
   <button type="button" class="btn btn-warning btn-lg btn-block" disabled>Horarios</button>
   <button type="button" class="btn btn-success btn-lg btn-block" disabled>Reservar</button>
 </div>
