@@ -1,0 +1,30 @@
+.m-10 {
+    margin: 10px;
+}
+
+.pb-30 {
+    padding-bottom: 30px;
+}
+
+.weight-400 {
+    font-weight: 400;
+}
+
+.mat-stroked-button {
+    border-color: #f44336;
+}
+
+.d-flex {
+    display: flex;
+    justify-content: center;
+}
+
+.m-card-image {
+    margin-top: -15px;
+    margin-bottom: 15px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
