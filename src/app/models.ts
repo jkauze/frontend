@@ -9,6 +9,7 @@ export class Room {
     public type: String;
     public last_used: Date;
     public first_used: Date;
+    public image_src: String;
 
     constructor(obj?: any) {
         this.id = obj && obj.id || null;
@@ -20,6 +21,7 @@ export class Room {
         this.type = obj && obj.type || null;
         this.last_used = obj && obj.last_used || null;
         this.first_used = obj && obj.first_used || null;
+        this.image_src = obj && obj.pathimage || null;
     }
     
 }
