@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../dashboard/dashboard.component';
 import { InfoSalaComponent } from 'app/info-sala/info-sala.component';
+import { RequestComponent } from '../../request/request.component';
+import { MatTableModule } from '@angular/material/table';
 
 import {
   MatButtonModule,
@@ -27,10 +29,12 @@ import {
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
+    MatTableModule,
   ],
   declarations: [
     DashboardComponent,
-    InfoSalaComponent
+    InfoSalaComponent,
+    RequestComponent
   ]
 })
 

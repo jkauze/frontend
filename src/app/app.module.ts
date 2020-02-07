@@ -18,6 +18,8 @@ import {
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { InfoSalaComponent } from './info-sala/info-sala.component';
 
+
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -27,7 +29,7 @@ import { InfoSalaComponent } from './info-sala/info-sala.component';
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
-    HttpClientModule,
+    HttpClientModule
   ],
   declarations: [
     AppComponent,
