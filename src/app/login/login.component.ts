@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -50,18 +52,18 @@ export class LoginComponent implements OnInit {
     this.rightLink = "JA-SIG Central Authentication Service 3.3.5"
 
     this.form = this.formBuilder.group({
-      usbId: [null, [Validators.required, Validators.email]],
+      usbId: [null, [Validators.required]],
       clave: [null, [Validators.required]],
-      check: null
+      check: false
     })
   }
 
-  onCheck(event) {
-    console.log('event ', event);
-  }
-
   onSubmit(values) {
-    console.log(values);
+    // console.log(values);
+    if (this.form.valid) {
+      localStorage.setItem('usbId', values.usbId);
+      this.router.navigate(['dashboard']);
+    }
   }
 
 }
