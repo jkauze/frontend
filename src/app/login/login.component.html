@@ -1,0 +1,35 @@
+<div class="container" style="background: #FFFFFF;">
+  <div style="margin-bottom: 120px;">
+    <img class="img-fluid" src="/assets/img/headerUSB.png" />
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <div class="card" style="background: #eee;">
+        <div class="card-title"> {{ isEnglish ? title : titulo }} </div>
+        <hr>
+      </div>
+    </div>
+    <div class="col-6">
+      <p style="white-space: pre-line;" >{{ isEnglish ? paragraph : parrafo }}</p>
+      <div> Lenguajes: </div>
+      <div> 
+        <span (click)=" isEnglish = true "> English </span> |
+        <span (click)=" isEnglish = false "> Spanish </span>
+      </div>
+    </div>
+  </div>
+  <div class="row"> <!-- footer -->
+    <div class="col-1">Logo</div>
+    <div>
+      <div *ngFor="let link of links" style="display: inline;"> <a href="{{link.url}}"> {{ link.text }}</a> | </div>
+      <div>{{ direccionSartenejas }}</div>
+      <div>{{ direccionCamuri }}</div>
+      <div>{{ contacto }}</div>
+    </div>
+  </div>
+  <hr>
+  <div> <!-- align left -->
+    <div> {{rights}} </div>
+    <div> Powered by <a href="https://www.apereo.org/">{{rightLink}}</a> </div>
+  </div>
+</div>

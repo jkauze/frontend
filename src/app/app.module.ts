@@ -17,6 +17,7 @@ import {
 } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { InfoSalaComponent } from './info-sala/info-sala.component';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -34,6 +35,7 @@ import { InfoSalaComponent } from './info-sala/info-sala.component';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
+    LoginComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
