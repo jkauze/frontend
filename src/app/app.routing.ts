@@ -18,7 +18,7 @@ const routes: Routes =[
     component: LoginComponent,
   },
   {
-    path: 'dashboard',
+    path: '',
     component: AdminLayoutComponent,
     children: [{
       path: '',
