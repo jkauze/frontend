@@ -5,8 +5,36 @@
   <div class="row">
     <div class="col-4">
       <div class="card" style="background: #eee;">
-        <div class="card-title"> {{ isEnglish ? title : titulo }} </div>
-        <hr>
+        <div class="card-body">
+          <div class="card-title"> {{ isEnglish ? title : titulo }} </div>
+          <hr>
+          <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+            <div>
+              <label for="usbId">
+                USBID:
+              </label>
+              <br>
+              <input id="usbId" type="email" formControlName="usbId">
+            </div>
+          
+            <div>
+              <label for="clave">
+                {{ isEnglish ? 'Password:' : 'Contraseña:' }}
+              </label>
+              <br>
+              <input id="clave" type="text" formControlName="clave">
+            </div>
+
+            <div>
+              {{ isEnglish ? checkText : textoCheck }}
+            </div>
+          
+            <hr>
+            <button class="button" disabled="form.invalid" type="submit">{{ isEnglish ? 'Login' : 'Iniciar Sesion'}}</button>
+            |
+            <span> {{ isEnglish ? 'Clear' : 'Limpiar'}} </span>
+          </form>
+        </div>
       </div>
     </div>
     <div class="col-6">

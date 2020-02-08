@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -19,8 +20,11 @@ export class LoginComponent implements OnInit {
   public contacto: string;
   public rights: string;
   public rightLink: string;
+  public form: FormGroup;
 
-  constructor() { }
+  constructor(
+    private formBuilder: FormBuilder,
+  ) { }
 
   ngOnInit() {
     this.isEnglish = false;
@@ -44,6 +48,15 @@ export class LoginComponent implements OnInit {
     this.contacto = "Diseñada y adaptada por la Dirección de Servicios Telemáticos webmaster@usb.ve";
     this.rights = "Copyright © 2005-2007 JA-SIG. All rights reserved." 
     this.rightLink = "JA-SIG Central Authentication Service 3.3.5"
+
+    this.form = this.formBuilder.group({
+      usbId: [null, [Validators.required, Validators.email]],
+      clave: [null, [Validators.required]]
+    })
+  }
+
+  onSubmit(values) {
+    console.log(values);
   }
 
 }
