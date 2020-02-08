@@ -51,8 +51,13 @@ export class LoginComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       usbId: [null, [Validators.required, Validators.email]],
-      clave: [null, [Validators.required]]
+      clave: [null, [Validators.required]],
+      check: null
     })
+  }
+
+  onCheck(event) {
+    console.log('event ', event);
   }
 
   onSubmit(values) {

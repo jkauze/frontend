@@ -6,7 +6,7 @@
     <div class="col-4">
       <div class="card" style="background: #eee;">
         <div class="card-body">
-          <div class="card-title"> {{ isEnglish ? title : titulo }} </div>
+          <div class="card-title"> <b>{{ isEnglish ? title : titulo }}</b> </div>
           <hr>
           <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
             <div>
@@ -22,17 +22,20 @@
                 {{ isEnglish ? 'Password:' : 'Contraseña:' }}
               </label>
               <br>
-              <input id="clave" type="text" formControlName="clave">
+              <input id="clave" type="password" formControlName="clave">
             </div>
 
-            <div>
-              {{ isEnglish ? checkText : textoCheck }}
+            <div class="form-check" style="display: inline-block;">
+              <input  type="checkbox" formControlName="check" id="check">
+              <span>
+                {{ isEnglish ? checkText : textoCheck }}
+              </span>
             </div>
           
             <hr>
             <button class="button" disabled="form.invalid" type="submit">{{ isEnglish ? 'Login' : 'Iniciar Sesion'}}</button>
             |
-            <span> {{ isEnglish ? 'Clear' : 'Limpiar'}} </span>
+            <span (click)="form.reset()"> {{ isEnglish ? 'Clear' : 'Limpiar'}} </span>
           </form>
         </div>
       </div>
