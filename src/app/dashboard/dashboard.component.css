@@ -36,3 +36,7 @@ img {
 .link {
     cursor: pointer;
 }
+
+.fill-width {
+    width: 100%;
+}
