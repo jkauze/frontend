@@ -5,7 +5,7 @@ import { Items } from 'app/interfaces/items';
 import { Observable } from 'rxjs';
 import { environment } from 'environments/environment';
 
-const API = environment.api_url;
+const API = environment.api_url_do;
 
 @Injectable({
   providedIn: 'root'

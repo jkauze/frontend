@@ -6,6 +6,6 @@ import { RequestComponent } from '../../request/request.component'
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
-    { path: 'info-sala',      component: InfoSalaComponent },
+    { path: 'info-sala/:rid',      component: InfoSalaComponent },
     { path: 'solicitudes',      component: RequestComponent },
 ];

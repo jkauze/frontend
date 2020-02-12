@@ -2,13 +2,13 @@
   <div class="card">
     <div class="row no-gutters">
       <div *ngFor ="let room of rooms" class="col-md-4">
-        <img src="{{room.pathimage}}" class="card-img" style="max-width: 100%;">
+        <img src={{picture}} class="card-img" style="max-width: 100%;">
       </div>
       <div class="col-md-8">
         <div *ngFor="let room of rooms"  class="card-body">
           <h2 class="card-title text-uppercase"><b>{{room.name}}</b></h2>
           <p class="card-subtitle mb-1 text-muted font-italic">
-            <small>Esta sala pertenece a <a href="#" class="text-reset"><b>{{room.owner_id}}</b></a>.</small>
+            <small>Esta sala pertenece a <a href="#" class="text-reset"><b>{{room.manager_id}}</b></a>.</small>
           </p>
           <p class="card-text">{{room.description}}</p>
         </div>
@@ -17,13 +17,13 @@
   </div>
 
   <div *ngIf="items.length > 0" class="card"> <!--Verificar con ngIf si items es vacio-->
-    <div class="card-header card-header-warning">
+    <div class="card-header card-header-info">
       <h4 class="card-title">Componentes</h4>
       <p class="card-category">Objetos que posee la sala</p>
     </div>
     <div class="card-content table-responsive table-full-width">
       <table class="table">
-        <thead class="text-danger">
+        <thead class="text-info">
           <th>Item</th>
           <th class="text-center">Cantidad</th>
           <th class="text-center">Descripcion</th>
@@ -40,5 +40,5 @@
   </div>
 
   <button type="button" class="btn btn-warning btn-lg btn-block" disabled>Horarios</button>
-  <button type="button" class="btn btn-success btn-lg btn-block" disabled>Reservar</button>
+  <button type="button" class="btn btn-info btn-lg btn-block" disabled>Reservar</button>
 </div>
