@@ -10,7 +10,7 @@ export class InfoSalaComponent implements OnInit {
   public rooms = [];
   public items = [];
   
-  private url: string ='http://159.90.9.128/api/salas/';
+  private url: string ='salas/';
   private idroom: string = 'MYS-019'; // de aqui
   private urlitem: string = '/items';
   constructor(public json: AppService) { 

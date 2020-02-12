@@ -19,6 +19,10 @@
     justify-content: center;
 }
 
+.card-title {
+    width: fit-content;
+}
+
 .m-card-image {
     margin-top: -15px;
     margin-bottom: 15px;
@@ -27,4 +31,8 @@
 img {
     max-width: 100%;
     height: auto;
+}
+
+.link {
+    cursor: pointer;
 }

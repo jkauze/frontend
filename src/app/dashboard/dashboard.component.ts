@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'app/api/api.service';
-import { Room } from 'app/models';
+import { Rooms } from 'app/interfaces/rooms';
+import { AppService } from 'app/app.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,20 +9,14 @@ import { Room } from 'app/models';
 })
 export class DashboardComponent implements OnInit {
 
-  public rooms: Room[] = [];
+  public rooms: Rooms[];
 
-  constructor(private api: ApiService) { }
+  constructor(private api: AppService) { }
 
   ngOnInit() {
-    console.log('getting rooms');
-    this.api.getAllRooms().subscribe(
-      (data) => {
-        const roomsJson: object[] = JSON.parse(JSON.stringify(data));
-        roomsJson.forEach(room => {
-          this.rooms.unshift(new Room(room));
-        });
+    this.api.getRooms("salas")
+    .subscribe(rooms => {
+      this.rooms = rooms;
     });
-
   }
-
 }
