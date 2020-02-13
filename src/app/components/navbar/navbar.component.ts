@@ -122,4 +122,10 @@ export class NavbarComponent implements OnInit {
       }
       return 'Dashboard';
     }
+
+    onLogout() {
+        localStorage.removeItem('userId'); // destroy localstorage
+        this.router.navigate(['login']); // navigate login
+    }
+
 }
