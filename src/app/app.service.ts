@@ -4,7 +4,7 @@ import { Rooms } from 'app/interfaces/rooms';
 import { Items } from 'app/interfaces/items';
 import { Observable } from 'rxjs';
 import { environment } from 'environments/environment';
-import { User } from './interfaces/user';
+import { User, USER_TYPE } from './interfaces/user';
 
 const API = environment.api_url_do;
 
@@ -23,6 +23,26 @@ export class AppService {
 
   get user(): User {
     return this._user;
+  }
+
+   isAdminUser(): boolean {
+    if (!this.user) {
+      const userId = localStorage.getItem('userId');
+      if (userId) {
+        this.login(userId).then(user => {
+          if (user.length > 0) {
+            this.user = user[0];
+            return this.user && this.user.type === USER_TYPE.LAB_F;
+          } else {
+            return false;
+          }
+        });
+      } else {
+        return false;
+      }
+    } else {
+      return this.user && this.user.type === USER_TYPE.LAB_F;
+    }
   }
 
   getRooms(url: string): Observable<Rooms[]>{
