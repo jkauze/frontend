@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppService } from 'app/app.service';
 import { environment } from 'environments/environment';
 
-const API = environment.api_url_do;
+const API = environment.api_url;
 
 @Component({
   selector: 'app-laboratorios',
