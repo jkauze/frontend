@@ -16,6 +16,7 @@ import {
   MatTooltipModule,
   MatSelectModule
 } from '@angular/material';
+import { LaboratoriosComponent } from 'app/laboratorios/laboratorios.component';
 
 @NgModule({
   imports: [
@@ -34,7 +35,8 @@ import {
   declarations: [
     DashboardComponent,
     InfoSalaComponent,
-    RequestComponent
+    RequestComponent,
+    LaboratoriosComponent,
   ]
 })
 
