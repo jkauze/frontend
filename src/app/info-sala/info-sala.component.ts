@@ -3,7 +3,7 @@ import { AppService } from 'app/app.service';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'environments/environment';
 
-const API = environment.api_url_do;
+const API = environment.api_url;
 
 @Component({
   selector: 'app-info-sala',

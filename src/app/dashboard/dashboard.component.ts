@@ -37,7 +37,7 @@ export class DashboardComponent implements OnInit {
 
   loadImages() {
     this.rooms.forEach(room => {
-      room.path_image = environment.api_url_do + "salas/" + room.id + "/picture";
+      room.path_image = environment.api_url + "salas/" + room.id + "/picture";
     });
     console.log(this.rooms);
   }
