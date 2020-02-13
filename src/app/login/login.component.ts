@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+<<<<<<< HEAD
 import { AuthService } from './auth.service';
+=======
+import { AppService } from 'app/app.service';
+>>>>>>> 4e0ca187ce96e108508d1aaa07d32440c81262d4
 
 @Component({
   selector: 'app-login',
@@ -27,7 +31,11 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
+<<<<<<< HEAD
     private authService: AuthService,
+=======
+    private app: AppService
+>>>>>>> 4e0ca187ce96e108508d1aaa07d32440c81262d4
   ) { }
 
   ngOnInit() {
@@ -60,14 +68,22 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  onSubmit(values) {
+  async onSubmit(values) {
     // console.log(values);
     if (this.form.valid) {
+<<<<<<< HEAD
       this.authService.getUsuario(values.usbId).subscribe( response => {
         console.log(response);
         localStorage.setItem('usbId', values.usbId);
         this.router.navigate(['dashboard']);
       });
+=======
+      await this.app.login(values.usbId).then(users => {
+        const user = users[0];
+        localStorage.setItem('userId', user.id);
+      });
+      this.router.navigate(['dashboard']);
+>>>>>>> 4e0ca187ce96e108508d1aaa07d32440c81262d4
     }
   }
 
