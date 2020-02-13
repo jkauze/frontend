@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-
+import { AppService } from 'app/app.service';
 
 @Component({
   selector: 'app-request',
@@ -14,11 +13,26 @@ export class RequestComponent implements OnInit {
     {id: 3, first: 'Coco Sete', second: 'Algos3', time: '4-5', room: 'Sala A'},
   ];
 
-  headElements = ['No', 'Solicitante', 'Materia', 'Horario', 'Sala', ];
-
-  constructor() { }
-
-  ngOnInit() {
+  userProfile: any = {
+    id: 'ldac',
+    type: 3333
   }
 
+  requests: any;
+
+  headElements = ['No', 'Solicitante', 'Materia', 'Horario', 'Sala', ];
+
+  constructor( private appService: AppService) { }
+
+  ngOnInit() {
+    const endpoint = this.userProfile.type === 3333 ? `solicitudes/admin/${this.userProfile.id}` : 
+      `solicitudes/${this.userProfile.id}`;
+
+    this.appService.getRequest(endpoint).subscribe(requests => {
+      this.requests = requests;
+      console.log(this.requests);
+    }, error => {
+      console.log(error);
+    })
+  }
 }

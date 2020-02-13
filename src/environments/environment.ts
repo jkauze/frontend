@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  api_url: 'http://159.90.9.128/api/',
+  api_url: 'http://apireservac.xyz/api/',
 };

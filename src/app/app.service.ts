@@ -21,4 +21,8 @@ export class AppService {
   getItems(url: string): Observable<Items[]>{
     return this.http.get<Items[]>(API + url);
   }
+  
+  getRequest(url: String): Observable<any[]>{
+    return this.http.get<any[]>(API + url);
+  }
 }

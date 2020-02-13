@@ -7,6 +7,7 @@ import { DashboardComponent } from '../../dashboard/dashboard.component';
 import { InfoSalaComponent } from 'app/info-sala/info-sala.component';
 import { RequestComponent } from '../../request/request.component';
 import { MatTableModule } from '@angular/material/table';
+import { UserTypePipe } from 'app/pipes/user-type.pipe';
 
 import {
   MatButtonModule,
@@ -34,7 +35,8 @@ import {
   declarations: [
     DashboardComponent,
     InfoSalaComponent,
-    RequestComponent
+    RequestComponent,
+    UserTypePipe,
   ]
 })
 

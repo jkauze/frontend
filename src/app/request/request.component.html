@@ -7,38 +7,24 @@
       <table class="table">
         <thead class="text-danger">
           <th>Solicitante</th>
+          <th>Tipo</th>
           <th>Materia</th>
-          <th class="text-center">Horario</th>
-          <th class="text-center">Sala</th>
-          <th class="text-center">Estado</th>
+          <th>Sala</th>
+          <th>Fecha de Solicitud</th>
+          <th>Horario</th>
+          <th *ngIf="userProfile.type !== 3333 ">Estado</th>
+          <th *ngIf="userProfile.type == 3333 "> Aprobar </th>
         </thead>
         <tbody>
-          <tr>
-            <td>Alvaro Avila</td>
-            <td>Algoritmos I</td>
-            <td class="text-center">1-2</td>
-            <td class="text-center">Sala F</td>
-            <td class="text-right">
-              <button type="button" class="btn btn-success">Si</button>
-              <button type="button" class="btn btn-danger">No</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Pepito Perez</td>
-            <td>Algoritmos III</td>
-            <td class="text-center">3-4</td>
-            <td class="text-center">Sala A</td>
-            <td class="text-right">
-              <button type="button" class="btn btn-success">Si</button>
-              <button type="button" class="btn btn-danger">No</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Coco Sete</td>
-            <td>Calculo Numerico</td>
-            <td class="text-center">6-7</td>
-            <td class="text-center">Sala E</td>
-            <td class="text-right">
+          <tr *ngFor="let request of requests">
+            <td> {{ request.requester_id }} </td>
+            <td> {{ request.type | userType }}</td>
+            <td> {{ request.subject_id }}</td>
+            <td> {{ request.room_id  }}</td>
+            <td> {{ request.send_time | date }}</td>
+            <td *ngIf="userProfile.type !== 3333 "> {{ request.status  }}</td>
+            <td> <button mat-stroked-button>Ver Horario</button> </td>
+            <td *ngIf="userProfile.type == 3333 ">
               <button type="button" class="btn btn-success">Si</button>
               <button type="button" class="btn btn-danger">No</button>
             </td>
