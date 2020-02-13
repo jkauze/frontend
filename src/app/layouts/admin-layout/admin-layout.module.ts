@@ -17,6 +17,7 @@ import {
   MatSelectModule
 } from '@angular/material';
 import { LaboratoriosComponent } from 'app/laboratorios/laboratorios.component';
+import { HorarioComponent } from 'app/horario/horario.component';
 
 @NgModule({
   imports: [
@@ -37,6 +38,7 @@ import { LaboratoriosComponent } from 'app/laboratorios/laboratorios.component';
     InfoSalaComponent,
     RequestComponent,
     LaboratoriosComponent,
+    HorarioComponent,
   ]
 })
 

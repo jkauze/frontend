@@ -11,7 +11,6 @@ import { ComponentsModule } from './components/components.module';
 
 import { AppComponent } from './app.component';
 
-import { DashboardComponent } from './dashboard/dashboard.component';
 import {
   AgmCoreModule
 } from '@agm/core';
