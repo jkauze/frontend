@@ -12,7 +12,17 @@ const API = environment.api_url;
 })
 export class AppService {
 
+  private _userId: string;
+
   constructor(private http: HttpClient) { }
+  
+  set userId(id: string) {
+    this._userId = id;
+  }
+
+  get userId(): string {
+    return this._userId;
+  }
 
   getRooms(url: string): Observable<Rooms[]>{
       return this.http.get<Rooms[]>(API + url);
@@ -20,5 +30,15 @@ export class AppService {
 
   getItems(url: string): Observable<Items[]>{
     return this.http.get<Items[]>(API + url);
+  }
+
+  getUsers() {
+    return this.http.get(API + 'usuarios/');
+  }
+
+  login(username: string) {
+    const userData = this.http.get(API + 'usuario/' + username);
+    console.log(userData);
+    this.userId = username;
   }
 }

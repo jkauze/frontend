@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AppService } from 'app/app.service';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private app: AppService
   ) { }
 
   ngOnInit() {
@@ -61,7 +63,7 @@ export class LoginComponent implements OnInit {
   onSubmit(values) {
     // console.log(values);
     if (this.form.valid) {
-      localStorage.setItem('usbId', values.usbId);
+      this.app.login(values.usbId);
       this.router.navigate(['dashboard']);
     }
   }
