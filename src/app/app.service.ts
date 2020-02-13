@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'environments/environment';
 import { User } from './interfaces/user';
 
-const API = environment.api_url;
+const API = environment.api_url_do;
 
 @Injectable({
   providedIn: 'root'
