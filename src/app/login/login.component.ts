@@ -60,10 +60,10 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  onSubmit(values) {
+  async onSubmit(values) {
     // console.log(values);
     if (this.form.valid) {
-      this.app.login(values.usbId);
+      await this.app.login(values.usbId);
       this.router.navigate(['dashboard']);
     }
   }

@@ -4,6 +4,7 @@ import { Rooms } from 'app/interfaces/rooms';
 import { Items } from 'app/interfaces/items';
 import { Observable } from 'rxjs';
 import { environment } from 'environments/environment';
+import { User } from './interfaces/user';
 
 const API = environment.api_url;
 
@@ -12,16 +13,16 @@ const API = environment.api_url;
 })
 export class AppService {
 
-  private _userId: string;
+  private _user: User;
 
   constructor(private http: HttpClient) { }
   
-  set userId(id: string) {
-    this._userId = id;
+  set user(id: User) {
+    this._user = id;
   }
 
-  get userId(): string {
-    return this._userId;
+  get user(): User {
+    return this._user;
   }
 
   getRooms(url: string): Observable<Rooms[]>{
@@ -32,13 +33,17 @@ export class AppService {
     return this.http.get<Items[]>(API + url);
   }
 
-  getUsers() {
-    return this.http.get(API + 'usuarios/');
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(API + 'usuarios/');
   }
 
-  login(username: string) {
-    const userData = this.http.get(API + 'usuario/' + username);
-    console.log(userData);
-    this.userId = username;
+  async login(username: string): Promise<User[]> {
+    const userData = this.http.get<User[]>(API + 'usuario/' + username).toPromise();
+    await userData.then((data: User[]) => {
+      if (data.length === 1) {
+        this.user = data[0];
+      }
+    });
+    return userData;
   }
 }

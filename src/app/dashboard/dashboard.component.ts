@@ -18,5 +18,6 @@ export class DashboardComponent implements OnInit {
     .subscribe(rooms => {
       this.rooms = rooms;
     });
+    console.log(this.api.user);
   }
 }
