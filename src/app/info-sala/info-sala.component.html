@@ -1,4 +1,19 @@
 <div class="main-content">
+
+  <div *ngIf="is_admin">
+    <div class="card">
+        <div class="card-header card-header-icon card-header-info">
+          <div class="card-icon">
+            <i class="material-icons">settings</i>
+          </div>
+          <h4 class="card-title">Administrador</h4>
+        </div>
+        <div class="card-body">
+          <button type="button" class="btn btn-info btn-lg btn-block">Editar</button>
+        </div>
+    </div>
+  </div>
+
   <div class="card">
     <div class="row no-gutters">
       <div *ngFor ="let room of rooms" class="col-md-4">
