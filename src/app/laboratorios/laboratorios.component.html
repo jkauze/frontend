@@ -1,14 +1,12 @@
 <div class="main-content">
   <div class="container-fluid">
-    <!-- <div class="row"> <h3> {{ staticAdmin.name }} </h3> </div>
-    <div><h5> {{ staticAdmin.email }} </h5></div>
-    <div> <h3> Salas que Administra </h3></div>   -->
 
     <div class="row">
       <div class="col-lg-6 col-md-12" *ngFor="let lab of labs">
         <div class="card h-70" style="cursor: pointer;" [routerLink]="['/laboratorios/salas/', lab.id]">
+          <div class="card-header bg-info">{{ lab.id }}</div>
           <div class="card-body">
-            <h4 class="card-title"> {{ lab.id }} </h4>
+            <!-- <h4 class="card-title"> {{ lab.id }} </h4> -->
             <p class="card-text"> {{ lab.name }} </p>
           </div>
         </div>
