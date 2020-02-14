@@ -18,6 +18,7 @@ export class InfoSalaComponent implements OnInit {
   private idroom: string;
   private urlitem: string = '/items';
   private picture: string;
+  private is_admin: boolean;
   constructor(public json: AppService, private activatedRoute: ActivatedRoute) { 
     this.idroom = this.activatedRoute.snapshot.params['rid'];
   }
@@ -33,6 +34,7 @@ export class InfoSalaComponent implements OnInit {
       this.items = data;
       console.log(data);
     });
+    this.is_admin = this.json.isAdminUser();
   }
 
 }

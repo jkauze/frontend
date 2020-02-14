@@ -71,4 +71,9 @@ export class AppService {
     });
     return userData;
   }
+
+  getAdminLabs() : Observable<any[]> {
+    const endPoint = environment.api_url + '/usuarios/admin';
+    return this.http.get<any[]>(endPoint);
+  }
 }
