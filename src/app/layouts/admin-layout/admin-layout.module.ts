@@ -17,6 +17,7 @@ import {
   MatTooltipModule,
   MatSelectModule
 } from '@angular/material';
+import { HorarioComponent } from 'app/horario/horario.component';
 
 @NgModule({
   imports: [
@@ -37,6 +38,7 @@ import {
     InfoSalaComponent,
     RequestComponent,
     UserTypePipe,
+    HorarioComponent
   ]
 })
 

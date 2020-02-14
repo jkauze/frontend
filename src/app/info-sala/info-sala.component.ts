@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from 'app/app.service';
+import { ActivatedRoute } from '@angular/router';
+import { environment } from 'environments/environment';
+
+const API = environment.api_url;
 
 @Component({
   selector: 'app-info-sala',
@@ -11,20 +15,21 @@ export class InfoSalaComponent implements OnInit {
   public items = [];
   
   private url: string ='salas/';
-  private idroom: string = 'MYS-019'; // de aqui
+  private idroom: string;
   private urlitem: string = '/items';
-  constructor(public json: AppService) { 
-    // this.activatedRoute.snapshot.params['uid'];
+  private picture: string;
+  constructor(public json: AppService, private activatedRoute: ActivatedRoute) { 
+    this.idroom = this.activatedRoute.snapshot.params['rid'];
   }
 
   ngOnInit() {
     this.json.getRooms(this.url + this.idroom).subscribe((data) => {
       this.rooms = data;
-      //this.imagen = this.imagen + this.rooms[0].image;
-      console.log(data);
+      this.picture = API + this.url + this.idroom + '/picture';
+      console.log(this.picture);
     });
     
-    this.json.getItems(this.url + this.idroom +this.urlitem).subscribe((data) => {
+    this.json.getItems(this.url + this.idroom + this.urlitem).subscribe((data) => {
       this.items = data;
       console.log(data);
     });

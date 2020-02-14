@@ -11,13 +11,10 @@ import { ComponentsModule } from './components/components.module';
 
 import { AppComponent } from './app.component';
 
-import { DashboardComponent } from './dashboard/dashboard.component';
 import {
   AgmCoreModule
 } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import { InfoSalaComponent } from './info-sala/info-sala.component';
-import { RequestComponent } from './request/request.component';
 import { LoginComponent } from './login/login.component';
 
 

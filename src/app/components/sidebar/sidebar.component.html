@@ -11,6 +11,18 @@
 <!--
     AQUI VAN LOS ICONOS QUE SE ENCUENTRAN EN EL NAVBAR CUANDO ESTÁ EN EL MODO MOBILE
     -->
+
+    <ul class="nav navbar-nav nav-mobile-menu">
+        <li class="nav-item">
+            <a class="nav-link" href="onLogout">
+                <i class="material-icons">power_settings_new</i>
+                <p>
+                    <span class="d-lg-none d-md-block">Logout</span>
+                </p>
+            </a>
+        </li>
+    </ul>
+
   </div>
     <ul class="nav">
         <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
