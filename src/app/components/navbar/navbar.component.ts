@@ -120,7 +120,7 @@ export class NavbarComponent implements OnInit {
               return this.listTitles[item].title;
           }
       }
-      return titlee;
+      return 'Dashboard';
     }
 
     onLogout() {
