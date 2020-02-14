@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from 'app/app.service';
+import { Request } from 'app/interfaces/request';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-request',
@@ -18,7 +20,9 @@ export class RequestComponent implements OnInit {
     type: 3333
   }
 
-  requests: any;
+  requests: Request[];
+  dataSource = new MatTableDataSource(this.requests);
+  displayedColumns = ['requester_id', 'type', 'subject_id', 'room_id', 'send_time'];
 
   headElements = ['No', 'Solicitante', 'Materia', 'Horario', 'Sala', ];
 
@@ -28,11 +32,17 @@ export class RequestComponent implements OnInit {
     const endpoint = this.userProfile.type === 3333 ? `solicitudes/admin/${this.userProfile.id}` : 
       `solicitudes/${this.userProfile.id}`;
 
-    this.appService.getRequest(endpoint).subscribe(requests => {
+    this.appService.getRequests(endpoint).subscribe(requests => {
       this.requests = requests;
+      this.dataSource.data = this.requests;
       console.log(this.requests);
     }, error => {
       console.log(error);
     })
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
   }
 }

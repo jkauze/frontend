@@ -5,6 +5,7 @@ import { Items } from 'app/interfaces/items';
 import { Observable } from 'rxjs';
 import { environment } from 'environments/environment';
 import { User, USER_TYPE } from './interfaces/user';
+import { Request } from './interfaces/request';
 
 const API = environment.api_url;
 
@@ -53,7 +54,7 @@ export class AppService {
     return this.http.get<Items[]>(API + url);
   }
   
-  getRequest(url: String): Observable<any[]>{
+  getRequests(url: String): Observable<Request[]>{
     return this.http.get<any[]>(API + url);
   }
 
