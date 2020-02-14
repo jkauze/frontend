@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private app: AppService
+    private appService: AppService
   ) { }
 
   ngOnInit() {
@@ -63,11 +63,12 @@ export class LoginComponent implements OnInit {
   async onSubmit(values) {
     // console.log(values);
     if (this.form.valid) {
-      await this.app.login(values.usbId).then(users => {
+      await this.appService.login(values.usbId).then(users => {
         const user = users[0];
         localStorage.setItem('userId', user.id);
       });
       this.router.navigate(['dashboard']);
+
     }
   }
 

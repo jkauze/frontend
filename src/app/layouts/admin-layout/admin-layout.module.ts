@@ -16,7 +16,9 @@ import {
   MatTooltipModule,
   MatSelectModule
 } from '@angular/material';
+import { LaboratoriosComponent } from 'app/laboratorios/laboratorios.component';
 import { HorarioComponent } from 'app/horario/horario.component';
+import { SalasUserComponent } from 'app/laboratorios/salas-user/salas-user.component';
 
 @NgModule({
   imports: [
@@ -36,7 +38,9 @@ import { HorarioComponent } from 'app/horario/horario.component';
     DashboardComponent,
     InfoSalaComponent,
     RequestComponent,
-    HorarioComponent
+    LaboratoriosComponent,
+    HorarioComponent,
+    SalasUserComponent,
   ]
 })
 

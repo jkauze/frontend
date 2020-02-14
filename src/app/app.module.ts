@@ -17,8 +17,6 @@ import {
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginComponent } from './login/login.component';
 
-
-
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -33,7 +31,7 @@ import { LoginComponent } from './login/login.component';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    LoginComponent
+    LoginComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
