@@ -1,22 +1,15 @@
 <div class="main-content">
   <div class="container-fluid">
-    <div class="row"> <h3> {{ staticAdmin.name }} </h3> </div>
+    <!-- <div class="row"> <h3> {{ staticAdmin.name }} </h3> </div>
     <div><h5> {{ staticAdmin.email }} </h5></div>
-    <div> <h3> Salas que Administra </h3></div>  
+    <div> <h3> Salas que Administra </h3></div>   -->
 
     <div class="row">
-      <div class="col-lg-6 col-md-12" *ngFor="let room of rooms">
-        <div class="card">
-          
-          <div class="card-header card-header-info">
-            <h3 class="card-title ">{{ room.name }}</h3>
-          </div>
+      <div class="col-lg-6 col-md-12" *ngFor="let lab of labs">
+        <div class="card h-70" style="cursor: pointer;" [routerLink]="['/laboratorios/salas/', lab.id]">
           <div class="card-body">
-              <div class="row">
-                <div class="col-lg-12 col-md-6 d-flex m-card-image">
-                  <img class="img-fluid" [src]="room.picture" [alt]="room.name">
-                </div>
-              </div>
+            <h4 class="card-title"> {{ lab.id }} </h4>
+            <p class="card-text"> {{ lab.name }} </p>
           </div>
         </div>
       </div>

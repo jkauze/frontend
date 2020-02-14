@@ -11,7 +11,10 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'info-sala/:rid',      component: InfoSalaComponent },
     { path: 'solicitudes',      component: RequestComponent },
-    { path: 'laboratorios', component: LaboratoriosComponent},
-    { path: 'laboratorios/salas', component: SalasUserComponent},
+    { path: 'laboratorios',
+    children: [
+        { path:'salas/:id', component: SalasUserComponent},
+        { path: '', component: LaboratoriosComponent}
+    ]},
     { path: 'horario',      component: HorarioComponent},
 ];
