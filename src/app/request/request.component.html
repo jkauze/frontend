@@ -42,6 +42,25 @@
         </ng-container>
 
         <!-- Horario -->
+        <ng-container matColumnDef="Horario">
+          <th mat-header-cell *matHeaderCellDef class="align">Horario</th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-stroked-button>Ver horario</button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status" *ngIf="userProfile.type !== 3333">
+          <th mat-header-cell *matHeaderCellDef class="align">Estado</th>
+          <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="Aprobar" *ngIf="userProfile.type === 3333">
+          <th mat-header-cell *matHeaderCellDef class="align">Aprobar</th>
+          <td mat-cell *matCellDef="let element">
+            <button type="button" class="btn btn-success">Si</button>
+            <button type="button" class="btn btn-danger">No</button>
+          </td>
+        </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

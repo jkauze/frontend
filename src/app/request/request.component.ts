@@ -19,18 +19,26 @@ export class RequestComponent implements OnInit {
     id: 'ldac',
     type: 3333
   }
+  is_admin: boolean;
 
   requests: Request[];
   dataSource = new MatTableDataSource(this.requests);
   displayedColumns = ['requester_id', 'type', 'subject_id', 'room_id', 'send_time'];
 
-  headElements = ['No', 'Solicitante', 'Materia', 'Horario', 'Sala', ];
+  headElements = ['No', 'Solicitante', 'Materia', 'Horario', 'Sala', 's'];
 
   constructor( private appService: AppService) { }
 
   ngOnInit() {
-    const endpoint = this.userProfile.type === 3333 ? `solicitudes/admin/${this.userProfile.id}` : 
-      `solicitudes/${this.userProfile.id}`;
+    this.is_admin = this.userProfile.type === 3333;
+    if (this.is_admin) {
+      var endpoint = this.userProfile.type === 3333 ? 
+        `solicitudes/admin/${this.userProfile.id}` : 
+        `solicitudes/${this.userProfile.id}`;
+      this.displayedColumns.push('Aprobar');
+    } else {
+      this.displayedColumns.push('status');
+    }
 
     this.appService.getRequests(endpoint).subscribe(requests => {
       this.requests = requests;
