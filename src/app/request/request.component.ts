@@ -23,7 +23,7 @@ export class RequestComponent implements OnInit {
 
   requests: Request[];
   dataSource = new MatTableDataSource(this.requests);
-  displayedColumns = ['requester_id', 'type', 'subject_id', 'room_id', 'send_time'];
+  displayedColumns = ['name', 'type', 'subject_id', 'room_id', 'send_time'];
 
   headElements = ['No', 'Solicitante', 'Materia', 'Horario', 'Sala', 's'];
 
