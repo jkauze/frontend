@@ -9,7 +9,7 @@
           <h4 class="card-title">Administrador</h4>
         </div>
         <div class="card-body">
-          <button type="button" class="btn btn-info btn-lg btn-block">Editar</button>
+          <button type="button" class="btn btn-info btn-lg btn-block" (click)="isEdit()">Editar</button>
         </div>
     </div>
   </div>
@@ -25,7 +25,10 @@
           <p class="card-subtitle mb-1 text-muted font-italic">
             <small>Esta sala pertenece a <a href="#" class="text-reset"><b>{{room.manager_id}}</b></a>.</small>
           </p>
-          <p class="card-text">{{room.description}}</p>
+          <p *ngIf="!edit" class="card-text">{{room.description}}</p>
+          <div *ngIf="edit" class="md-form">
+            <textarea class="md-textarea form-control " rows="10" id="input_text" type="text" length="120" mdbCharCounter mdbInput>{{room.description}}</textarea>
+          </div>
         </div>
       </div>
     </div>
@@ -54,6 +57,7 @@
     </div>
   </div>
 
+  <button *ngIf="edit" type="button" class="btn btn-success btn-lg btn-block" (click)="sumbitEdit()">Guardar</button>
   <button type="button" class="btn btn-warning btn-lg btn-block" disabled>Horarios</button>
   <button type="button" class="btn btn-info btn-lg btn-block" disabled>Reservar</button>
 </div>
