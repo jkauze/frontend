@@ -31,17 +31,12 @@ export class AppService {
       if (!this.user) {
         const userId = localStorage.getItem('userId');
         if (userId) {
-          await this.login(userId).then(user => {
-            if (user.length > 0) {
-              this.user = user[0];
-              resolve(this.user && this.user.type === USER_TYPE.LAB_F);
-            } else {
-              resolve(false);
-            }
-          }).then(() => {
-            // Si entra en este caso, significa que no pudo conectarse al servidor
-            reject();
-          });
+          await this.login(userId).catch(() => reject());
+          if (!this.user) {
+            resolve(false);
+          } else {
+            resolve(this.user && this.user.type === USER_TYPE.LAB_F);
+          }
         } else {
           resolve(false);
         }

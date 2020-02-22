@@ -18,7 +18,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.api.isAdminUser().then(isAdmin => {
       this.is_admin = isAdmin;
-      console.log('isAdmin', isAdmin);
       if (isAdmin) {
         const user = this.api.user;
         this.api.getRooms("salas/admin/" + user.id)
