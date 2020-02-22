@@ -16,23 +16,25 @@ export class DashboardComponent implements OnInit {
   constructor(private api: AppService) { }
 
   ngOnInit() {
-    this.is_admin = this.api.isAdminUser();
-    console.log(this.is_admin);
-    if (this.is_admin) {
-      const user = this.api.user;
-      this.api.getRooms("salas/admin/" + user.id)
-      .subscribe(rooms => {
-        this.rooms = rooms;
-        this.loadImages();
-      })
-    } else {
-      this.api.getRooms("salas")
-      .subscribe(rooms => {
-        this.rooms = rooms;
-        this.loadImages();
-      });
+    this.api.isAdminUser().then(isAdmin => {
+      this.is_admin = isAdmin;
+      console.log('isAdmin', isAdmin);
+      if (isAdmin) {
+        const user = this.api.user;
+        this.api.getRooms("salas/admin/" + user.id)
+          .subscribe(rooms => {
+            this.rooms = rooms;
+            this.loadImages();
+          });
+      } else {
+        this.api.getRooms("salas")
+          .subscribe(rooms => {
+            this.rooms = rooms;
+            this.loadImages();
+          });
+      }
     }
-    
+    );
   }
 
   loadImages() {

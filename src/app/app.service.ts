@@ -17,7 +17,7 @@ export class AppService {
   private _user: User;
 
   constructor(private http: HttpClient) { }
-  
+
   set user(id: User) {
     this._user = id;
   }
@@ -26,35 +26,40 @@ export class AppService {
     return this._user;
   }
 
-   isAdminUser(): boolean {
-    if (!this.user) {
-      const userId = localStorage.getItem('userId');
-      if (userId) {
-        this.login(userId).then(user => {
-          if (user.length > 0) {
-            this.user = user[0];
-            return this.user && this.user.type === USER_TYPE.LAB_F;
-          } else {
-            return false;
-          }
-        });
+  async isAdminUser(): Promise<boolean> {
+    return new Promise<boolean>(async (resolve, reject) => {
+      if (!this.user) {
+        const userId = localStorage.getItem('userId');
+        if (userId) {
+          await this.login(userId).then(user => {
+            if (user.length > 0) {
+              this.user = user[0];
+              resolve(this.user && this.user.type === USER_TYPE.LAB_F);
+            } else {
+              resolve(false);
+            }
+          }).then(() => {
+            // Si entra en este caso, significa que no pudo conectarse al servidor
+            reject();
+          });
+        } else {
+          resolve(false);
+        }
       } else {
-        return false;
+        resolve(this.user && this.user.type === USER_TYPE.LAB_F);
       }
-    } else {
-      return this.user && this.user.type === USER_TYPE.LAB_F;
-    }
+    });
   }
 
-  getRooms(url: string): Observable<Rooms[]>{
-      return this.http.get<Rooms[]>(API + url);
+  getRooms(url: string): Observable<Rooms[]> {
+    return this.http.get<Rooms[]>(API + url);
   }
 
-  getItems(url: string): Observable<Items[]>{
+  getItems(url: string): Observable<Items[]> {
     return this.http.get<Items[]>(API + url);
   }
-  
-  getRequests(url: String): Observable<Request[]>{
+
+  getRequests(url: String): Observable<Request[]> {
     return this.http.get<any[]>(API + url);
   }
 
@@ -67,12 +72,13 @@ export class AppService {
     await userData.then((data: User[]) => {
       if (data.length === 1) {
         this.user = data[0];
+        localStorage.setItem('userId', this.user.id);
       }
     });
     return userData;
   }
 
-  getAdminLabs() : Observable<any[]> {
+  getAdminLabs(): Observable<any[]> {
     const endPoint = environment.api_url + '/usuarios/admin';
     return this.http.get<any[]>(endPoint);
   }

@@ -34,7 +34,7 @@ export class InfoSalaComponent implements OnInit {
       this.items = data;
       console.log(data);
     });
-    this.is_admin = this.json.isAdminUser();
+    this.json.isAdminUser().then(isAdmin => { this.is_admin = isAdmin; });
   }
 
 }
