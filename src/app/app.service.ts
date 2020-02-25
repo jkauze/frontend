@@ -4,8 +4,9 @@ import { Rooms } from 'app/interfaces/rooms';
 import { Items } from 'app/interfaces/items';
 import { Observable } from 'rxjs';
 import { environment } from 'environments/environment';
-import { User, USER_TYPE } from './interfaces/user';
+import { User } from './interfaces/user';
 import { Request } from './interfaces/request';
+import { Trimester } from './interfaces/trimester';
 
 const API = environment.api_url;
 
@@ -26,7 +27,7 @@ export class AppService {
     return this._user;
   }
 
-  async isAdminUser(): Promise<boolean> {
+  async isUserType(usertype: number): Promise<boolean> {
     return new Promise<boolean>(async (resolve, reject) => {
       if (!this.user) {
         const userId = localStorage.getItem('userId');
@@ -35,13 +36,13 @@ export class AppService {
           if (!this.user) {
             resolve(false);
           } else {
-            resolve(this.user && this.user.type === USER_TYPE.LAB_F);
+            resolve(this.user && this.user.type === usertype);
           }
         } else {
           resolve(false);
         }
       } else {
-        resolve(this.user && this.user.type === USER_TYPE.LAB_F);
+        resolve(this.user && this.user.type === usertype);
       }
     });
   }
@@ -58,8 +59,20 @@ export class AppService {
     return this.http.get<any[]>(API + url);
   }
 
-  getUsers(): Observable<User[]> {
+  getUsers(users?: string): Observable<User[]> {
+    if (users) {
+      return this.http.get<User[]>(API + 'usuarios/' + users);
+    }
     return this.http.get<User[]>(API + 'usuarios/');
+  }
+
+  getAdminLabs(): Observable<any[]> {
+    const endPoint = environment.api_url + '/usuarios/admin';
+    return this.http.get<any[]>(endPoint);
+  }
+
+  getTrimester(): Observable<Trimester[]> {
+    return this.http.get<Trimester[]>(API + 'trimestre/ultimo');
   }
 
   async login(username: string): Promise<User[]> {
@@ -73,8 +86,4 @@ export class AppService {
     return userData;
   }
 
-  getAdminLabs(): Observable<any[]> {
-    const endPoint = environment.api_url + '/usuarios/admin';
-    return this.http.get<any[]>(endPoint);
-  }
 }

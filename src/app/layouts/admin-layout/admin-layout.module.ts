@@ -6,6 +6,7 @@ import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../dashboard/dashboard.component';
 import { InfoSalaComponent } from 'app/info-sala/info-sala.component';
 import { RequestComponent } from '../../request/request.component';
+import { LabfAdminComponent } from 'app/labf-admin/labf-admin.component';
 import { MatTableModule } from '@angular/material/table';
 import { UserTypePipe } from 'app/pipes/user-type.pipe';
 
@@ -15,7 +16,10 @@ import {
   MatRippleModule,
   MatFormFieldModule,
   MatTooltipModule,
-  MatSelectModule
+  MatSelectModule,
+  MatCardModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
 } from '@angular/material';
 import { LaboratoriosComponent } from 'app/laboratorios/laboratorios.component';
 import { HorarioComponent } from 'app/horario/horario.component';
@@ -34,6 +38,9 @@ import { SalasUserComponent } from 'app/laboratorios/salas-user/salas-user.compo
     MatSelectModule,
     MatTooltipModule,
     MatTableModule,
+    MatCardModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   declarations: [
     DashboardComponent,
@@ -43,6 +50,10 @@ import { SalasUserComponent } from 'app/laboratorios/salas-user/salas-user.compo
     LaboratoriosComponent,
     HorarioComponent,
     SalasUserComponent,
+    LabfAdminComponent,
+  ],
+  providers: [
+    MatDatepickerModule
   ]
 })
 

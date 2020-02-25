@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppService } from 'app/app.service';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'environments/environment';
+import { USER_TYPE } from 'app/interfaces/user';
 
 const API = environment.api_url;
 
@@ -34,7 +35,7 @@ export class InfoSalaComponent implements OnInit {
       this.items = data;
       console.log(data);
     });
-    this.json.isAdminUser().then(isAdmin => { this.is_admin = isAdmin; });
+    this.json.isUserType(USER_TYPE.LAB_ADMIN).then(isAdmin => { this.is_admin = isAdmin; });
   }
 
 }
