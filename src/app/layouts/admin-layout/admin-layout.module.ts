@@ -20,10 +20,13 @@ import {
   MatCardModule,
   MatDatepickerModule,
   MatNativeDateModule,
+  MatDialogModule,
+  MAT_DIALOG_DEFAULT_OPTIONS,
 } from '@angular/material';
 import { LaboratoriosComponent } from 'app/laboratorios/laboratorios.component';
 import { HorarioComponent } from 'app/horario/horario.component';
 import { SalasUserComponent } from 'app/laboratorios/salas-user/salas-user.component';
+import { ConfirmRejectionComponent } from 'app/dialogs/confirm-rejection/confirm-rejection.component';
 
 @NgModule({
   imports: [
@@ -41,6 +44,7 @@ import { SalasUserComponent } from 'app/laboratorios/salas-user/salas-user.compo
     MatCardModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatDialogModule,
   ],
   declarations: [
     DashboardComponent,
@@ -51,9 +55,14 @@ import { SalasUserComponent } from 'app/laboratorios/salas-user/salas-user.compo
     HorarioComponent,
     SalasUserComponent,
     LabfAdminComponent,
+    ConfirmRejectionComponent,
   ],
   providers: [
-    MatDatepickerModule
+    MatDatepickerModule,
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
+  ],
+  entryComponents: [
+    ConfirmRejectionComponent,
   ]
 })
 

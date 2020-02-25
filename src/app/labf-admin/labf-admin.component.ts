@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from 'app/app.service';
 import { Trimester } from 'app/interfaces/trimester';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatDialog } from '@angular/material';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { RoomRequest } from 'app/interfaces/room_request';
 import { USER_TYPE } from 'app/interfaces/user';
 import { Router } from '@angular/router';
+import { ConfirmRejectionComponent, DialogData } from 'app/dialogs/confirm-rejection/confirm-rejection.component';
 
 @Component({
   selector: 'app-labf-admin',
@@ -27,7 +28,8 @@ export class LabfAdminComponent implements OnInit {
   constructor(
     private app: AppService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -61,5 +63,19 @@ export class LabfAdminComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
   }
 
+  openRejectionDialog() {
+    const dialogData: DialogData = {
+      reason: ''
+    }
+    const dialogRef = this.dialog.open(ConfirmRejectionComponent, {
+      width: '300px',
+      data: dialogData
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.trim().length > 0) {
+        console.log('The dialog was closed with reason: ' + result);
+      }
+    });
+  }
 
 }
