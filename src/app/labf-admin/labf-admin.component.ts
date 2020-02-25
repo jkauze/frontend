@@ -4,6 +4,8 @@ import { Trimester } from 'app/interfaces/trimester';
 import { MatTableDataSource } from '@angular/material';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { RoomRequest } from 'app/interfaces/room_request';
+import { USER_TYPE } from 'app/interfaces/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-labf-admin',
@@ -24,17 +26,24 @@ export class LabfAdminComponent implements OnInit {
 
   constructor(
     private app: AppService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) { }
 
   ngOnInit() {
-    this.app.getTrimester().subscribe(trimesters => {
-      if (trimesters.length === 1) {
-        this.trimester = trimesters[0];
-        this.trimesterForm = this.formBuilder.group({
-          startDate: this.trimester.start,
-          finishDate: this.trimester.finish
+    this.app.isUserType(USER_TYPE.LAB_F).then(isLabF => {
+      if (isLabF) {
+        this.app.getTrimester().subscribe(trimesters => {
+          if (trimesters.length === 1) {
+            this.trimester = trimesters[0];
+            this.trimesterForm = this.formBuilder.group({
+              startDate: this.trimester.start,
+              finishDate: this.trimester.finish
+            });
+          }
         });
+      } else {
+        this.router.navigate(['dashboard']);
       }
     });
   }
