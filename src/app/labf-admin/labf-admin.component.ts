@@ -20,6 +20,7 @@ export class LabfAdminComponent implements OnInit {
 
   public trimester: Trimester;
   trimesterForm: FormGroup;
+  trimesterFormChanged: boolean;
 
   constructor(
     private app: AppService,
@@ -36,6 +37,10 @@ export class LabfAdminComponent implements OnInit {
         });
       }
     });
+  }
+
+  trimesterChange() {
+    console.log(this.trimesterForm.value);
   }
 
   onSubmit(trimesterData) {
