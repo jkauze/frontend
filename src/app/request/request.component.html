@@ -5,16 +5,16 @@
     </div>
     <div class="card-content table-responsive table-full-width align">
 
-      <mat-form-field>
-        <mat-label>Filtrar</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. estudiante">
+      <mat-form-field class="filt">
+        <mat-label>Buscar</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Departamento">
       </mat-form-field>
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
         <!-- Solicitante -->
-        <ng-container matColumnDef="requester_id">
+        <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef class="align">Solicitante</th>
-          <td mat-cell *matCellDef="let element">{{ element.requester_id }}</td>
+          <td mat-cell *matCellDef="let element">{{ element.name }}</td>
         </ng-container>
 
         <!-- Tipo -->
