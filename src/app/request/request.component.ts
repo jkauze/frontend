@@ -14,7 +14,9 @@ export class RequestComponent implements OnInit {
 
   requests: Request[];
   dataSource = new MatTableDataSource(this.requests);
-  displayedColumns = ['name', 'type', 'subject_id', 'room_id', 'material_needed', 'quantity', 'send_time', 'Horario', 'Aprobar'];
+  // Columns para Admin
+  displayedColumns = ['name', 'type', 'subject_id', 'room_id', 'material_needed', 'quantity', 'send_time', 'Horario', 'Aprobar']; 
+  // Colums para Users
   displayedColumns1 = ['requester_id', 'subject_id', 'room_id', 'material_needed', 'quantity', 'send_time', 'Horario', 'status'];
 
   constructor( private appService: AppService) { }
