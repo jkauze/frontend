@@ -14,7 +14,8 @@ export class RequestComponent implements OnInit {
 
   requests: Request[];
   dataSource = new MatTableDataSource(this.requests);
-  displayedColumns = ['requester_id', 'type', 'subject_id', 'room_id', 'send_time', 'Horario'];
+  displayedColumns = ['name', 'type', 'subject_id', 'room_id', 'material_needed', 'quantity', 'send_time', 'Horario', 'Aprobar'];
+  displayedColumns1 = ['requester_id', 'subject_id', 'room_id', 'material_needed', 'quantity', 'send_time', 'Horario', 'status'];
 
   constructor( private appService: AppService) { }
 
@@ -24,14 +25,16 @@ export class RequestComponent implements OnInit {
       var endpoint: string;
       if (this.is_admin) {
         endpoint = `solicitudes/admin/${this.appService.user.id}`;
-        this.displayedColumns.push('Aprobar');
+
       } else {
-        endpoint = `solicitudes/${this.appService.user.id}`;
-        this.displayedColumns.push('status');
+        endpoint = `solicitudes/usuario/${this.appService.user.id}`;
+
       }
       this.appService.getRequests(endpoint).subscribe(requests => {
         this.requests = requests;
+        console.log(this.requests)
         this.dataSource.data = this.requests;
+        console.log(this.dataSource.data)
       });
     });
   }
