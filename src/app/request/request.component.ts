@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from 'app/app.service';
 import { Request } from 'app/interfaces/request';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource, MatDialog } from '@angular/material';
 import { USER_TYPE } from 'app/interfaces/user';
+import { ConfirmRejectionComponent, DialogData } from 'app/dialogs/confirm-rejection/confirm-rejection.component';
 
 @Component({
   selector: 'app-request',
@@ -11,6 +12,7 @@ import { USER_TYPE } from 'app/interfaces/user';
 })
 export class RequestComponent implements OnInit {
   is_admin: boolean;
+  
 
   requests: Request[];
   dataSource = new MatTableDataSource(this.requests);
@@ -19,7 +21,10 @@ export class RequestComponent implements OnInit {
   // Colums para Users
   displayedColumns1 = ['requester_id', 'subject_id', 'room_id', 'material_needed', 'quantity', 'send_time', 'Horario', 'status'];
 
-  constructor( private appService: AppService) { }
+  constructor( 
+    private appService: AppService,
+     public dialog: MatDialog
+  ) { }
 
   ngOnInit() {
     this.appService.isUserType(USER_TYPE.LAB_ADMIN).then(isAdmin => {
@@ -44,5 +49,20 @@ export class RequestComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
+  }
+
+  openRejectionDialog() {
+    const dialogData: DialogData = {
+      reason: ''
+    }
+    const dialogRef = this.dialog.open(ConfirmRejectionComponent, {
+      width: '300px',
+      data: dialogData
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.trim().length > 0) {
+        console.log('The dialog was closed with reason: ' + result);
+      }
+    });
   }
 }
