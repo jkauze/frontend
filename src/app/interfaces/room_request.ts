@@ -1,7 +1,10 @@
 export interface RoomRequest {
-    requester_id: string;
-    requester_name: string;
-    requester_type: number;
+    id: string;
     room_id: string;
-    send_time: Date;
+    requested_id: string;
+    owner_id: string;
+    manager_id: string;
+    trimester_id: string;
+    date: Date;
+    status: string;
 }

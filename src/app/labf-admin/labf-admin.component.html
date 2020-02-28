@@ -40,14 +40,11 @@
                   </mat-form-field>
                 </div>
               </div>
-              
+
               <div class="row">
                 <div class="col-lg-3 offset-lg-9 col-md-6 offset-md-6">
-                  <button mat-raised-button 
-                  [disabled]="!trimesterForm.dirty"
-                  color="primary"
-                  type="submit"
-                  class="fill-width">Guardar Cambios</button>
+                  <button mat-raised-button [disabled]="!trimesterForm.dirty" color="primary" type="submit"
+                    class="fill-width">Guardar Cambios</button>
                 </div>
               </div>
             </form>
@@ -67,43 +64,47 @@
             </mat-form-field>
             <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-              <!-- Id Solicitante -->
-              <ng-container matColumnDef="requester_id">
-                <th mat-header-cell *matHeaderCellDef class="align">Solicitante</th>
-                <td mat-cell *matCellDef="let element">{{ element.requester_id }}</td>
-              </ng-container>
-
-              <!-- Nombre Solicitante -->
-              <ng-container matColumnDef="requester_name">
-                <th mat-header-cell *matHeaderCellDef class="align">Nombre Solicitante</th>
-                <td mat-cell *matCellDef="let element">{{ element.requester_name }}</td>
-              </ng-container>
-
-              <!-- Tipo -->
-              <ng-container matColumnDef="type">
-                <th mat-header-cell *matHeaderCellDef class="align">Tipo</th>
-                <td mat-cell *matCellDef="let element">{{ element.requester_type | userType }}</td>
-              </ng-container>
-
               <!-- Sala -->
               <ng-container matColumnDef="room_id">
                 <th mat-header-cell *matHeaderCellDef class="align">Sala</th>
                 <td mat-cell *matCellDef="let element">{{ element.room_id }}</td>
               </ng-container>
 
+              <!-- Solicitante -->
+              <ng-container matColumnDef="requester_id">
+                <th mat-header-cell *matHeaderCellDef class="align">Solicitante</th>
+                <td mat-cell *matCellDef="let element">{{ element.requested_id }}</td>
+              </ng-container>
+
+              <!-- Dueño -->
+              <ng-container matColumnDef="owner_id">
+                <th mat-header-cell *matHeaderCellDef class="align">Due&ntilde;o</th>
+                <td mat-cell *matCellDef="let element">{{ element.owner_id }}</td>
+              </ng-container>
+
+              <!-- Administrador -->
+              <ng-container matColumnDef="manager_id">
+                <th mat-header-cell *matHeaderCellDef class="align">Administrador de sala</th>
+                <td mat-cell *matCellDef="let element">{{ element.manager_id }}</td>
+              </ng-container>
+
+              <!-- Trimestre -->
+              <ng-container matColumnDef="trimester">
+                <th mat-header-cell *matHeaderCellDef class="align">Trimestre</th>
+                <td mat-cell *matCellDef="let element">{{ element.trimester_id }}</td>
+              </ng-container>
+
               <!-- Fecha de solicitud -->
               <ng-container matColumnDef="send_time">
                 <th mat-header-cell *matHeaderCellDef class="align">Fecha de Solicitud</th>
-                <td mat-cell *matCellDef="let element">{{ element.send_time | date }}</td>
+                <td mat-cell *matCellDef="let element">{{ element.date | date }}</td>
               </ng-container>
 
-              <!-- Ver detalles -->
-              <ng-container matColumnDef="details">
-                <th mat-header-cell *matHeaderCellDef class="align">Detalles</th>
-                <td mat-cell *matCellDef="let element">
-                  <button mat-stroked-button type="button">Ver Detalles</button>
-                </td>
-              </ng-container>
+              <!-- Estado de Solicitud -->
+              <!-- <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef class="align">Estado</th>
+                <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+              </ng-container> -->
 
               <!-- Acciones -->
               <ng-container matColumnDef="actions">
