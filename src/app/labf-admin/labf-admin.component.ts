@@ -51,7 +51,6 @@ export class LabfAdminComponent implements OnInit {
           }
         });
         this.app.getRoomRequests().subscribe(requests => {
-          console.log(requests);
           this.elements = requests;
           this.dataSource.data = this.elements;
         });

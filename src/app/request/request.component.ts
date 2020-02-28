@@ -39,9 +39,7 @@ export class RequestComponent implements OnInit {
       }
       this.appService.getRequests(endpoint).subscribe(requests => {
         this.requests = requests;
-        console.log(this.requests)
         this.dataSource.data = this.requests;
-        console.log(this.dataSource.data)
       });
     });
   }
