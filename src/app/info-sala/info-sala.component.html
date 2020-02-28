@@ -9,7 +9,7 @@
           <h4 class="card-title">Administrador</h4>
         </div>
         <div class="card-body">
-          <button type="button" class="btn btn-info btn-lg btn-block" (click)="isEdit()">Editar</button>
+          <button *ngIf="!edit" type="button" class="btn btn-info btn-lg btn-block" (click)="isEdit()">Editar</button>
         </div>
     </div>
   </div>
@@ -21,10 +21,15 @@
       </div>
       <div class="col-md-8">
         <div *ngFor="let room of rooms"  class="card-body">
-          <h2 class="card-title text-uppercase"><b>{{room.name}}</b></h2>
+          <h2 *ngIf="!edit" class="card-title text-uppercase"><b>{{room.name}}</b></h2>
+          <h2><input *ngIf="edit" type="text" class="form-control" id="validationCustom01" value="{{room.name}}" required></h2>
           <p class="card-subtitle mb-1 text-muted font-italic">
             <small>Esta sala pertenece a <a href="#" class="text-reset"><b>{{room.manager_id}}</b></a>.</small>
           </p>
+          <div *ngIf="edit" class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="customSwitch1">
+            <label class="custom-control-label" for="customSwitch1">Desactivar Sala</label>
+          </div>
           <p *ngIf="!edit" class="card-text">{{room.description}}</p>
           <div *ngIf="edit" class="md-form">
             <textarea class="md-textarea form-control " rows="10" id="input_text" type="text" length="120" mdbCharCounter mdbInput>{{room.description}}</textarea>

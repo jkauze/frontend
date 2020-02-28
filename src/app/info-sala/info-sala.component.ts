@@ -19,6 +19,7 @@ export class InfoSalaComponent implements OnInit {
   private urlitem: string = '/items';
   private picture: string;
   public is_admin: boolean;
+  public active: boolean = false;
   public edit: boolean = false;
   constructor(public json: AppService, private activatedRoute: ActivatedRoute) { 
     this.idroom = this.activatedRoute.snapshot.params['rid'];
@@ -42,7 +43,11 @@ export class InfoSalaComponent implements OnInit {
   isEdit(){
     this.edit = true;
   }
-  
+
+  isActive(){
+    this.active = true;
+  }
+
   sumbitEdit(){
     this.edit = false;
   }
