@@ -30,7 +30,9 @@
 
 img {
     max-width: 100%;
-    height: auto;
+    width: 100%;
+    max-height: 300px;
+    height: 300px;
 }
 
 .link {

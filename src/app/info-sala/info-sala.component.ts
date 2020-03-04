@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AppService } from 'app/app.service';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'environments/environment';
+import { USER_TYPE } from 'app/interfaces/user';
 
-const API = environment.api_url_do;
+const API = environment.api_url;
 
 @Component({
   selector: 'app-info-sala',
@@ -21,6 +22,7 @@ export class InfoSalaComponent implements OnInit {
   public is_admin: boolean;
   public active: boolean = false;
   public edit: boolean = false;
+  
   constructor(public json: AppService, private activatedRoute: ActivatedRoute) { 
     this.idroom = this.activatedRoute.snapshot.params['rid'];
   }
@@ -36,8 +38,7 @@ export class InfoSalaComponent implements OnInit {
       this.items = data;
       console.log(data);
     });
-
-    this.is_admin = this.json.isAdminUser();
+    this.json.isUserType(USER_TYPE.LAB_ADMIN).then(isAdmin => { this.is_admin = isAdmin; });
   }
   
   isEdit(){

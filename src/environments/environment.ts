@@ -7,7 +7,7 @@ import { APP_INITIALIZER } from "@angular/core";
 
 export const environment = {
   production: false,
-  api_url_ip: 'http://159.90.9.128/api/',
-  api_url_dns: 'http://api.reserva.ac.labf.usb.ve/api/',
-  api_url_do: 'http://apireservac.xyz/api/'
+  // api_url_ip: 'http://159.90.9.128/api/',
+  // api_url_dns: 'http://api.reserva.ac.labf.usb.ve/api/',
+  api_url: 'http://apireservac.xyz/api/'
 };
