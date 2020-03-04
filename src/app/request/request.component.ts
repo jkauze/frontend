@@ -51,29 +51,36 @@ export class RequestComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
   }
 
-  acceptRequest(requestId: Request) {
+  acceptRequest(requestId: string) {
     console.log(requestId);
     const putRequest: PutRequest = {
       reason: '',
-      status: 'A'
+      status: 'Aprovado'
     };
-    this.appService.putRequest(requestId.id, putRequest).subscribe(request => {
+    this.appService.putRequest(requestId, putRequest).subscribe(request => {
       console.log(request);
     });
   }
 
-  openRejectionDialog() {
+  openRejectionDialog(requestId: string) {
     const dialogData: DialogData = {
-      reason: ''
+      reason: '',
     }
     const dialogRef = this.dialog.open(ConfirmRejectionComponent, {
       width: '300px',
       data: dialogData
     });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result && result.trim().length > 0) {
-        console.log('The dialog was closed with reason: ' + result);
+    dialogRef.afterClosed().subscribe(reason => {
+      if (reason && reason.trim().length > 0) {
+        console.log('The dialog was closed with reason: ' + reason);
       }
+      const putRequest: PutRequest = {
+        reason: reason.trim(),
+        status: 'R'
+      };
+      this.appService.putRequest(requestId, putRequest).subscribe(request => {
+        console.log(request);
+      });
     });
   }
 }
