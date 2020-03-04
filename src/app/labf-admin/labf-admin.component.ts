@@ -15,11 +15,17 @@ import { ConfirmRejectionComponent, DialogData } from 'app/dialogs/confirm-rejec
 })
 export class LabfAdminComponent implements OnInit {
 
-  elements: RoomRequest[] = [
-    { requester_id: '15-10103', requester_name: 'Alvaro Avila', requester_type: 3333, room_id: 'Salita', send_time: new Date() }
-  ];
+  elements: RoomRequest[];
   dataSource = new MatTableDataSource(this.elements);
-  displayedColumns = ['requester_id', 'requester_name', 'type', 'room_id', 'send_time', 'details', 'actions'];
+  displayedColumns = [
+    'room_id', 
+    'requester_id', 
+    'owner_id', 
+    'manager_id', 
+    'trimester', 
+    'send_time', 
+    'actions'
+  ];
 
   public trimester: Trimester;
   trimesterForm: FormGroup;
@@ -44,6 +50,10 @@ export class LabfAdminComponent implements OnInit {
             });
           }
         });
+        this.app.getRoomRequests().subscribe(requests => {
+          this.elements = requests;
+          this.dataSource.data = this.elements;
+        });
       } else {
         this.router.navigate(['dashboard']);
       }
@@ -66,7 +76,7 @@ export class LabfAdminComponent implements OnInit {
   openRejectionDialog() {
     const dialogData: DialogData = {
       reason: ''
-    }
+    };
     const dialogRef = this.dialog.open(ConfirmRejectionComponent, {
       width: '300px',
       data: dialogData

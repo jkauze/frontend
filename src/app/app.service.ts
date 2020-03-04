@@ -7,6 +7,7 @@ import { environment } from 'environments/environment';
 import { User } from './interfaces/user';
 import { Request } from './interfaces/request';
 import { Trimester } from './interfaces/trimester';
+import { RoomRequest } from './interfaces/room_request';
 
 const API = environment.api_url;
 
@@ -49,6 +50,10 @@ export class AppService {
 
   getRooms(url: string): Observable<Rooms[]> {
     return this.http.get<Rooms[]>(API + url);
+  }
+
+  getRoomRequests(): Observable<RoomRequest[]> {
+    return this.http.get<RoomRequest[]>(API + 'labf/solicitudes');
   }
 
   getItems(url: string): Observable<Items[]> {
