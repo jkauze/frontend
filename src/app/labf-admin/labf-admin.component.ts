@@ -73,6 +73,14 @@ export class LabfAdminComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
   }
 
+  acceptRequest(request: RoomRequest) {
+    console.log(request);
+    const status = 'A';
+    this.app.putRoomRequests(request.id, status).subscribe(response => {
+      console.log(response);
+    });
+  }
+
   openRejectionDialog() {
     const dialogData: DialogData = {
       reason: ''
