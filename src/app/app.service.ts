@@ -28,6 +28,17 @@ export class AppService {
     return this._user;
   }
 
+  async login(username: string): Promise<User[]> {
+    const userData = this.http.get<User[]>(API + 'usuario/' + username).toPromise();
+    await userData.then((data: User[]) => {
+      if (data.length === 1) {
+        this.user = data[0];
+        localStorage.setItem('userId', this.user.id);
+      }
+    });
+    return userData;
+  }
+
   async isUserType(usertype: number): Promise<boolean> {
     return new Promise<boolean>(async (resolve, reject) => {
       if (!this.user) {
@@ -72,23 +83,16 @@ export class AppService {
   }
 
   getAdminLabs(): Observable<any[]> {
-    const endPoint = environment.api_url + '/usuarios/admin';
-    return this.http.get<any[]>(endPoint);
+    return this.http.get<any[]>(API + '/usuarios/admin');
   }
 
   getTrimester(): Observable<Trimester[]> {
     return this.http.get<Trimester[]>(API + 'trimestre/ultimo');
   }
 
-  async login(username: string): Promise<User[]> {
-    const userData = this.http.get<User[]>(API + 'usuario/' + username).toPromise();
-    await userData.then((data: User[]) => {
-      if (data.length === 1) {
-        this.user = data[0];
-        localStorage.setItem('userId', this.user.id);
-      }
-    });
-    return userData;
+  putRoomRequests(roomRequestId: string, status: string): Observable<any> {
+    const endpoint = API + 'sala/solicitudes/' + roomRequestId;
+    return this.http.put(endpoint, { status: status });
   }
 
 }
