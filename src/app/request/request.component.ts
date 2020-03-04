@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from 'app/app.service';
-import { Request } from 'app/interfaces/request';
+import { Request, PutRequest } from 'app/interfaces/request';
 import { MatTableDataSource, MatDialog } from '@angular/material';
 import { USER_TYPE } from 'app/interfaces/user';
 import { ConfirmRejectionComponent, DialogData } from 'app/dialogs/confirm-rejection/confirm-rejection.component';
@@ -49,6 +49,17 @@ export class RequestComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
+  }
+
+  acceptRequest(requestId: Request) {
+    console.log(requestId);
+    const putRequest: PutRequest = {
+      reason: '',
+      status: 'A'
+    };
+    this.appService.putRequest(requestId.id, putRequest).subscribe(request => {
+      console.log(request);
+    });
   }
 
   openRejectionDialog() {
