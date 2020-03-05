@@ -6,6 +6,7 @@ import { RequestComponent } from '../../request/request.component'
 import { LaboratoriosComponent } from 'app/laboratorios/laboratorios.component';
 import { HorarioComponent } from 'app/horario/horario.component';
 import { SalasUserComponent } from 'app/laboratorios/salas-user/salas-user.component';
+import { ReservaComponent } from 'app/reserva/reserva.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -17,4 +18,5 @@ export const AdminLayoutRoutes: Routes = [
         { path: '', component: LaboratoriosComponent}
     ]},
     { path: 'horario',      component: HorarioComponent},
+    { path: 'reserva/:id', component: ReservaComponent}
 ];

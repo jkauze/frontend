@@ -15,11 +15,15 @@ import {
   MatRippleModule,
   MatFormFieldModule,
   MatTooltipModule,
-  MatSelectModule
+  MatSelectModule,
+  MatDialog,
+  MatDialogModule
 } from '@angular/material';
 import { LaboratoriosComponent } from 'app/laboratorios/laboratorios.component';
 import { HorarioComponent } from 'app/horario/horario.component';
 import { SalasUserComponent } from 'app/laboratorios/salas-user/salas-user.component';
+import { ReservaComponent } from 'app/reserva/reserva.component';
+import { DialogSemanasEspecificasComponent } from 'app/dialogs/dialog-semanas-especificas.component';
 
 @NgModule({
   imports: [
@@ -34,6 +38,7 @@ import { SalasUserComponent } from 'app/laboratorios/salas-user/salas-user.compo
     MatSelectModule,
     MatTooltipModule,
     MatTableModule,
+    MatDialogModule,
   ],
   declarations: [
     DashboardComponent,
@@ -43,6 +48,11 @@ import { SalasUserComponent } from 'app/laboratorios/salas-user/salas-user.compo
     LaboratoriosComponent,
     HorarioComponent,
     SalasUserComponent,
+    ReservaComponent,
+    DialogSemanasEspecificasComponent,
+  ],
+  entryComponents: [
+    DialogSemanasEspecificasComponent,
   ]
 })
 

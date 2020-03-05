@@ -62,6 +62,14 @@ export class AppService {
     return this.http.get<User[]>(API + 'usuarios/');
   }
 
+  getSubjects(): Observable<any[]> {
+    return this.http.get<any[]>(API + 'subjects/');
+  }
+
+  getReservations(idSala: string, semanas: string): Observable<any[]> {
+    return this.http.get<any[]>(API + 'reservas/' + idSala + '/semana/' + semanas)
+  }
+
   async login(username: string): Promise<User[]> {
     const userData = this.http.get<User[]>(API + 'usuario/' + username).toPromise();
     await userData.then((data: User[]) => {
