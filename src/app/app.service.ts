@@ -95,4 +95,8 @@ export class AppService {
     return this.http.put(endpoint, { status: status });
   }
 
+  putTrimester(trimesterId: string, trimesterData: object): Observable<any> {
+    return this.http.put(API + 'trimestre/' + trimesterId, trimesterData);
+  }
+
 }

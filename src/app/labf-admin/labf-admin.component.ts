@@ -60,12 +60,15 @@ export class LabfAdminComponent implements OnInit {
     });
   }
 
-  trimesterChange() {
-    console.log(this.trimesterForm.value);
-  }
-
   onSubmit(trimesterData) {
     console.log(trimesterData);
+    const dates = {
+      start: trimesterData.startDate,
+      finish: trimesterData.finishDate
+    };
+    this.app.putTrimester(this.trimester.id, dates).subscribe(response => {
+      console.log(response);
+    });
   }
 
   applyFilter(event: Event) {
@@ -81,7 +84,7 @@ export class LabfAdminComponent implements OnInit {
     });
   }
 
-  openRejectionDialog() {
+  openRejectionDialog(request: RoomRequest) {
     const dialogData: DialogData = {
       reason: ''
     };
@@ -93,6 +96,10 @@ export class LabfAdminComponent implements OnInit {
       if (result && result.trim().length > 0) {
         console.log('The dialog was closed with reason: ' + result);
       }
+      const status = 'R';
+      this.app.putRoomRequests(request.id, status).subscribe(response => {
+        console.log(response);
+      });
     });
   }
 
