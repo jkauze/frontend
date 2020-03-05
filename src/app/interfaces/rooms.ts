@@ -5,7 +5,6 @@ export interface Rooms {
     manager_id: string; //LDAC
     is_active: boolean;
     description: string; //Descripcion de la sala
-    type: string; //Sala o lab
     last_used?: Date;
     first_used?: Date;
     path_image?: string;
