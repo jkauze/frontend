@@ -88,7 +88,7 @@ export class AppService {
 
   putRequest(requestId: string, putRequest: PutRequest): Observable<any> {
     return this.http.put(API + 'solicitudes/reserva/' + requestId, putRequest, {
-      responseType: 'text'
+      responseType: 'json'
     });
   }
 
