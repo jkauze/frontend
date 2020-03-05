@@ -3,7 +3,7 @@ import { AppService } from 'app/app.service';
 import { Request } from 'app/interfaces/request';
 import { MatTableDataSource, MatDialog } from '@angular/material';
 import { USER_TYPE } from 'app/interfaces/user';
-import { ConfirmRejectionComponent, DialogData } from 'app/dialogs/confirm-rejection/confirm-rejection.component';
+import { ConfirmRejectionComponent, DialogData } from 'app/popups/dialogs/confirm-rejection/confirm-rejection.component';
 
 @Component({
   selector: 'app-request',

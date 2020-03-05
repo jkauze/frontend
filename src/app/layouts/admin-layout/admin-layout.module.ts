@@ -21,12 +21,13 @@ import {
   MatDatepickerModule,
   MatNativeDateModule,
   MatDialogModule,
+  MatSnackBarModule,
   MAT_DIALOG_DEFAULT_OPTIONS,
 } from '@angular/material';
 import { LaboratoriosComponent } from 'app/laboratorios/laboratorios.component';
 import { HorarioComponent } from 'app/horario/horario.component';
 import { SalasUserComponent } from 'app/laboratorios/salas-user/salas-user.component';
-import { ConfirmRejectionComponent } from 'app/dialogs/confirm-rejection/confirm-rejection.component';
+import { ConfirmRejectionComponent } from 'app/popups/dialogs/confirm-rejection/confirm-rejection.component';
 
 @NgModule({
   imports: [
@@ -45,6 +46,7 @@ import { ConfirmRejectionComponent } from 'app/dialogs/confirm-rejection/confirm
     MatDatepickerModule,
     MatNativeDateModule,
     MatDialogModule,
+    MatSnackBarModule,
   ],
   declarations: [
     DashboardComponent,

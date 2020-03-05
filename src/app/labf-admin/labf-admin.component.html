@@ -43,8 +43,8 @@
 
               <div class="row">
                 <div class="col-lg-3 offset-lg-9 col-md-6 offset-md-6">
-                  <button mat-raised-button [disabled]="!trimesterForm.dirty" color="primary" type="submit"
-                    class="fill-width">Guardar Cambios</button>
+                  <button mat-raised-button [disabled]="!trimesterForm.dirty || trimesterDisabled" color="primary"
+                    type="submit" class="fill-width">Guardar Cambios</button>
                 </div>
               </div>
             </form>
@@ -110,8 +110,8 @@
               <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef class="align">Aprobar</th>
                 <td mat-cell *matCellDef="let element">
-                  <button type="button" class="btn btn-success" (click)="acceptRequest(element.id)">Si</button>
-                  <button type="button" class="btn btn-danger" (click)="openRejectionDialog(element.id)">No</button>
+                  <button type="button" class="btn btn-success" (click)="acceptRequest(element.id)" [disabled]="actionsDisabled">Si</button>
+                  <button type="button" class="btn btn-danger" (click)="openRejectionDialog(element.id)" [disabled]="actionsDisabled">No</button>
                 </td>
               </ng-container>
 
