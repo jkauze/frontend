@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { DialogSemanasEspecificasComponent } from 'app/dialogs/dialog-semanas-especificas.component';
 import { AppService } from 'app/app.service';
+import { DialogTextFieldComponent } from 'app/dialogs/dialog-textfield.component';
 
 @Component({
   selector: 'app-reserva',
@@ -120,5 +121,12 @@ export class ReservaComponent implements OnInit {
       horarios: this.dataSource
     }
     console.log(body)
+    let dialogFieldRef = this.dialog.open(DialogTextFieldComponent, {
+      data: { title: 'Reserva', message: 'Especifique si requiere de algo adicional'}
+    });
+
+    dialogFieldRef.afterClosed().subscribe( result => {
+      console.log(result);
+    })
   }
 }

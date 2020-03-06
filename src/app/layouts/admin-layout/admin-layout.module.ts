@@ -24,6 +24,7 @@ import { HorarioComponent } from 'app/horario/horario.component';
 import { SalasUserComponent } from 'app/laboratorios/salas-user/salas-user.component';
 import { ReservaComponent } from 'app/reserva/reserva.component';
 import { DialogSemanasEspecificasComponent } from 'app/dialogs/dialog-semanas-especificas.component';
+import { DialogTextFieldComponent } from 'app/dialogs/dialog-textfield.component';
 
 @NgModule({
   imports: [
@@ -50,9 +51,11 @@ import { DialogSemanasEspecificasComponent } from 'app/dialogs/dialog-semanas-es
     SalasUserComponent,
     ReservaComponent,
     DialogSemanasEspecificasComponent,
+    DialogTextFieldComponent,
   ],
   entryComponents: [
     DialogSemanasEspecificasComponent,
+    DialogTextFieldComponent,
   ]
 })
 
