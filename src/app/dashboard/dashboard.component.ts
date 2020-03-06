@@ -11,8 +11,10 @@ import { USER_TYPE } from 'app/interfaces/user';
 })
 export class DashboardComponent implements OnInit {
 
+  private _rooms: Rooms[];
   public rooms: Rooms[];
   public is_admin: boolean;
+  public filter: string;
 
   constructor(private api: AppService) { }
 
@@ -23,18 +25,31 @@ export class DashboardComponent implements OnInit {
         const user = this.api.user;
         this.api.getRooms("salas/admin/" + user.id)
           .subscribe(rooms => {
-            this.rooms = rooms;
+            this._rooms = rooms;
+            this.rooms = this._rooms;
             this.loadImages();
           });
       } else {
         this.api.getRooms("salas")
           .subscribe(rooms => {
-            this.rooms = rooms;
+            this._rooms = rooms;
+            this.rooms = this._rooms;
             this.loadImages();
           });
       }
     }
     );
+  }
+
+  applyFilter() {
+    const filter = this.filter.trim().toLowerCase();
+    let newRooms = this._rooms.filter(room => 
+      room.description.toLowerCase().includes(filter)
+      || room.name.toLowerCase().includes(filter)
+      || room.owner_id.toLowerCase().includes(filter)
+      || room.manager_id.toLowerCase().includes(filter)
+      || room.id.includes(filter));
+    this.rooms = newRooms;
   }
 
   loadImages() {

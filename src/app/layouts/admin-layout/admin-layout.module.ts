@@ -22,6 +22,7 @@ import {
   MatNativeDateModule,
   MatDialogModule,
   MatSnackBarModule,
+  MatIconModule,
   MAT_DIALOG_DEFAULT_OPTIONS,
 } from '@angular/material';
 import { LaboratoriosComponent } from 'app/laboratorios/laboratorios.component';
@@ -47,6 +48,7 @@ import { ConfirmRejectionComponent } from 'app/popups/dialogs/confirm-rejection/
     MatNativeDateModule,
     MatDialogModule,
     MatSnackBarModule,
+    MatIconModule,
   ],
   declarations: [
     DashboardComponent,
