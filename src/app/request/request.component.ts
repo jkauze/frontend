@@ -56,7 +56,7 @@ export class RequestComponent implements OnInit {
     console.log(requestId);
     const putRequest: PutRequest = {
       reason: '',
-      status: 'Aprovado'
+      status: 'A'
     };
     this.appService.putRequest(requestId, putRequest).subscribe(request => {
       console.log(request);
