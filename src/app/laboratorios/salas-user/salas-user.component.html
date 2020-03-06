@@ -9,12 +9,12 @@
         <div class="card">
           
           <div class="card-header card-header-info">
-            <h3 class="card-title ">{{ room.name }}</h3>
+            <h3 class="card-title " routerLink="/info-sala/{{ room.id }}" >{{ room.name }}</h3>
           </div>
           <div class="card-body">
               <div class="row">
                 <div class="col-lg-12 col-md-6 d-flex m-card-image">
-                  <img class="img-fluid" [src]="room.picture" [alt]="room.name">
+                  <img class="img-fluid" [src]="room.picture" [alt]="room.name" routerLink="/info-sala/{{ room.id }}">
                 </div>
               </div>
           </div>

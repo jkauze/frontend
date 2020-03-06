@@ -17,18 +17,21 @@ import {
   MatFormFieldModule,
   MatTooltipModule,
   MatSelectModule,
+  MatDialogModule,
   MatCardModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatDialogModule,
   MatSnackBarModule,
   MatIconModule,
-  MAT_DIALOG_DEFAULT_OPTIONS,
+  MAT_DIALOG_DEFAULT_OPTIONS
 } from '@angular/material';
 import { LaboratoriosComponent } from 'app/laboratorios/laboratorios.component';
 import { HorarioComponent } from 'app/horario/horario.component';
 import { SalasUserComponent } from 'app/laboratorios/salas-user/salas-user.component';
 import { ConfirmRejectionComponent } from 'app/popups/dialogs/confirm-rejection/confirm-rejection.component';
+import { ReservaComponent } from 'app/reserva/reserva.component';
+import { DialogSemanasEspecificasComponent } from 'app/dialogs/dialog-semanas-especificas.component';
+import { DialogTextFieldComponent } from 'app/dialogs/dialog-textfield.component';
 
 @NgModule({
   imports: [
@@ -58,6 +61,13 @@ import { ConfirmRejectionComponent } from 'app/popups/dialogs/confirm-rejection/
     LaboratoriosComponent,
     HorarioComponent,
     SalasUserComponent,
+    ReservaComponent,
+    DialogSemanasEspecificasComponent,
+    DialogTextFieldComponent,
+  ],
+  entryComponents: [
+    DialogSemanasEspecificasComponent,
+    DialogTextFieldComponent,
     LabfAdminComponent,
     ConfirmRejectionComponent,
   ],
@@ -65,9 +75,7 @@ import { ConfirmRejectionComponent } from 'app/popups/dialogs/confirm-rejection/
     MatDatepickerModule,
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
   ],
-  entryComponents: [
-    ConfirmRejectionComponent,
-  ]
+
 })
 
 export class AdminLayoutModule {}

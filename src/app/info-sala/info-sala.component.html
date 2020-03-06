@@ -65,5 +65,6 @@
 
   <button *ngIf="edit" type="button" class="btn btn-success btn-lg btn-block" (click)="sumbitEdit()">Guardar</button>
   <button *ngIf="!edit" type="button" class="btn btn-warning btn-lg btn-block" routerLink="/horario/{{ room?.id }}">Horarios</button>
-  <button *ngIf="!edit" type="button" class="btn btn-info btn-lg btn-block" disabled>Reservar</button>
+  <button *ngIf="!edit" type="button" class="btn btn-info btn-lg btn-block" routerLink="/reserva/{{ idroom }}">Reservar</button>
+
 </div>

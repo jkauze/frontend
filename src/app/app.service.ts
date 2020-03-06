@@ -84,6 +84,14 @@ export class AppService {
     return this.http.get<User[]>(API + 'usuarios/');
   }
 
+  getSubjects(): Observable<any[]> {
+    return this.http.get<any[]>(API + 'subjects/');
+  }
+
+  getReservations(idSala: string, semanas: string): Observable<any[]> {
+    return this.http.get<any[]>(API + 'reservas/' + idSala + '/semana/' + semanas)
+  }
+
   getAdminLabs(): Observable<any[]> {
     return this.http.get<any[]>(API + '/usuarios/admin');
   }

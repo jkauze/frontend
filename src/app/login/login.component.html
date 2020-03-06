@@ -35,7 +35,7 @@
             <hr>
             <button class="button" type="submit">{{ isEnglish ? 'Login' : 'Iniciar Sesion'}}</button>
             |
-            <span (click)="form.reset()"> {{ isEnglish ? 'Clear' : 'Limpiar'}} </span>
+            <span style="cursor: pointer;" (click)="form.reset()"> {{ isEnglish ? 'Clear' : 'Limpiar'}} </span>
           </form>
         </div>
       </div>
@@ -44,8 +44,8 @@
       <p style="white-space: pre-line;" >{{ isEnglish ? paragraph : parrafo }}</p>
       <div> Lenguajes: </div>
       <div> 
-        <span (click)=" isEnglish = true "> English </span> |
-        <span (click)=" isEnglish = false "> Spanish </span>
+        <span style="cursor: pointer;" (click)=" isEnglish = true "> English </span> |
+        <span style="cursor: pointer;" (click)=" isEnglish = false "> Spanish </span>
       </div>
     </div>
   </div>
