@@ -6,7 +6,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'environments/environment';
 import { User } from './interfaces/user';
-import { Request } from './interfaces/request';
+import { Request, PutRequest } from './interfaces/request';
 import { Trimester } from './interfaces/trimester';
 import { RoomRequest } from './interfaces/room_request';
 import { Hourtable } from './interfaces/hourtable';
@@ -138,4 +138,10 @@ export class AppService {
       return this.http.get<Hourtable[]>(API + '/reservas/' + sala + '/semana/todas');
     }
   }
+  putRequest(requestId: string, putRequest: PutRequest): Observable<any> {
+    return this.http.put(API + 'solicitudes/reserva/' + requestId, putRequest, {
+      responseType: 'json'
+    });
+  }
+
 }

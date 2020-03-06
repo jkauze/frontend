@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from 'app/app.service';
-import { Request } from 'app/interfaces/request';
+import { Request, PutRequest } from 'app/interfaces/request';
 import { MatTableDataSource, MatDialog } from '@angular/material';
 import { USER_TYPE } from 'app/interfaces/user';
 import { ConfirmRejectionComponent, DialogData } from 'app/popups/dialogs/confirm-rejection/confirm-rejection.component';
@@ -49,18 +49,36 @@ export class RequestComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
   }
 
-  openRejectionDialog() {
+  acceptRequest(requestId: string) {
+    console.log(requestId);
+    const putRequest: PutRequest = {
+      reason: '',
+      status: 'Aprovado'
+    };
+    this.appService.putRequest(requestId, putRequest).subscribe(request => {
+      console.log(request);
+    });
+  }
+
+  openRejectionDialog(requestId: string) {
     const dialogData: DialogData = {
-      reason: ''
+      reason: '',
     }
     const dialogRef = this.dialog.open(ConfirmRejectionComponent, {
       width: '300px',
       data: dialogData
     });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result && result.trim().length > 0) {
-        console.log('The dialog was closed with reason: ' + result);
+    dialogRef.afterClosed().subscribe(reason => {
+      if (reason && reason.trim().length > 0) {
+        console.log('The dialog was closed with reason: ' + reason);
       }
+      const putRequest: PutRequest = {
+        reason: reason.trim(),
+        status: 'R'
+      };
+      this.appService.putRequest(requestId, putRequest).subscribe(request => {
+        console.log(request);
+      });
     });
   }
 }
