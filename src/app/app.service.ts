@@ -36,6 +36,7 @@ export class AppService {
       if (data.length === 1) {
         this.user = data[0];
         localStorage.setItem('userId', this.user.id);
+        console.log(localStorage.getItem('userId'));
       }
     });
     return userData;
@@ -45,15 +46,17 @@ export class AppService {
     return new Promise<boolean>(async (resolve, reject) => {
       if (!this.user) {
         const userId = localStorage.getItem('userId');
+        // console.log(userId);
         if (userId) {
           await this.login(userId).catch(() => reject());
           if (!this.user) {
-            resolve(false);
+            reject();
           } else {
             resolve(this.user && this.user.type === usertype);
           }
         } else {
-          resolve(false);
+          // console.log('Hola papito');
+          reject();
         }
       } else {
         resolve(this.user && this.user.type === usertype);

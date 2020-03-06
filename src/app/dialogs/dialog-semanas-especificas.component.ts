@@ -27,8 +27,8 @@ export class DialogSemanasEspecificasComponent {
     public semana: number;
 
 	constructor(
-		@Inject(MAT_DIALOG_DATA) public data: any,
-		public dialogRef: MatDialogRef<DialogSemanasEspecificasComponent>
+        public dialogRef: MatDialogRef<DialogSemanasEspecificasComponent>,
+        @Inject(MAT_DIALOG_DATA) public data: any
 	) {
         this.dialogRef.disableClose = true;
     }

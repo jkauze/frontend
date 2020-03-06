@@ -1,5 +1,5 @@
 <h1 mat-dialog-title>Confirmar Rechazo</h1>
-<ng-container *ngIf="data.reason; then reasonTemplate; else messageTemplate"></ng-container>
+<ng-container *ngIf="data.reason.length >= 0; then reasonTemplate; else messageTemplate"></ng-container>
 <ng-template #reasonTemplate>
   <div mat-dialog-content>
     <p>Especifique una raz&oacute;n para su rechazo</p>

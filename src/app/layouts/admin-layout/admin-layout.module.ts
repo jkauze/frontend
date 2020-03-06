@@ -64,6 +64,8 @@ import { DialogTextFieldComponent } from 'app/dialogs/dialog-textfield.component
     ReservaComponent,
     DialogSemanasEspecificasComponent,
     DialogTextFieldComponent,
+    LabfAdminComponent,
+    ConfirmRejectionComponent,
   ],
   entryComponents: [
     DialogSemanasEspecificasComponent,

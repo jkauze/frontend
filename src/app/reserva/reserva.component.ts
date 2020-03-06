@@ -44,7 +44,10 @@ export class ReservaComponent implements OnInit {
     let data;
     if (this.semanas == 'especifica') {
       // dialog semanas especificas
-      let dialogRef = this.dialog.open(DialogSemanasEspecificasComponent)
+      let dialogRef = this.dialog.open(DialogSemanasEspecificasComponent, {
+        width: '300px',
+        data: { data: data }
+      })
       dialogRef.afterClosed().subscribe( result => {
         this.appService.getReservations(this.roomId, result)
         .finally( () => {

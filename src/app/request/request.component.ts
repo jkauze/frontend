@@ -30,6 +30,7 @@ export class RequestComponent implements OnInit {
     this.appService.isUserType(USER_TYPE.LAB_ADMIN).then(isAdmin => {
       this.is_admin = isAdmin;
       var endpoint: string;
+      // console.log(this.appService.user);
       if (this.is_admin) {
         endpoint = `solicitudes/admin/${this.appService.user.id}`;
 
@@ -41,6 +42,8 @@ export class RequestComponent implements OnInit {
         this.requests = requests;
         this.dataSource.data = this.requests;
       });
+    }, error => {
+      console.log(error);
     });
   }
 
@@ -69,16 +72,16 @@ export class RequestComponent implements OnInit {
       data: dialogData
     });
     dialogRef.afterClosed().subscribe(reason => {
-      if (reason && reason.trim().length > 0) {
-        console.log('The dialog was closed with reason: ' + reason);
+      if (reason) {
+        console.log(reason);
+        const putRequest: PutRequest = {
+          reason: reason,
+          status: 'R'
+        };
+        this.appService.putRequest(requestId, putRequest).subscribe(response => {
+          console.log(response);
+        });
       }
-      const putRequest: PutRequest = {
-        reason: reason.trim(),
-        status: 'R'
-      };
-      this.appService.putRequest(requestId, putRequest).subscribe(request => {
-        console.log(request);
-      });
     });
   }
 }
