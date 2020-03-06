@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>Confirmar Rechazo</h1>
+<ng-container *ngIf="data.reason; then reasonTemplate; else messageTemplate"></ng-container>
+<ng-template #reasonTemplate>
+  <div mat-dialog-content>
+    <p>Especifique una raz&oacute;n para su rechazo</p>
+    <mat-form-field>
+      <mat-label>Raz&oacute;n de rechazo</mat-label>
+      <input matInput [(ngModel)]="data.reason">
+    </mat-form-field>
+  </div>  
+</ng-template>
+<ng-template #messageTemplate>
+  <div mat-dialog-content>
+    <p>&iquest;Est&aacute;s seguro de que deseas rechazar esta solicitud?</p>
+  </div>
+</ng-template>
+<div mat-dialog-actions>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-6">
+        <button class="expand" mat-raised-button (click)="onCancelClick()">Cancelar</button>
+      </div>
+      <div class="col-6">
+        <button *ngIf="data.reason" class="expand" mat-raised-button color="warn" [mat-dialog-close]="data.reason">Rechazar</button>
+        <button *ngIf="!data.reason" class="expand" mat-raised-button color="warn" [mat-dialog-close]="data">Rechazar</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,8 +1,15 @@
 <div class="main-content">
   <div class="container-fluid">
 
-    <div class="pb-30">
-        <button mat-raised-button class="btn btn-warning">Filtrar Salas</button>
+    <div class="pb-30 pt-10">
+        <mat-form-field>
+            <mat-label>Filtrar</mat-label>
+            <input matInput type="text" (keyup)="applyFilter()" [(ngModel)]="filter">
+            <button mat-button *ngIf="filter" matSuffix mat-icon-button aria-label="Borrar" (click)="filter='';applyFilter()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+        <!-- <button mat-raised-button class="btn btn-warning">Filtrar Salas</button> -->
     </div>
     
 
