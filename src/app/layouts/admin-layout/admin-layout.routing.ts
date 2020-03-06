@@ -7,6 +7,7 @@ import { LaboratoriosComponent } from 'app/laboratorios/laboratorios.component';
 import { HorarioComponent } from 'app/horario/horario.component';
 import { SalasUserComponent } from 'app/laboratorios/salas-user/salas-user.component';
 import { ReservaComponent } from 'app/reserva/reserva.component';
+import { LabfAdminComponent } from 'app/labf-admin/labf-admin.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -18,5 +19,7 @@ export const AdminLayoutRoutes: Routes = [
         { path: '', component: LaboratoriosComponent}
     ]},
     { path: 'horario',      component: HorarioComponent},
-    { path: 'reserva/:id', component: ReservaComponent}
+    { path: 'reserva/:id', component: ReservaComponent},
+    { path: 'horario/:rid',      component: HorarioComponent},
+    { path: 'labf-admin', component: LabfAdminComponent },
 ];

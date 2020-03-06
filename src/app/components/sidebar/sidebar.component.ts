@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from 'app/app.service';
+import { USER_TYPE } from 'app/interfaces/user';
 
 declare const $: any;
 declare interface RouteInfo {
@@ -11,7 +13,6 @@ export const ROUTES: RouteInfo[] = [
     { path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
     { path: '/solicitudes', title: 'Solicitudes',  icon: 'notifications', class: '' },
     { path: '/laboratorios', title: 'Laboratorios', icon: 'desktop_windows', class: ''},
-    { path: '/horario', title: 'Horario', icon: 'schedule', class: ''},
 ];
 
 @Component({
@@ -22,10 +23,15 @@ export const ROUTES: RouteInfo[] = [
 export class SidebarComponent implements OnInit {
   menuItems: any[];
 
-  constructor() { }
+  constructor(private app: AppService) { }
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
+    this.app.isUserType(USER_TYPE.LAB_F).then(isLabF => {
+      if (isLabF) {
+        this.addAdminRoute();
+      }
+    });
   }
   isMobileMenu() {
       if ($(window).width() > 991) {
@@ -33,4 +39,13 @@ export class SidebarComponent implements OnInit {
       }
       return true;
   };
+
+  addAdminRoute() {
+    this.menuItems.push({
+      path: '/labf-admin',
+      title: 'Administrar',
+      icon: 'notifications',
+      class: ''
+    });
+  }
 }

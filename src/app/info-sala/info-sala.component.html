@@ -9,23 +9,32 @@
           <h4 class="card-title">Administrador</h4>
         </div>
         <div class="card-body">
-          <button type="button" class="btn btn-info btn-lg btn-block">Editar</button>
+          <button *ngIf="!edit" type="button" class="btn btn-info btn-lg btn-block" (click)="isEdit()">Editar</button>
         </div>
     </div>
   </div>
 
   <div class="card">
     <div class="row no-gutters">
-      <div *ngFor ="let room of rooms" class="col-md-4">
+      <div class="col-md-4">
         <img src={{picture}} class="card-img" style="max-width: 100%;">
       </div>
       <div class="col-md-8">
-        <div *ngFor="let room of rooms"  class="card-body">
-          <h2 class="card-title text-uppercase"><b>{{room.name}}</b></h2>
+        <div class="card-body">
+          <h2 *ngIf="!edit" class="card-title text-uppercase"><b>{{room?.name}}</b></h2>
+          <h2><input [(ngModel)]="room.name" *ngIf="edit" type="text" class="form-control" id="roomName" value="{{room.name}}"></h2>
           <p class="card-subtitle mb-1 text-muted font-italic">
-            <small>Esta sala pertenece a <a href="#" class="text-reset"><b>{{room.manager_id}}</b></a>.</small>
+            <small>Esta sala pertenece a <a class="text-reset" routerLink="/laboratorios/salas/{{ room?.manager_id }}"><b>{{room?.manager_id}}</b></a>.</small>
           </p>
-          <p class="card-text">{{room.description}}</p>
+          <div *ngIf="edit" class="custom-control custom-switch">
+            <input *ngIf="room.is_active" type="checkbox" class="custom-control-input" id="customSwitch1">
+            <input *ngIf="!room.is_active" type="checkbox" class="custom-control-input" id="customSwitch1" checked>
+            <label class="custom-control-label" for="customSwitch1">Desactivar Sala</label>
+          </div>
+          <p *ngIf="!edit" class="card-text">{{room?.description}}</p>
+          <div *ngIf="edit" class="md-form">
+            <textarea [(ngModel)]="room.description" class="md-textarea form-control " rows="10" id="input_text" type="text" length="120" mdbCharCounter mdbInput>{{room.description}}</textarea>
+          </div>
         </div>
       </div>
     </div>
@@ -54,6 +63,8 @@
     </div>
   </div>
 
-  <button type="button" class="btn btn-warning btn-lg btn-block" disabled>Horarios</button>
-  <button type="button" class="btn btn-info btn-lg btn-block" routerLink="/reserva/{{ idroom }}">Reservar</button>
+  <button *ngIf="edit" type="button" class="btn btn-success btn-lg btn-block" (click)="sumbitEdit()">Guardar</button>
+  <button *ngIf="!edit" type="button" class="btn btn-warning btn-lg btn-block" routerLink="/horario/{{ room?.id }}">Horarios</button>
+  <button *ngIf="!edit" type="button" class="btn btn-info btn-lg btn-block" routerLink="/reserva/{{ idroom }}">Reservar</button>
+
 </div>

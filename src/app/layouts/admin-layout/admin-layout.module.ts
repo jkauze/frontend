@@ -6,6 +6,7 @@ import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../dashboard/dashboard.component';
 import { InfoSalaComponent } from 'app/info-sala/info-sala.component';
 import { RequestComponent } from '../../request/request.component';
+import { LabfAdminComponent } from 'app/labf-admin/labf-admin.component';
 import { MatTableModule } from '@angular/material/table';
 import { UserTypePipe } from 'app/pipes/user-type.pipe';
 
@@ -16,8 +17,11 @@ import {
   MatFormFieldModule,
   MatTooltipModule,
   MatSelectModule,
-  MatDialog,
-  MatDialogModule
+  MatDialogModule,
+  MatCardModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MAT_DIALOG_DEFAULT_OPTIONS,
 } from '@angular/material';
 import { LaboratoriosComponent } from 'app/laboratorios/laboratorios.component';
 import { HorarioComponent } from 'app/horario/horario.component';
@@ -25,6 +29,7 @@ import { SalasUserComponent } from 'app/laboratorios/salas-user/salas-user.compo
 import { ReservaComponent } from 'app/reserva/reserva.component';
 import { DialogSemanasEspecificasComponent } from 'app/dialogs/dialog-semanas-especificas.component';
 import { DialogTextFieldComponent } from 'app/dialogs/dialog-textfield.component';
+import { ConfirmRejectionComponent } from 'app/dialogs/confirm-rejection/confirm-rejection.component';
 
 @NgModule({
   imports: [
@@ -39,6 +44,9 @@ import { DialogTextFieldComponent } from 'app/dialogs/dialog-textfield.component
     MatSelectModule,
     MatTooltipModule,
     MatTableModule,
+    MatCardModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     MatDialogModule,
   ],
   declarations: [
@@ -56,7 +64,14 @@ import { DialogTextFieldComponent } from 'app/dialogs/dialog-textfield.component
   entryComponents: [
     DialogSemanasEspecificasComponent,
     DialogTextFieldComponent,
-  ]
+    LabfAdminComponent,
+    ConfirmRejectionComponent,
+  ],
+  providers: [
+    MatDatepickerModule,
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
+  ],
+
 })
 
 export class AdminLayoutModule {}

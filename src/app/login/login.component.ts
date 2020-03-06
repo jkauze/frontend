@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    localStorage.clear(); // DELETE THIS AFTER IMPLEMENTING A CORRECT LOGOUT
     this.isEnglish = false;
     this.title = "Enter your USBID and Password";
     this.paragraph = "For security reasons, please Log Out and Exit your \n web browser when you are done accessing services \n that require authentication!"
@@ -65,7 +66,6 @@ export class LoginComponent implements OnInit {
     if (this.form.valid) {
       await this.appService.login(values.usbId).then(users => {
         const user = users[0];
-        localStorage.setItem('userId', user.id);
       });
       this.router.navigate(['dashboard']);
 

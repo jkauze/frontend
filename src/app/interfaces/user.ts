@@ -11,6 +11,6 @@ export const USER_TYPE = {
     DEPARTMENT: 0,
     STUDENT: 1111,
     TEACHER: 2222,
-    LAB_F: 3333,
-    LAB_ADMIN: 4444
+    LAB_ADMIN: 3333,
+    LAB_F: 4444,
 }
