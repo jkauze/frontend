@@ -20,7 +20,7 @@ export class InfoSalaComponent implements OnInit {
   private url: string ='salas/';
   private idroom: string;
   private urlitem: string = '/items';
-  private picture: string;
+  public picture: string;
   public is_admin: boolean;
   public active: boolean = true;
   public edit: boolean = false;
