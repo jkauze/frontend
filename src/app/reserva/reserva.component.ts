@@ -98,6 +98,20 @@ export class ReservaComponent implements OnInit {
     return table
   }
 
+  puedeReservar(): boolean {
+    if (this.materia != undefined && this.seccion != ''  &&
+    this.seccion != undefined && this.semanas != undefined) {
+      const index = this.dataSource.findIndex(d => (
+        d.lunesCheck == true || d.martesCheck == true || 
+        d.miercolesCheck == true || d.juevesCheck == true || 
+        d.viernesCheck == true)
+      );
+      if (index != -1) { return true; }
+      else { return false; }
+    }
+    else { return false; }
+  }
+
   reservar() {
     let body = {
       materia: this.materia,

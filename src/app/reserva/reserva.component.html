@@ -101,7 +101,7 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
-          <button type="button" class="btn btn-info btn-lg btn-block" (click)="reservar()">Reservar</button>
+          <button type="button" class="btn btn-info btn-lg btn-block" [disabled]="!puedeReservar()" (click)="reservar()">Reservar</button>
         </div>
       </div>
     </div>
