@@ -17,6 +17,6 @@ export const AdminLayoutRoutes: Routes = [
         { path:'salas/:id', component: SalasUserComponent},
         { path: '', component: LaboratoriosComponent}
     ]},
-    { path: 'horario',      component: HorarioComponent},
+    { path: 'horario/:rid',      component: HorarioComponent},
     { path: 'labf-admin', component: LabfAdminComponent },
 ];

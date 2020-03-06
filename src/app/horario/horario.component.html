@@ -8,25 +8,25 @@
                         <span class="nav-tabs-title">Semanas: </span>
                         <ul class="nav nav-tabs" data-tabs="tabs">
                             <li class="nav-item">
-                                <a mat-button class="nav-link active" href="#especifica" data-toggle="tab">
+                                <a mat-button class="nav-link" href="#especifica" data-toggle="tab">
                                     <i class="material-icons">calendar_today</i> Especifica
                                     <div class="ripple-container"></div>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a mat-button class="nav-link" href="#pares" data-toggle="tab">
+                                <a mat-button class="nav-link" href="#pares" data-toggle="tab" (click)="evenWeeks()">
                                     <i class="material-icons">filter_2</i> Pares
                                     <div class="ripple-container"></div>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a mat-button class="nav-link" href="#impares" data-toggle="tab">
+                                <a mat-button class="nav-link" href="#impares" data-toggle="tab" (click)="oddWeeks()">
                                     <i class="material-icons">filter_3</i> Impares
                                     <div class="ripple-container"></div>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a mat-button class="nav-link" href="#todas" data-toggle="tab">
+                                <a mat-button class="nav-link active" href="#todas" data-toggle="tab" (click)="allWeeks()">
                                     <i class="material-icons">format_list_numbered</i> Todas
                                     <div class="ripple-container"></div>
                                 </a>
@@ -37,19 +37,325 @@
               </div>
               <div class="card-body"> 
                   <div class="tab-content">
-                      <div class="tab-pane active" id="especifica"> <!-- Especifica -->
-                  
-                      </div> <!-- Fin Especifica-->
-                      <div class="tab-pane active" id="pares"> <!-- Pares -->
-                          <div class="table-responsive">
+                      <div class="tab-pane" id="especifica"> <!-- Especifica -->
+                        <div class="dropdown">
+                            <button href="#" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-expanded="true" >
+                                Semana
+                                <b class="caret"></b>
+                            </button>
+                        <ul class="dropdown-menu">
+                                <li><a (click)="specificWeek(1)">Semana 1</a></li>
+                                <li><a (click)="specificWeek(2)">Semana 2</a></li>
+                                <li><a (click)="specificWeek(3)">Semana 3</a></li>
+                                <li><a (click)="specificWeek(4)">Semana 4</a></li>
+                                <li><a (click)="specificWeek(5)">Semana 5</a></li>
+                                <li><a (click)="specificWeek(6)">Semana 6</a></li>
+                                <li><a (click)="specificWeek(7)">Semana 7</a></li>
+                                <li><a (click)="specificWeek(8)">Semana 8</a></li>
+                                <li><a (click)="specificWeek(9)">Semana 9</a></li>
+                                <li><a (click)="specificWeek(10)">Semana 10</a></li>
+                                <li><a (click)="specificWeek(11)">Semana 11</a></li>
+                                <li><a (click)="specificWeek(12)">Semana 12</a></li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <table mat-table [dataSource]="dataSource" class="table-bordered">
 
+                                <!-- Hora Column -->
+                                <ng-container matColumnDef="hora">
+                                  <th mat-header-cell *matHeaderCellDef class="table-dark text-center" style="width: 10%"> Hora </th>
+                                  <td mat-cell *matCellDef="let element" class="text-center table-dark"> {{element.hora}} </td>
+                                </ng-container>
+
+                                <!-- Lunes Column -->
+                                <ng-container matColumnDef="lunes">
+                                  <th mat-header-cell *matHeaderCellDef class="table-dark text-center" style="width: 18%"> Lunes </th>
+                                  <td mat-cell *matCellDef="let element" [ngClass]="{'text-center': element.lunes === null, 'text-center table-info': element.lunes !== null}"> 
+                                      <div *ngIf="element.lunes === null; else elseCase">
+                                      </div>
+                                      <ng-template #elseCase>
+                                        <b>{{element.lunes}}</b>
+                                      </ng-template>
+                                   </td>
+                                </ng-container>
+                            
+                                <!-- Martes Column -->
+                                <ng-container matColumnDef="martes">
+                                  <th mat-header-cell *matHeaderCellDef class="table-dark text-center" style="width: 18%"> Martes </th>
+                                  <td mat-cell *matCellDef="let element" [ngClass]="{'text-center': element.martes === null, 'text-center table-info': element.martes !== null}">
+                                    <div *ngIf="element.martes === null; else elseCase">
+                                    </div>
+                                    <ng-template #elseCase>
+                                      <b>{{element.martes}}</b>
+                                    </ng-template>
+                                  </td>
+                                </ng-container>
+                            
+                                <!-- Miercoles Column -->
+                                <ng-container matColumnDef="miercoles">
+                                  <th mat-header-cell *matHeaderCellDef class="table-dark text-center" style="width: 18%"> Miércoles </th>
+                                  <td mat-cell *matCellDef="let element" [ngClass]="{'text-center': element.miercoles === null, 'text-center table-info': element.miercoles !== null}">
+                                    <div *ngIf="element.miercoles === null; else elseCase">
+                                    </div>
+                                    <ng-template #elseCase>
+                                      <b>{{element.miercoles}}</b>
+                                    </ng-template>
+                                  </td>
+                                </ng-container>
+
+                                <!-- Jueves Column -->
+                                <ng-container matColumnDef="jueves">
+                                  <th mat-header-cell *matHeaderCellDef class="table-dark text-center" style="width: 18%"> Jueves </th>
+                                  <td mat-cell *matCellDef="let element" [ngClass]="{'text-center': element.jueves === null, 'text-center table-info': element.jueves !== null}">
+                                    <div *ngIf="element.jueves === null; else elseCase">
+                                    </div>
+                                    <ng-template #elseCase>
+                                      <b>{{element.jueves}}</b>
+                                    </ng-template>
+                                  </td>
+                                </ng-container>
+                                
+                                <!-- Viernes Column -->
+                                <ng-container matColumnDef="viernes">
+                                  <th mat-header-cell *matHeaderCellDef class="table-dark text-center" style="width: 18%"> Viernes </th>
+                                  <td mat-cell *matCellDef="let element" [ngClass]="{'text-center': element.viernes === null, 'text-center table-info': element.viernes !== null}"> 
+                                    <div *ngIf="element.viernes === null; else elseCase">
+                                    </div>
+                                    <ng-template #elseCase>
+                                      <b>{{element.viernes}}</b>
+                                    </ng-template>
+                                  </td>
+                                </ng-container>
+                            
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                              </table>
+                          </div>
+                      </div> <!-- Fin Especifica-->
+                      <div class="tab-pane" id="pares"> <!-- Pares -->
+                        <div class="card">
+                            <table mat-table [dataSource]="dataSource" class="table-bordered">
+
+                                <!-- Hora Column -->
+                                <ng-container matColumnDef="hora">
+                                  <th mat-header-cell *matHeaderCellDef class="table-dark text-center" style="width: 10%"> Hora </th>
+                                  <td mat-cell *matCellDef="let element" class="text-center table-dark"> {{element.hora}} </td>
+                                </ng-container>
+
+                                <!-- Lunes Column -->
+                                <ng-container matColumnDef="lunes">
+                                  <th mat-header-cell *matHeaderCellDef class="table-dark text-center" style="width: 18%"> Lunes </th>
+                                  <td mat-cell *matCellDef="let element" [ngClass]="{'text-center': element.lunes === null, 'text-center table-info': element.lunes !== null}"> 
+                                      <div *ngIf="element.lunes === null; else elseCase">
+                                      </div>
+                                      <ng-template #elseCase>
+                                        <b>{{element.lunes}}</b>
+                                      </ng-template>
+                                   </td>
+                                </ng-container>
+                            
+                                <!-- Martes Column -->
+                                <ng-container matColumnDef="martes">
+                                  <th mat-header-cell *matHeaderCellDef class="table-dark text-center" style="width: 18%"> Martes </th>
+                                  <td mat-cell *matCellDef="let element" [ngClass]="{'text-center': element.martes === null, 'text-center table-info': element.martes !== null}">
+                                    <div *ngIf="element.martes === null; else elseCase">
+                                    </div>
+                                    <ng-template #elseCase>
+                                      <b>{{element.martes}}</b>
+                                    </ng-template>
+                                  </td>
+                                </ng-container>
+                            
+                                <!-- Miercoles Column -->
+                                <ng-container matColumnDef="miercoles">
+                                  <th mat-header-cell *matHeaderCellDef class="table-dark text-center" style="width: 18%"> Miércoles </th>
+                                  <td mat-cell *matCellDef="let element" [ngClass]="{'text-center': element.miercoles === null, 'text-center table-info': element.miercoles !== null}">
+                                    <div *ngIf="element.miercoles === null; else elseCase">
+                                    </div>
+                                    <ng-template #elseCase>
+                                      <b>{{element.miercoles}}</b>
+                                    </ng-template>
+                                  </td>
+                                </ng-container>
+
+                                <!-- Jueves Column -->
+                                <ng-container matColumnDef="jueves">
+                                  <th mat-header-cell *matHeaderCellDef class="table-dark text-center" style="width: 18%"> Jueves </th>
+                                  <td mat-cell *matCellDef="let element" [ngClass]="{'text-center': element.jueves === null, 'text-center table-info': element.jueves !== null}">
+                                    <div *ngIf="element.jueves === null; else elseCase">
+                                    </div>
+                                    <ng-template #elseCase>
+                                      <b>{{element.jueves}}</b>
+                                    </ng-template>
+                                  </td>
+                                </ng-container>
+                                
+                                <!-- Viernes Column -->
+                                <ng-container matColumnDef="viernes">
+                                  <th mat-header-cell *matHeaderCellDef class="table-dark text-center" style="width: 18%"> Viernes </th>
+                                  <td mat-cell *matCellDef="let element" [ngClass]="{'text-center': element.viernes === null, 'text-center table-info': element.viernes !== null}"> 
+                                    <div *ngIf="element.viernes === null; else elseCase">
+                                    </div>
+                                    <ng-template #elseCase>
+                                      <b>{{element.viernes}}</b>
+                                    </ng-template>
+                                  </td>
+                                </ng-container>
+                            
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                              </table>
                           </div>
                       </div> <!-- Fin Pares -->
-                      <div class="tab-pane active" id="impares"> <!-- Impares -->
+                      <div class="tab-pane" id="impares"> <!-- Impares -->
+                        <div class="card">
+                            <table mat-table [dataSource]="dataSource" class="table-bordered">
 
+                                <!-- Hora Column -->
+                                <ng-container matColumnDef="hora">
+                                  <th mat-header-cell *matHeaderCellDef class="table-dark text-center" style="width: 10%"> Hora </th>
+                                  <td mat-cell *matCellDef="let element" class="text-center table-dark"> {{element.hora}} </td>
+                                </ng-container>
+
+                                <!-- Lunes Column -->
+                                <ng-container matColumnDef="lunes">
+                                  <th mat-header-cell *matHeaderCellDef class="table-dark text-center" style="width: 18%"> Lunes </th>
+                                  <td mat-cell *matCellDef="let element" [ngClass]="{'text-center': element.lunes === null, 'text-center table-info': element.lunes !== null}"> 
+                                      <div *ngIf="element.lunes === null; else elseCase">
+                                      </div>
+                                      <ng-template #elseCase>
+                                        <b>{{element.lunes}}</b>
+                                      </ng-template>
+                                   </td>
+                                </ng-container>
+                            
+                                <!-- Martes Column -->
+                                <ng-container matColumnDef="martes">
+                                  <th mat-header-cell *matHeaderCellDef class="table-dark text-center" style="width: 18%"> Martes </th>
+                                  <td mat-cell *matCellDef="let element" [ngClass]="{'text-center': element.martes === null, 'text-center table-info': element.martes !== null}">
+                                    <div *ngIf="element.martes === null; else elseCase">
+                                    </div>
+                                    <ng-template #elseCase>
+                                      <b>{{element.martes}}</b>
+                                    </ng-template>
+                                  </td>
+                                </ng-container>
+                            
+                                <!-- Miercoles Column -->
+                                <ng-container matColumnDef="miercoles">
+                                  <th mat-header-cell *matHeaderCellDef class="table-dark text-center" style="width: 18%"> Miércoles </th>
+                                  <td mat-cell *matCellDef="let element" [ngClass]="{'text-center': element.miercoles === null, 'text-center table-info': element.miercoles !== null}">
+                                    <div *ngIf="element.miercoles === null; else elseCase">
+                                    </div>
+                                    <ng-template #elseCase>
+                                      <b>{{element.miercoles}}</b>
+                                    </ng-template>
+                                  </td>
+                                </ng-container>
+
+                                <!-- Jueves Column -->
+                                <ng-container matColumnDef="jueves">
+                                  <th mat-header-cell *matHeaderCellDef class="table-dark text-center" style="width: 18%"> Jueves </th>
+                                  <td mat-cell *matCellDef="let element" [ngClass]="{'text-center': element.jueves === null, 'text-center table-info': element.jueves !== null}">
+                                    <div *ngIf="element.jueves === null; else elseCase">
+                                    </div>
+                                    <ng-template #elseCase>
+                                      <b>{{element.jueves}}</b>
+                                    </ng-template>
+                                  </td>
+                                </ng-container>
+                                
+                                <!-- Viernes Column -->
+                                <ng-container matColumnDef="viernes">
+                                  <th mat-header-cell *matHeaderCellDef class="table-dark text-center" style="width: 18%"> Viernes </th>
+                                  <td mat-cell *matCellDef="let element" [ngClass]="{'text-center': element.viernes === null, 'text-center table-info': element.viernes !== null}"> 
+                                    <div *ngIf="element.viernes === null; else elseCase">
+                                    </div>
+                                    <ng-template #elseCase>
+                                      <b>{{element.viernes}}</b>
+                                    </ng-template>
+                                  </td>
+                                </ng-container>
+                            
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                              </table>
+                          </div>
                       </div> <!-- Fin Impares -->
                       <div class="tab-pane active" id="todas"> <!-- Todas -->
-              
+                        <div class="card">
+                            <table mat-table [dataSource]="dataSource" class="table-bordered">
+
+                                <!-- Hora Column -->
+                                <ng-container matColumnDef="hora">
+                                  <th mat-header-cell *matHeaderCellDef class="table-dark text-center" style="width: 10%"> Hora </th>
+                                  <td mat-cell *matCellDef="let element" class="text-center table-dark"> {{element.hora}} </td>
+                                </ng-container>
+
+                                <!-- Lunes Column -->
+                                <ng-container matColumnDef="lunes">
+                                  <th mat-header-cell *matHeaderCellDef class="table-dark text-center" style="width: 18%"> Lunes </th>
+                                  <td mat-cell *matCellDef="let element" [ngClass]="{'text-center': element.lunes === null, 'text-center table-info': element.lunes !== null}"> 
+                                      <div *ngIf="element.lunes === null; else elseCase">
+                                      </div>
+                                      <ng-template #elseCase>
+                                        <b>{{element.lunes}}</b>
+                                      </ng-template>
+                                   </td>
+                                </ng-container>
+                            
+                                <!-- Martes Column -->
+                                <ng-container matColumnDef="martes">
+                                  <th mat-header-cell *matHeaderCellDef class="table-dark text-center" style="width: 18%"> Martes </th>
+                                  <td mat-cell *matCellDef="let element" [ngClass]="{'text-center': element.martes === null, 'text-center table-info': element.martes !== null}">
+                                    <div *ngIf="element.martes === null; else elseCase">
+                                    </div>
+                                    <ng-template #elseCase>
+                                      <b>{{element.martes}}</b>
+                                    </ng-template>
+                                  </td>
+                                </ng-container>
+                            
+                                <!-- Miercoles Column -->
+                                <ng-container matColumnDef="miercoles">
+                                  <th mat-header-cell *matHeaderCellDef class="table-dark text-center" style="width: 18%"> Miércoles </th>
+                                  <td mat-cell *matCellDef="let element" [ngClass]="{'text-center': element.miercoles === null, 'text-center table-info': element.miercoles !== null}">
+                                    <div *ngIf="element.miercoles === null; else elseCase">
+                                    </div>
+                                    <ng-template #elseCase>
+                                      <b>{{element.miercoles}}</b>
+                                    </ng-template>
+                                  </td>
+                                </ng-container>
+
+                                <!-- Jueves Column -->
+                                <ng-container matColumnDef="jueves">
+                                  <th mat-header-cell *matHeaderCellDef class="table-dark text-center" style="width: 18%"> Jueves </th>
+                                  <td mat-cell *matCellDef="let element" [ngClass]="{'text-center': element.jueves === null, 'text-center table-info': element.jueves !== null}">
+                                    <div *ngIf="element.jueves === null; else elseCase">
+                                    </div>
+                                    <ng-template #elseCase>
+                                      <b>{{element.jueves}}</b>
+                                    </ng-template>
+                                  </td>
+                                </ng-container>
+                                
+                                <!-- Viernes Column -->
+                                <ng-container matColumnDef="viernes">
+                                  <th mat-header-cell *matHeaderCellDef class="table-dark text-center" style="width: 18%"> Viernes </th>
+                                  <td mat-cell *matCellDef="let element" [ngClass]="{'text-center': element.viernes === null, 'text-center table-info': element.viernes !== null}"> 
+                                    <div *ngIf="element.viernes === null; else elseCase">
+                                    </div>
+                                    <ng-template #elseCase>
+                                      <b>{{element.viernes}}</b>
+                                    </ng-template>
+                                  </td>
+                                </ng-container>
+                            
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                              </table>
+                          </div>
                       </div><!-- Fin Todas -->
                   </div>
               </div>

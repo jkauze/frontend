@@ -1,0 +1,14 @@
+  // Menus https://www.google.com/design/spec/components/menus.html#menus-specs
+// Dropdown buttons (mobile and desktop) https://www.google.com/design/spec/components/buttons.html#buttons-dropdown-buttons
+
+.dropdown-menu {
+    .dropdown-item:hover,
+    .dropdown-item:focus,
+    a:hover,
+    a:focus,
+    a:active {
+      background-color: #333333;
+      color: #FFFFFF;
+    }
+  }
+  

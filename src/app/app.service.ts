@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Rooms } from 'app/interfaces/rooms';
 import { Items } from 'app/interfaces/items';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { environment } from 'environments/environment';
 import { User } from './interfaces/user';
 import { Request } from './interfaces/request';
 import { Trimester } from './interfaces/trimester';
 import { RoomRequest } from './interfaces/room_request';
+import { Hourtable } from './interfaces/hourtable';
 
 const API = environment.api_url;
 
@@ -99,4 +101,41 @@ export class AppService {
     return this.http.put(API + 'trimestre/' + trimesterId, trimesterData);
   }
 
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      console.error(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
+    }
+    // return an observable with a user-facing error message
+    return throwError(
+      'Something bad happened; please try again later.');
+  };
+
+  updateRoom(sala: string, changes: any): Observable<any>{
+    return this.http.put<any>(API + "salas/" + sala, changes)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+ 
+  getSchedule(sala: string, option: string, semana: string): Observable<Hourtable[]> {
+    if (option === "1"){
+      return this.http.get<Hourtable[]>(API + '/reservas/' + sala + '/semana/' + semana);
+    }
+    else  if (option === "2"){
+      return this.http.get<Hourtable[]>(API + '/reservas/' + sala + '/semana/impares');
+    }
+    else if (option === "3"){
+      return this.http.get<Hourtable[]>(API + '/reservas/' + sala + '/semana/pares');
+    }
+    else{
+      return this.http.get<Hourtable[]>(API + '/reservas/' + sala + '/semana/todas');
+    }
+  }
 }

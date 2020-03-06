@@ -13,7 +13,6 @@ export const ROUTES: RouteInfo[] = [
     { path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
     { path: '/solicitudes', title: 'Solicitudes',  icon: 'notifications', class: '' },
     { path: '/laboratorios', title: 'Laboratorios', icon: 'desktop_windows', class: ''},
-    { path: '/horario', title: 'Horario', icon: 'schedule', class: ''},
 ];
 
 @Component({
