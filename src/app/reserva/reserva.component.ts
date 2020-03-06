@@ -41,24 +41,16 @@ export class ReservaComponent implements OnInit {
 
   onSelectSemanas() {
     let data;
-    console.log(this.semanas);
     if (this.semanas == 'especifica') {
       // dialog semanas especificas
       let dialogRef = this.dialog.open(DialogSemanasEspecificasComponent)
       dialogRef.afterClosed().subscribe( result => {
-        console.log(result);
         this.appService.getReservations(this.roomId, result)
         .finally( () => {
-          if ( data.length == 0 ) {
-            for (let index = 0; index < 10; index++) {
-              data[index] =  { hora: index + 1 }
-            }
-          }
-          this.dataSource = data;
-          this.isTableReady = true;
+          this.dataSource = this.generarTabla(data);
+          this.isTableReady = true;  // show tabla
         })
         .subscribe( response => {
-          console.log( response );
           data = response;
         })
       })
@@ -67,19 +59,43 @@ export class ReservaComponent implements OnInit {
       // get tabla
       this.appService.getReservations(this.roomId, this.semanas)
       .finally( () => {
-        if ( data.length == 0 ) {
-          for (let index = 0; index < 10; index++) {
-            data[index] =  { hora: index + 1 }
-          }
-        }
-        this.dataSource = data;
+        this.dataSource = this.generarTabla(data);
         this.isTableReady = true;  // show tabla
       })
       .subscribe( response => {
-        console.log( response );
         data = response;
       })
     }
+  }
+
+  generarTabla(data: any[]): any[] {
+    let table = [];
+    for (let index = 0; index < 10; index++) {
+      table[index] =  { hora: index + 1 }
+    }
+    if ( data.length == 0 ) {
+      data = table; // empty
+    }
+    else {
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].day === "Lunes"){
+          table[data[i].hour - 1].lunes = data[i].subject_id;
+        }
+        else if(data[i].day === "Martes"){
+          table[data[i].hour - 1].martes = data[i].subject_id;
+        }
+        else if(data[i].day === "Miercoles"){
+          table[data[i].hour - 1].miercoles = data[i].subject_id;
+        }
+        else if(data[i].day === "Jueves"){
+          table[data[i].hour - 1].jueves = data[i].subject_id;
+        }
+        else{
+          table[data[i].hour - 1].viernes = data[i].subject_id;
+        }
+      }
+    }
+    return table
   }
 
   reservar() {
