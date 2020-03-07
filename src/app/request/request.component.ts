@@ -59,7 +59,11 @@ export class RequestComponent implements OnInit {
       status: 'A'
     };
     this.appService.putRequest(requestId, putRequest).subscribe(request => {
-      console.log(request);
+      // Hacer que se refresque la tabla al aceptar
+      const index = this.requests.findIndex(res => res.id === requestId);
+      this.requests.splice(index,1);
+      this.dataSource.data = this.requests;
+
     });
   }
 
@@ -80,6 +84,9 @@ export class RequestComponent implements OnInit {
         };
         this.appService.putRequest(requestId, putRequest).subscribe(response => {
           console.log(response);
+          const index = this.requests.findIndex(res => res.id === requestId);
+          this.requests.splice(index,1);
+          this.dataSource.data = this.requests;
         });
       }
     });
