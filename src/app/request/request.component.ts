@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from 'app/app.service';
 import { Request, PutRequest } from 'app/interfaces/request';
-import { MatTableDataSource, MatDialog } from '@angular/material';
+import { MatTableDataSource, MatDialog, MatDialogConfig } from '@angular/material';
 import { USER_TYPE } from 'app/interfaces/user';
 import { ConfirmRejectionComponent, DialogData } from 'app/popups/dialogs/confirm-rejection/confirm-rejection.component';
-
+import { MaterialListComponent } from '../material-list/material-list.component'
 @Component({
   selector: 'app-request',
   templateUrl: './request.component.html',
@@ -52,6 +52,7 @@ export class RequestComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
   }
 
+  // Boton de aceptar
   acceptRequest(requestId: string) {
     console.log(requestId);
     const putRequest: PutRequest = {
@@ -67,6 +68,21 @@ export class RequestComponent implements OnInit {
     });
   }
 
+  // Modal con los materiales solicitados para la sala
+  openMaterialDialog(element) {
+    
+    this.dialog.open(MaterialListComponent, {
+      height:'300px',
+      width:'450px',
+      panelClass: 'dialog-bor',
+      data: { 
+      
+        room_id: element.room_id,
+        material_needed: element.material_needed }
+    });
+  }
+
+  // Boton de rechazo + modal 
   openRejectionDialog(requestId: string) {
     const dialogData: DialogData = {
       reason: '',

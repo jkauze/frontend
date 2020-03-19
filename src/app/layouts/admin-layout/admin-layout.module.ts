@@ -9,6 +9,8 @@ import { RequestComponent } from '../../request/request.component';
 import { LabfAdminComponent } from 'app/labf-admin/labf-admin.component';
 import { MatTableModule } from '@angular/material/table';
 import { UserTypePipe } from 'app/pipes/user-type.pipe';
+import { MaterialListComponent } from '../../material-list/material-list.component';
+
 
 import {
   MatButtonModule,
@@ -66,12 +68,14 @@ import { DialogTextFieldComponent } from 'app/dialogs/dialog-textfield.component
     DialogTextFieldComponent,
     LabfAdminComponent,
     ConfirmRejectionComponent,
+    MaterialListComponent,
   ],
   entryComponents: [
     DialogSemanasEspecificasComponent,
     DialogTextFieldComponent,
     LabfAdminComponent,
     ConfirmRejectionComponent,
+    MaterialListComponent,
   ],
   providers: [
     MatDatepickerModule,
