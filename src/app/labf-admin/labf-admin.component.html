@@ -58,8 +58,8 @@
           </div>
 
           <div class="card-content table-responsive table-full-width align">
-            <mat-form-field>
-              <mat-label>Filtrar</mat-label>
+            <mat-form-field class="filt">
+              <mat-label>Buscar</mat-label>
               <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ldac">
             </mat-form-field>
             <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
