@@ -9,7 +9,7 @@ export interface Request {
     material_needed?: string;
     type: number;
     status: string;
-}
+};
 
 export interface PutRequest {
     reason: string;

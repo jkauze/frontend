@@ -68,7 +68,7 @@ export class LabfAdminComponent implements OnInit {
   getRoomRequests() {
     this.app.isUserType(USER_TYPE.LAB_F).then(isLabF => {
       if (isLabF) {
-        this.app.getRoomRequests().subscribe(requests => {
+        this.app.getRoomRequests('labf/solicitudes').subscribe(requests => {
           this.elements = requests;
           this.dataSource.data = this.elements;
         });
@@ -120,6 +120,8 @@ export class LabfAdminComponent implements OnInit {
           this.manageError,
           this.manageComplete
         );
+      } else {
+        this.actionsDisabled = false;
       }
     });
   }
