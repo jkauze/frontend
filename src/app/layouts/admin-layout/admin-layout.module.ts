@@ -7,6 +7,7 @@ import { DashboardComponent } from '../../dashboard/dashboard.component';
 import { InfoSalaComponent } from 'app/info-sala/info-sala.component';
 import { RequestComponent } from '../../request/request.component';
 import { LabfAdminComponent } from 'app/labf-admin/labf-admin.component';
+import { NewRoomsComponent } from 'app/new-rooms/new-rooms.component';
 import { MatTableModule } from '@angular/material/table';
 import { UserTypePipe } from 'app/pipes/user-type.pipe';
 
@@ -65,6 +66,7 @@ import { DialogTextFieldComponent } from 'app/dialogs/dialog-textfield.component
     DialogSemanasEspecificasComponent,
     DialogTextFieldComponent,
     LabfAdminComponent,
+    NewRoomsComponent,
     ConfirmRejectionComponent,
   ],
   entryComponents: [

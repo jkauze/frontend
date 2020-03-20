@@ -29,12 +29,19 @@ export class NewRoomsComponent implements OnInit {
 
   ngOnInit() {
     this.getNewRoomRequests();
+    this.newRoomForm = this.formBuilder.group({
+      room_id: ''
+    });
   }
 
   getNewRoomRequests() {
     this.app.isUserType(USER_TYPE.LAB_ADMIN).then(isLabAdmin => {
       if (isLabAdmin) {
-
+        const url = `sala/solicitudes/crear/${this.app.user.id}`;
+        this.app.getRoomRequests(url).subscribe(requests => {
+          this.elements = requests;
+          this.dataSource.data = this.elements;
+        });
       } else {
         this.router.navigate(['dashboard']);
       }

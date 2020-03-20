@@ -15,7 +15,7 @@
                 <div class="col-lg-3 col-md-6">
                   <mat-form-field>
                     <mat-label>Id de Sala</mat-label>
-                    <input matInput formControlName="roomId"
+                    <input matInput formControlName="room_id"
                     placeholder="Ex. MYS-999">
                   </mat-form-field>
                 </div>
@@ -37,8 +37,8 @@
             <h3 class="card-title">Solicitudes de Creaci&oacute;n de Salas</h3>
           </div>
 
-          <div class="card-content table-responsive table-full-width align">
-            <mat-form-field>
+          <div class="card-body table-responsive table-full-width align">
+            <mat-form-field class="filt">
               <mat-label>Filtrar</mat-label>
               <input matInput (keyup)="applyFilter($event)" 
               placeholder="Ex. MYS-000">

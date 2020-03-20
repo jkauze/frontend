@@ -65,8 +65,8 @@ export class AppService {
     return this.http.get<Rooms[]>(API + url);
   }
 
-  getRoomRequests(): Observable<RoomRequest[]> {
-    return this.http.get<RoomRequest[]>(API + 'labf/solicitudes');
+  getRoomRequests(url: string): Observable<RoomRequest[]> {
+    return this.http.get<RoomRequest[]>(API + url);
   }
 
   getItems(url: string): Observable<Items[]> {
