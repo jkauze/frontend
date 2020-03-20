@@ -16,6 +16,7 @@ import {
 } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginComponent } from './login/login.component';
+import { NewRoomsComponent } from './new-rooms/new-rooms.component';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { LoginComponent } from './login/login.component';
     AppComponent,
     AdminLayoutComponent,
     LoginComponent,
+    NewRoomsComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

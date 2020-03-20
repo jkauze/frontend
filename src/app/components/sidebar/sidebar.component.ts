@@ -4,15 +4,15 @@ import { USER_TYPE } from 'app/interfaces/user';
 
 declare const $: any;
 declare interface RouteInfo {
-    path: string;
-    title: string;
-    icon: string;
-    class: string;
+  path: string;
+  title: string;
+  icon: string;
+  class: string;
 }
 export const ROUTES: RouteInfo[] = [
-    { path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
-    { path: '/solicitudes', title: 'Solicitudes',  icon: 'notifications', class: '' },
-    { path: '/laboratorios', title: 'Laboratorios', icon: 'desktop_windows', class: ''},
+  { path: '/dashboard', title: 'Dashboard', icon: 'dashboard', class: '' },
+  { path: '/solicitudes', title: 'Solicitudes', icon: 'notifications', class: '' },
+  { path: '/laboratorios', title: 'Laboratorios', icon: 'desktop_windows', class: '' },
 ];
 
 @Component({
@@ -32,18 +32,33 @@ export class SidebarComponent implements OnInit {
         this.addAdminRoute();
       }
     });
-  }
-  isMobileMenu() {
-      if ($(window).width() > 991) {
-          return false;
+    this.app.isUserType(USER_TYPE.LAB_ADMIN).then(isLabAdmin => {
+      if (isLabAdmin) {
+        this.addNewRoomsRoute();
       }
-      return true;
+    });
+  }
+
+  isMobileMenu() {
+    if ($(window).width() > 991) {
+      return false;
+    }
+    return true;
   };
 
   addAdminRoute() {
     this.menuItems.push({
       path: '/labf-admin',
       title: 'Administrar',
+      icon: 'notifications',
+      class: ''
+    });
+  }
+
+  addNewRoomsRoute() {
+    this.menuItems.push({
+      path: '/new-rooms',
+      title: 'Nuevas Salas',
       icon: 'notifications',
       class: ''
     });
