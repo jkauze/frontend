@@ -33,6 +33,8 @@ import { ConfirmRejectionComponent } from 'app/popups/dialogs/confirm-rejection/
 import { ReservaComponent } from 'app/reserva/reserva.component';
 import { DialogSemanasEspecificasComponent } from 'app/dialogs/dialog-semanas-especificas.component';
 import { DialogTextFieldComponent } from 'app/dialogs/dialog-textfield.component';
+import { RequestStatusPipe } from 'app/pipes/request-status/request-status.pipe';
+
 
 @NgModule({
   imports: [
@@ -68,6 +70,7 @@ import { DialogTextFieldComponent } from 'app/dialogs/dialog-textfield.component
     LabfAdminComponent,
     NewRoomsComponent,
     ConfirmRejectionComponent,
+    RequestStatusPipe,
   ],
   entryComponents: [
     DialogSemanasEspecificasComponent,

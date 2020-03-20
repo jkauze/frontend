@@ -120,6 +120,8 @@ export class LabfAdminComponent implements OnInit {
           this.manageError,
           this.manageComplete
         );
+      } else {
+        this.actionsDisabled = false;
       }
     });
   }

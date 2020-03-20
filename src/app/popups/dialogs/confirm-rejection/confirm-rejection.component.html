@@ -1,5 +1,5 @@
 <h1 mat-dialog-title>Confirmar Rechazo</h1>
-<ng-container *ngIf="data.reason.length >= 0; then reasonTemplate; else messageTemplate"></ng-container>
+<ng-container *ngIf="data.reason && data.reason.length >= 0; then reasonTemplate; else messageTemplate"></ng-container>
 <ng-template #reasonTemplate>
   <div mat-dialog-content>
     <p>Especifique una raz&oacute;n para su rechazo</p>
@@ -21,8 +21,7 @@
         <button class="expand" mat-raised-button (click)="onCancelClick()">Cancelar</button>
       </div>
       <div class="col-6">
-        <button *ngIf="data.reason" class="expand" mat-raised-button color="warn" [mat-dialog-close]="data.reason">Rechazar</button>
-        <button *ngIf="!data.reason" class="expand" mat-raised-button color="warn" [mat-dialog-close]="data">Rechazar</button>
+        <button class="expand" mat-raised-button color="warn" [mat-dialog-close]="data.reason || null">Rechazar</button>
       </div>
     </div>
   </div>
