@@ -39,7 +39,6 @@ export class NewRoomsComponent implements OnInit {
       if (isLabAdmin) {
         const url = `sala/solicitudes/crear/${this.app.user.id}`;
         this.app.getRoomRequests(url).subscribe(requests => {
-          console.log(requests);
           this.elements = requests;
           this.dataSource.data = this.elements;
         });
