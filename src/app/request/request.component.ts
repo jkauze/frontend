@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from 'app/app.service';
 import { Request, PutRequest } from 'app/interfaces/request';
-import { MatTableDataSource, MatDialog, MatDialogConfig } from '@angular/material';
+import { MatTableDataSource, MatDialog, MatSnackBar  } from '@angular/material';
 import { USER_TYPE } from 'app/interfaces/user';
 import { ConfirmRejectionComponent, DialogData } from 'app/popups/dialogs/confirm-rejection/confirm-rejection.component';
 import { MaterialListComponent } from '../material-list/material-list.component'
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-request',
   templateUrl: './request.component.html',
@@ -12,8 +14,7 @@ import { MaterialListComponent } from '../material-list/material-list.component'
 })
 export class RequestComponent implements OnInit {
   is_admin: boolean;
-  
-
+  reason: String;
   requests: Request[];
   dataSource = new MatTableDataSource(this.requests);
   // Columns para Admin
@@ -23,7 +24,9 @@ export class RequestComponent implements OnInit {
 
   constructor( 
     private appService: AppService,
-     public dialog: MatDialog
+    public dialog: MatDialog,
+    private _snackBar: MatSnackBar,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -47,6 +50,7 @@ export class RequestComponent implements OnInit {
     });
   }
 
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
@@ -55,6 +59,7 @@ export class RequestComponent implements OnInit {
   // Boton de aceptar
   acceptRequest(requestId: string) {
     console.log(requestId);
+    
     const putRequest: PutRequest = {
       reason: '',
       status: 'A'
@@ -64,17 +69,22 @@ export class RequestComponent implements OnInit {
       const index = this.requests.findIndex(res => res.id === requestId);
       this.requests.splice(index,1);
       this.dataSource.data = this.requests;
+      if (request.message) {
+        this.showSnackBar(request.message);
+      } else if (request.error) {
+        this.showSnackBar(request.error);
+      } else {
+        console.log(request);
+      }
 
     });
   }
 
   // Modal con los materiales solicitados para la sala
   openMaterialDialog(element) {
-    
     this.dialog.open(MaterialListComponent, {
       height:'300px',
       width:'450px',
-      panelClass: 'dialog-bor',
       data: { 
       
         room_id: element.room_id,
@@ -103,8 +113,19 @@ export class RequestComponent implements OnInit {
           const index = this.requests.findIndex(res => res.id === requestId);
           this.requests.splice(index,1);
           this.dataSource.data = this.requests;
+          if (response.message) {
+            this.showSnackBar(response.message);
+          } else if (response.error) {
+            this.showSnackBar(response.error);
+          } else {
+            console.log(response);
+          }
         });
       }
     });
+  }
+
+  showSnackBar(message: string) {
+    this._snackBar.open(message, null, { duration: 4000 });
   }
 }
