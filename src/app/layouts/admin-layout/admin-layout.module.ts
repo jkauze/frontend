@@ -72,11 +72,8 @@ import { RequestStatusPipe } from 'app/pipes/request-status/request-status.pipe'
     LabfAdminComponent,
     NewRoomsComponent,
     ConfirmRejectionComponent,
-<<<<<<< HEAD
     MaterialListComponent,
-=======
     RequestStatusPipe,
->>>>>>> d950d01941c69a54c7b435d6d3b6bb9db222b537
   ],
   entryComponents: [
     DialogSemanasEspecificasComponent,
