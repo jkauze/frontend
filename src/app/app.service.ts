@@ -36,7 +36,6 @@ export class AppService {
       if (data.length === 1) {
         this.user = data[0];
         localStorage.setItem('userId', this.user.id);
-        console.log(localStorage.getItem('userId'));
       }
     });
     return userData;
@@ -46,7 +45,6 @@ export class AppService {
     return new Promise<boolean>(async (resolve, reject) => {
       if (!this.user) {
         const userId = localStorage.getItem('userId');
-        // console.log(userId);
         if (userId) {
           await this.login(userId).catch(() => reject());
           if (!this.user) {
@@ -55,7 +53,6 @@ export class AppService {
             resolve(this.user && this.user.type === usertype);
           }
         } else {
-          // console.log('Hola papito');
           reject();
         }
       } else {
@@ -68,8 +65,8 @@ export class AppService {
     return this.http.get<Rooms[]>(API + url);
   }
 
-  getRoomRequests(): Observable<RoomRequest[]> {
-    return this.http.get<RoomRequest[]>(API + 'labf/solicitudes');
+  getRoomRequests(url: string): Observable<RoomRequest[]> {
+    return this.http.get<RoomRequest[]>(API + url);
   }
 
   getItems(url: string): Observable<Items[]> {
@@ -77,7 +74,7 @@ export class AppService {
   }
 
   getRequests(url: String): Observable<Request[]> {
-    return this.http.get<any[]>(API + url);
+    return this.http.get<Request[]>(API + url);
   }
 
   getUsers(users?: string): Observable<User[]> {
@@ -101,6 +98,11 @@ export class AppService {
 
   getTrimester(): Observable<Trimester[]> {
     return this.http.get<Trimester[]>(API + 'trimestre/ultimo');
+  }
+
+  postRoomRequest(room_id: string): Observable<any> {
+    const endpoint = API + 'sala/solicitudes/crear/' + this._user.id;
+    return this.http.post(endpoint, { room_id });
   }
 
   putRoomRequests(roomRequestId: string, status: string): Observable<any> {

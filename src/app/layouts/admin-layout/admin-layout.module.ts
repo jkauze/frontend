@@ -7,6 +7,7 @@ import { DashboardComponent } from '../../dashboard/dashboard.component';
 import { InfoSalaComponent } from 'app/info-sala/info-sala.component';
 import { RequestComponent } from '../../request/request.component';
 import { LabfAdminComponent } from 'app/labf-admin/labf-admin.component';
+import { NewRoomsComponent } from 'app/new-rooms/new-rooms.component';
 import { MatTableModule } from '@angular/material/table';
 import { UserTypePipe } from 'app/pipes/user-type.pipe';
 import { MaterialListComponent } from '../../material-list/material-list.component';
@@ -34,6 +35,8 @@ import { ConfirmRejectionComponent } from 'app/popups/dialogs/confirm-rejection/
 import { ReservaComponent } from 'app/reserva/reserva.component';
 import { DialogSemanasEspecificasComponent } from 'app/dialogs/dialog-semanas-especificas.component';
 import { DialogTextFieldComponent } from 'app/dialogs/dialog-textfield.component';
+import { RequestStatusPipe } from 'app/pipes/request-status/request-status.pipe';
+
 
 @NgModule({
   imports: [
@@ -67,8 +70,13 @@ import { DialogTextFieldComponent } from 'app/dialogs/dialog-textfield.component
     DialogSemanasEspecificasComponent,
     DialogTextFieldComponent,
     LabfAdminComponent,
+    NewRoomsComponent,
     ConfirmRejectionComponent,
+<<<<<<< HEAD
     MaterialListComponent,
+=======
+    RequestStatusPipe,
+>>>>>>> d950d01941c69a54c7b435d6d3b6bb9db222b537
   ],
   entryComponents: [
     DialogSemanasEspecificasComponent,
