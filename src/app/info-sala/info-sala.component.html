@@ -4,7 +4,7 @@
     <div class="card">
         <div class="card-header card-header-icon card-header-info">
           <div class="card-icon">
-            <i class="material-icons">settings</i>
+            <em class="material-icons">settings</em>
           </div>
           <h4 class="card-title">Administrador</h4>
         </div>
@@ -17,11 +17,11 @@
   <div class="card">
     <div class="row no-gutters">
       <div class="col-md-4">
-        <img src={{picture}} class="card-img" style="max-width: 100%;">
+        <img src={{picture}} class="card-img" style="max-width: 100%;" alt="">
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h2 *ngIf="!edit" class="card-title text-uppercase"><b>{{room?.name}}</b></h2>
+          <h2 *ngIf="!edit" class="card-title text-uppercase"><strong>{{room?.name}}</strong></h2>
           <h2><input [(ngModel)]="room.name" *ngIf="edit" type="text" class="form-control" id="roomName" value="{{room.name}}"></h2>
           <p class="card-subtitle mb-1 text-muted font-italic">
             <small>Esta sala pertenece a <a class="text-reset" routerLink="/laboratorios/salas/{{ room?.manager_id }}"><b>{{room?.manager_id}}</b></a>.</small>
@@ -46,11 +46,11 @@
       <p class="card-category">Objetos que posee la sala</p>
     </div>
     <div class="card-content table-responsive table-full-width">
-      <table class="table">
+      <table class="table" summary="Componentes de Sala">
         <thead class="text-info">
-          <th>Item</th>
-          <th class="text-center">Cantidad</th>
-          <th class="text-center">Descripcion</th>
+          <th scope="col">Item</th>
+          <th class="text-center" scope="col">Cantidad</th>
+          <th class="text-center" scope="col">Descripcion</th>
         </thead>
         <tbody>
           <tr *ngFor="let item of items" >
