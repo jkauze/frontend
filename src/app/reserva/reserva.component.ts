@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material';
 import { DialogSemanasEspecificasComponent } from 'app/dialogs/dialog-semanas-especificas.component';
 import { AppService } from 'app/app.service';
 import { DialogTextFieldComponent } from 'app/dialogs/dialog-textfield.component';
+import { USER_TYPE } from 'app/interfaces/user';
 
 @Component({
   selector: 'app-reserva',
@@ -15,7 +16,7 @@ export class ReservaComponent implements OnInit {
   public roomId: string;
   public semanas: string;
   public materia: string;
-  public seccion: string;
+  public cantidad: number;
   public materiasOptions: any[];
   public isTableReady: boolean = false;
   public displayedColumns: string[] = ['hora', 'lunes', 'martes', 'miercoles', 'jueves', 'viernes'];
@@ -103,8 +104,8 @@ export class ReservaComponent implements OnInit {
   }
 
   puedeReservar(): boolean {
-    if (this.materia != undefined && this.seccion != ''  &&
-    this.seccion != undefined && this.semanas != undefined) {
+    if (this.materia != undefined && this.cantidad != 0  &&
+    this.cantidad != undefined && this.semanas != undefined) {
       const index = this.dataSource.findIndex(d => (
         d.lunesCheck == true || d.martesCheck == true || 
         d.miercolesCheck == true || d.juevesCheck == true || 
@@ -117,19 +118,43 @@ export class ReservaComponent implements OnInit {
   }
 
   reservar() {
-    let body = {
-      materia: this.materia,
-      seccion: this.seccion,
-      //semana
-      horarios: this.dataSource
-    }
-    console.log(body)
+    let requester = localStorage.getItem('userId');
+    let isAdmin: boolean = false;
+    this.appService.isUserType(USER_TYPE.LAB_ADMIN).then(response => { isAdmin = response; })
+    let horario = [];
+    // mapear horario
+    this.dataSource.forEach( (h, index) => {
+      if ( h.lunesCheck ) { let obj = { dia: 'lunes', hora: index+1 }; horario.push(obj) }
+      else if ( h.lunesCheck ) { let obj = { dia: 'lunes', hora: index+1 }; horario.push(obj) }
+      else if ( h.martesCheck ) { let obj = { dia: 'martes', hora: index+1 }; horario.push(obj) }
+      else if ( h.miercolesCheck ) { let obj = { dia: 'miercoles', hora: index+1 }; horario.push(obj) }
+      else if ( h.juevesCheck ) { let obj = { dia: 'jueves', hora: index+1 }; horario.push(obj) }
+      else if ( h.viernesCheck ) { let obj = { dia: 'viernes', hora: index+1 }; horario.push(obj) }
+      else { } // otros horarios
+    })
     let dialogFieldRef = this.dialog.open(DialogTextFieldComponent, {
       data: { title: 'Reserva', message: 'Especifique si requiere de algo adicional'}
     });
 
     dialogFieldRef.afterClosed().subscribe( result => {
       console.log(result);
+      if (result != 'No') {
+        // crear reserva
+        let material = result
+        this.appService.createRequest(
+          requester, 
+          this.materia, 
+          this.roomId, 
+          this.cantidad, 
+          material, 
+          this.semanas, 
+          horario, 
+          isAdmin
+          )
+        .subscribe( response => {
+          console.log(response);
+        })
+      }
     })
   }
 }
