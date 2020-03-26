@@ -11,6 +11,7 @@ import { NewRoomsComponent } from 'app/new-rooms/new-rooms.component';
 import { MatTableModule } from '@angular/material/table';
 import { UserTypePipe } from 'app/pipes/user-type.pipe';
 import { MaterialListComponent } from '../../material-list/material-list.component';
+import { RejectReasonComponent } from '../../reject-reason/reject-reason.component';
 
 
 import {
@@ -76,6 +77,7 @@ import { RequestStatusPipe } from 'app/pipes/request-status/request-status.pipe'
     MaterialListComponent,
     ConfirmRejectionMessageComponent,
     RequestStatusPipe,
+    RejectReasonComponent,
   ],
   entryComponents: [
     DialogSemanasEspecificasComponent,
@@ -84,6 +86,7 @@ import { RequestStatusPipe } from 'app/pipes/request-status/request-status.pipe'
     ConfirmRejectionComponent,
     MaterialListComponent,
     ConfirmRejectionMessageComponent,
+    RejectReasonComponent,
   ],
   providers: [
     MatDatepickerModule,

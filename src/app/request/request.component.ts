@@ -5,6 +5,7 @@ import { MatTableDataSource, MatDialog, MatSnackBar  } from '@angular/material';
 import { USER_TYPE } from 'app/interfaces/user';
 import { ConfirmRejectionComponent } from 'app/popups/dialogs/confirm-rejection/confirm-rejection.component';
 import { MaterialListComponent } from '../material-list/material-list.component'
+import { RejectReasonComponent } from '../reject-reason/reject-reason.component'
 import { Router } from '@angular/router';
 import { ConfirmRejectionMessageComponent, DialogData } from 'app/popups/dialogs/confirm-rejection-message/confirm-rejection-message.component';
 
@@ -21,7 +22,7 @@ export class RequestComponent implements OnInit {
   // Columns para Admin
   displayedColumns = ['name', 'type', 'subject_id', 'room_id', 'material_needed', 'quantity', 'send_time', 'Horario', 'Aprobar']; 
   // Colums para Users
-  displayedColumns1 = ['requester_id', 'subject_id', 'room_id', 'material_needed', 'quantity', 'send_time', 'Horario', 'status'];
+  displayedColumns1 = ['subject_id', 'room_id', 'material_needed', 'quantity', 'send_time', 'Horario', 'status', 'eliminar'];
 
   constructor( 
     private appService: AppService,
@@ -93,6 +94,17 @@ export class RequestComponent implements OnInit {
     });
   }
 
+  rejectReasonDialog(element) {
+    this.dialog.open(RejectReasonComponent, {
+      height:'300px',
+      width:'480px',
+    data: {
+      reason: element.reason 
+    } });
+    
+
+  }
+
   // Boton de rechazo + modal 
   openRejectionDialog(requestId: string) {
     const dialogData: DialogData = {
@@ -128,5 +140,20 @@ export class RequestComponent implements OnInit {
 
   showSnackBar(message: string) {
     this._snackBar.open(message, null, { duration: 4000 });
+  }
+
+  deletedUser(requestId: string) {
+    this.appService.deleteUser(requestId).subscribe ( request => {
+      const index = this.requests.findIndex(res => res.id === requestId);
+      this.requests.splice(index,1);
+      this.dataSource.data = this.requests;
+      if (request.message) {
+        this.showSnackBar(request.message);
+      } else if (request.error) {
+        this.showSnackBar(request.error);
+      } else {
+        console.log(request);
+      }
+    });
   }
 }
