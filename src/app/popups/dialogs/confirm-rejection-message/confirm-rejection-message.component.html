@@ -1,6 +1,10 @@
 <h1 mat-dialog-title>Confirmar Rechazo</h1>
 <div mat-dialog-content>
-  <p>&iquest;Est&aacute;s seguro de que deseas rechazar esta solicitud?</p>
+  <p>Especifique una raz&oacute;n para su rechazo</p>
+  <mat-form-field>
+    <mat-label>Raz&oacute;n de rechazo</mat-label>
+    <input matInput [(ngModel)]="data.reason">
+  </mat-form-field>
 </div>
 <div mat-dialog-actions>
   <div class="container-fluid">
@@ -9,7 +13,7 @@
         <button class="expand" mat-raised-button (click)="onCancelClick()">Cancelar</button>
       </div>
       <div class="col-6">
-        <button class="expand" mat-raised-button color="warn" [mat-dialog-close]="data.reason || null">Rechazar</button>
+        <button class="expand" mat-raised-button color="warn" [mat-dialog-close]="data.reason">Rechazar</button>
       </div>
     </div>
   </div>
