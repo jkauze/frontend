@@ -32,6 +32,7 @@ import { LaboratoriosComponent } from 'app/laboratorios/laboratorios.component';
 import { HorarioComponent } from 'app/horario/horario.component';
 import { SalasUserComponent } from 'app/laboratorios/salas-user/salas-user.component';
 import { ConfirmRejectionComponent } from 'app/popups/dialogs/confirm-rejection/confirm-rejection.component';
+import { ConfirmRejectionMessageComponent } from 'app/popups/dialogs/confirm-rejection-message/confirm-rejection-message.component';
 import { ReservaComponent } from 'app/reserva/reserva.component';
 import { DialogSemanasEspecificasComponent } from 'app/dialogs/dialog-semanas-especificas.component';
 import { DialogTextFieldComponent } from 'app/dialogs/dialog-textfield.component';
@@ -73,6 +74,7 @@ import { RequestStatusPipe } from 'app/pipes/request-status/request-status.pipe'
     NewRoomsComponent,
     ConfirmRejectionComponent,
     MaterialListComponent,
+    ConfirmRejectionMessageComponent,
     RequestStatusPipe,
   ],
   entryComponents: [
@@ -81,6 +83,7 @@ import { RequestStatusPipe } from 'app/pipes/request-status/request-status.pipe'
     LabfAdminComponent,
     ConfirmRejectionComponent,
     MaterialListComponent,
+    ConfirmRejectionMessageComponent,
   ],
   providers: [
     MatDatepickerModule,

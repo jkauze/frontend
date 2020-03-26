@@ -36,6 +36,7 @@ export class AppService {
       if (data.length === 1) {
         this.user = data[0];
         localStorage.setItem('userId', this.user.id);
+        localStorage.setItem('userName', this.user.name);
       }
     });
     return userData;

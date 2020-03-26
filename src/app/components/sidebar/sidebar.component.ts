@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from 'app/app.service';
 import { USER_TYPE } from 'app/interfaces/user';
+import { Trimester } from 'app/interfaces/trimester';
 
 declare const $: any;
 declare interface RouteInfo {
@@ -22,6 +23,8 @@ export const ROUTES: RouteInfo[] = [
 })
 export class SidebarComponent implements OnInit {
   menuItems: any[];
+  userName: String = "";
+  trimester: String = "";
 
   constructor(private app: AppService) { }
 
@@ -36,6 +39,10 @@ export class SidebarComponent implements OnInit {
       if (isLabAdmin) {
         this.addNewRoomsRoute();
       }
+    });
+    this.userName = localStorage.getItem('userName');
+    this.app.getTrimester().subscribe( data => {
+      this.trimester = data[0].id;
     });
   }
 

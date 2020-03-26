@@ -3,9 +3,10 @@ import { AppService } from 'app/app.service';
 import { Request, PutRequest } from 'app/interfaces/request';
 import { MatTableDataSource, MatDialog, MatSnackBar  } from '@angular/material';
 import { USER_TYPE } from 'app/interfaces/user';
-import { ConfirmRejectionComponent, DialogData } from 'app/popups/dialogs/confirm-rejection/confirm-rejection.component';
+import { ConfirmRejectionComponent } from 'app/popups/dialogs/confirm-rejection/confirm-rejection.component';
 import { MaterialListComponent } from '../material-list/material-list.component'
 import { Router } from '@angular/router';
+import { ConfirmRejectionMessageComponent, DialogData } from 'app/popups/dialogs/confirm-rejection-message/confirm-rejection-message.component';
 
 @Component({
   selector: 'app-request',
@@ -97,7 +98,7 @@ export class RequestComponent implements OnInit {
     const dialogData: DialogData = {
       reason: '',
     }
-    const dialogRef = this.dialog.open(ConfirmRejectionComponent, {
+    const dialogRef = this.dialog.open(ConfirmRejectionMessageComponent, {
       width: '300px',
       data: dialogData
     });
