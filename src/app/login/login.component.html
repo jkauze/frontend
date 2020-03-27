@@ -6,7 +6,7 @@
     <div class="col-md-4 col-xs-12">
       <div class="card" style="background: #eee; margin-top: -30px;">
         <div class="card-body">
-          <div class="card-title"> <b>{{ isEnglish ? title : titulo }}</b> </div>
+          <div class="card-title"> <strong>{{ isEnglish ? title : titulo }}</strong> </div>
           <hr>
           <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
             <div>
