@@ -112,6 +112,7 @@ export class LabfAdminComponent implements OnInit {
       width: '300px',
     });
     dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
       if (result) {
         const status = 'R';
         this.app.putRoomRequests(requestId, status).subscribe(
