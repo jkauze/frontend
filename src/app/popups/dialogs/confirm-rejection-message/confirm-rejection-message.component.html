@@ -13,7 +13,7 @@
         <button class="expand" mat-raised-button (click)="onCancelClick()">Cancelar</button>
       </div>
       <div class="col-6">
-        <button class="expand" mat-raised-button color="warn" [mat-dialog-close]="data.reason">Rechazar</button>
+        <button class="expand" mat-raised-button color="warn" [mat-dialog-close]="data.reason || true">Rechazar</button>
       </div>
     </div>
   </div>
