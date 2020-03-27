@@ -79,6 +79,7 @@ import { RequestStatusPipe } from 'app/pipes/request-status/request-status.pipe'
     DialogTextFieldComponent,
     LabfAdminComponent,
     ConfirmRejectionMessageComponent,
+    ConfirmRejectionComponent,
   ],
   providers: [
     MatDatepickerModule,
