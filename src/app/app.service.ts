@@ -158,8 +158,8 @@ export class AppService {
     });
   }
 
-  deleteUser(idRequest: number): Observable<any> {
-    return this.http.delete(API + 'eliminar/solicitud/reserva' + idRequest);
+  deleteUser(idRequest: string): Observable<any> {
+    return this.http.delete(API + 'eliminar/solicitud/reserva/' + idRequest);
   }
 
 }
