@@ -110,9 +110,9 @@ export class LabfAdminComponent implements OnInit {
     this.actionsDisabled = true;
     const dialogRef = this.dialog.open(ConfirmRejectionComponent, {
       width: '300px',
-      data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
       if (result) {
         const status = 'R';
         this.app.putRoomRequests(requestId, status).subscribe(

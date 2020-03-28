@@ -50,3 +50,8 @@ img {
 .p-init {
     padding: initial;
 }
+
+.filt {
+    width: 50%;
+    padding-left: 18px;
+}

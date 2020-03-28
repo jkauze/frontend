@@ -176,5 +176,9 @@ export class AppService {
     body.push(...horarioList);
     return this.http.post(endpoint, body);
   }
+  
+  deleteUser(idRequest: string): Observable<any> {
+    return this.http.delete(API + 'eliminar/solicitud/reserva/' + idRequest);
+  }
 
 }

@@ -1,0 +1,16 @@
+<div>
+
+  <div class="title">
+    Materiales Solicitados
+    <div class="room">
+      {{data.room_id}}
+      
+    </div>
+  </div>
+  <p class="materiales">
+    {{data.material_needed}}
+  </p>
+  <div mat-dialog-actions class="close">
+    <button mat-stroked-button class="close-txt" (click)="onNoClick()" >Cerrar</button>
+  </div>
+</div>
