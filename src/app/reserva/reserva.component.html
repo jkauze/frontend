@@ -17,12 +17,15 @@
             <input matInput [(ngModel)]="cantidad" name="cantidad" placeholder="Cantidad de Alumnos" required>
           </mat-form-field>
           <mat-form-field>
-            <mat-select [(ngModel)]="semanas" name="semanas" placeholder="Semanas" required (selectionChange)="onSelectSemanas()">
+            <mat-select [(ngModel)]="semanas" name="semanas" placeholder="Semanas" required (click)="onResetEspecifica()" (selectionChange)="onSelectSemanas()">
               <mat-option [value]="'especifica'">Especifica</mat-option>
               <mat-option [value]="'pares'">Pares</mat-option>
               <mat-option [value]="'impares'">Impares</mat-option>
               <mat-option [value]="'todas'">Todas</mat-option>
             </mat-select>
+          </mat-form-field>
+          <mat-form-field *ngIf="semanaEspecifica">
+            <input matInput [(ngModel)]="semanaEspecifica" name="semanaEspecifica" placeholder="Semana Especifica" disabled>
           </mat-form-field>
         </div>
       </div>

@@ -170,13 +170,13 @@ export class AppService {
       room: room,
       quantity: quantity,
       material: material,
-      semanas: semanas,
+      semanas: semanas.length > 2 ? semanas : +semanas,
     };
     body.push(request);
     body.push(...horarioList);
     return this.http.post(endpoint, body);
   }
-  
+
   deleteUser(idRequest: string): Observable<any> {
     return this.http.delete(API + 'eliminar/solicitud/reserva/' + idRequest);
   }
