@@ -10,6 +10,7 @@ import { Request, PutRequest } from './interfaces/request';
 import { Trimester } from './interfaces/trimester';
 import { RoomRequest } from './interfaces/room_request';
 import { Hourtable } from './interfaces/hourtable';
+import { textChangeRangeIsUnchanged } from 'typescript';
 
 const API = environment.api_url;
 
@@ -152,10 +153,28 @@ export class AppService {
       return this.http.get<Hourtable[]>(API + '/reservas/' + sala + '/semana/todas');
     }
   }
+
   putRequest(requestId: string, putRequest: PutRequest): Observable<any> {
     return this.http.put(API + 'solicitudes/reserva/' + requestId, putRequest, {
       responseType: 'json'
     });
+  }
+
+  createRequest(requester: string, subject: string, room: string, quantity: number, 
+  material: string, semanas: string, horarioList: any[], isAdmin: boolean): Observable<any> {
+    let endpoint = isAdmin ? API + 'crear/reserva' : API + 'crear/solicitudes/reserva';
+    let body = [];
+    let request = {
+      requester: requester,
+      subject: subject,
+      room: room,
+      quantity: quantity,
+      material: material,
+      semanas: semanas.length > 2 ? semanas : +semanas,
+    };
+    body.push(request);
+    body.push(...horarioList);
+    return this.http.post(endpoint, body);
   }
 
   deleteUser(idRequest: string): Observable<any> {
