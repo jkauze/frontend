@@ -122,12 +122,12 @@ export class DialogScheduleReservedComponent implements OnInit {
         this.json.getSchedule(data.shedule[0].room_id, this.weekType, null).subscribe((data) => {
           this.dataBlock= this.mapear(data);
           this.dataSource= this.merge(this.dataSourceReserved,this.dataBlock);
-          console.log(this.dataSource);
         });
       }
       else{
         this.json.getSchedule(data.shedule[0].room_id, "1", this.weekType).subscribe((data) => {
           this.dataBlock= this.mapear(data);
+          this.dataSource= this.merge(this.dataSourceReserved,this.dataBlock);
         });
       }
     });
