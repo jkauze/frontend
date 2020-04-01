@@ -13,11 +13,11 @@
         </div>
     </div>
   </div>
-
   <div class="card">
     <div class="row no-gutters">
       <div class="col-md-4">
-        <img src={{picture}} class="card-img" style="max-width: 100%;" alt="">
+        <img [src]="croppedImage || picture " class="card-img" style="max-width: 100%;" alt=""/>
+        <button *ngIf="edit" mat-raised-button (click)="openDialog()" class="btn btn-info">Cambiar Imagen</button>
       </div>
       <div class="col-md-8">
         <div class="card-body">
@@ -44,27 +44,43 @@
     <div class="card-header card-header-info">
       <h4 class="card-title">Componentes</h4>
       <p class="card-category">Objetos que posee la sala</p>
+      <button *ngIf="edit && !editItems" type="button" class="btn btn-info" (click)="editarItems()">Editar</button>
+      <button *ngIf="edit && !editItems" mat-raised-button class="btn btn-info" (click)="agregarItems()">Agregar</button>
+      <button *ngIf="edit && !editItems" type="button" class="btn btn-info" (click)="eliminarItems()">Eliminar</button>
+      <button *ngIf="eliminar" type="button" class="btn btn-success" (click)="ready()">Listo</button>
+      <button *ngIf="editItems && !eliminar" type="button" class="btn btn-success" (click)="saveEditItems()">Guardar</button>
+      <button *ngIf="editItems && !eliminar" type="button" class="btn btn-danger" (click)="cancelEditItems()">Cancelar</button>
     </div>
     <div class="card-content table-responsive table-full-width">
       <table class="table" summary="Componentes de Sala">
         <thead class="text-info">
-          <th scope="col">Item</th>
-          <th class="text-center" scope="col">Cantidad</th>
-          <th class="text-center" scope="col">Descripcion</th>
+          <th *ngIf="eliminar" scope="col" style="width: 5%">Eliminar</th>
+          <th scope="col" style="width: 25%">Item</th>
+          <th class="text-center" scope="col" style="width: 25%">Cantidad</th>
+          <th class="text-center" scope="col" style="width: 50%">Descripcion</th>
         </thead>
         <tbody>
-          <tr *ngFor="let item of items" >
+          <tr *ngFor="let item of items; index as i" >
+            <td *ngIf="eliminar">
+              <div class="form-check" style="align-content: center;">
+                <button mat-button (click)="eliminarItem(i)">
+                  <mat-icon>remove_circle</mat-icon>
+                </button>
+              </div>
+            </td>
             <td class="text-capitalize">{{item.name}}</td>
-            <td class="text-center">{{item.quantity}}</td>
+            <td *ngIf="!editItems || eliminar" class="text-center">{{item.quantity}}</td>
+            <td *ngIf="editItems && !eliminar"><input [(ngModel)]="itemQuantityArray[i]" type="number" class="form-control" id="itemQuantity" placeholder="{{item.quantity}}"></td>
             <td class="text-center">{{item.description}}</td><!--item.description ||-->
           </tr>
         </tbody>
       </table>
     </div>
   </div>
-
-  <button *ngIf="edit" type="button" class="btn btn-success btn-lg btn-block" (click)="sumbitEdit()">Guardar</button>
+  <button *ngIf="edit && items.length == 0" mat-raised-button class="btn btn-info" (click)="agregarItems()">Agregar Item</button>
+  <button *ngIf="edit && !editItems" type="button" class="btn btn-success btn-lg btn-block" (click)="sumbitEdit()">Guardar</button>
+  <button *ngIf="edit && !editItems" type="button" class="btn btn-danger btn-lg btn-block" (click)="cancel()">Cancelar</button>
   <button *ngIf="!edit" type="button" class="btn btn-warning btn-lg btn-block" routerLink="/horario/{{ room?.id }}">Horarios</button>
   <button *ngIf="!edit" type="button" class="btn btn-info btn-lg btn-block" routerLink="/reserva/{{ idroom }}">Reservar</button>
-
 </div>
+

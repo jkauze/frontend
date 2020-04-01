@@ -4,6 +4,7 @@ import { Request, PutRequest } from 'app/interfaces/request';
 import { MatTableDataSource, MatDialog } from '@angular/material';
 import { USER_TYPE } from 'app/interfaces/user';
 import { ConfirmRejectionComponent, DialogData } from 'app/popups/dialogs/confirm-rejection/confirm-rejection.component';
+import { DialogScheduleReservedComponent } from 'app/dialogs/dialog-schedule-reserved.component';
 
 @Component({
   selector: 'app-request',
@@ -41,6 +42,7 @@ export class RequestComponent implements OnInit {
       this.appService.getRequests(endpoint).subscribe(requests => {
         this.requests = requests;
         this.dataSource.data = this.requests;
+        console.log(requests);
       });
     }, error => {
       console.log(error);
@@ -82,6 +84,19 @@ export class RequestComponent implements OnInit {
           console.log(response);
         });
       }
+    });
+  }
+
+  viewSchedule(request: any){
+    let dialogRef = this.dialog.open(DialogScheduleReservedComponent,{
+      height: '450px',
+      width: '600px',
+      data: {
+        dataKey: request
+      }
+    });
+    dialogRef.afterClosed().subscribe( data => {
+      console.log(data);
     });
   }
 }

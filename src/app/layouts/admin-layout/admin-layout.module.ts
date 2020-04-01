@@ -11,6 +11,7 @@ import { NewRoomsComponent } from 'app/new-rooms/new-rooms.component';
 import { MatTableModule } from '@angular/material/table';
 import { UserTypePipe } from 'app/pipes/user-type.pipe';
 
+
 import {
   MatButtonModule,
   MatInputModule,
@@ -34,6 +35,10 @@ import { ReservaComponent } from 'app/reserva/reserva.component';
 import { DialogSemanasEspecificasComponent } from 'app/dialogs/dialog-semanas-especificas.component';
 import { DialogTextFieldComponent } from 'app/dialogs/dialog-textfield.component';
 import { RequestStatusPipe } from 'app/pipes/request-status/request-status.pipe';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { DialogUploadImageComponent } from 'app/dialogs/dialog-upload-image.component';
+import { DialogAddItemComponent } from 'app/dialogs/dialog-add-item.component';
+import { DialogScheduleReservedComponent } from 'app/dialogs/dialog-schedule-reserved.component';
 
 
 @NgModule({
@@ -55,6 +60,7 @@ import { RequestStatusPipe } from 'app/pipes/request-status/request-status.pipe'
     MatDialogModule,
     MatSnackBarModule,
     MatIconModule,
+    ImageCropperModule
   ],
   declarations: [
     DashboardComponent,
@@ -71,12 +77,18 @@ import { RequestStatusPipe } from 'app/pipes/request-status/request-status.pipe'
     NewRoomsComponent,
     ConfirmRejectionComponent,
     RequestStatusPipe,
+    DialogUploadImageComponent,
+    DialogAddItemComponent,
+    DialogScheduleReservedComponent
   ],
   entryComponents: [
     DialogSemanasEspecificasComponent,
     DialogTextFieldComponent,
     LabfAdminComponent,
     ConfirmRejectionComponent,
+    DialogUploadImageComponent,
+    DialogAddItemComponent,
+    DialogScheduleReservedComponent
   ],
   providers: [
     MatDatepickerModule,

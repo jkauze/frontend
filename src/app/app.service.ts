@@ -74,6 +74,10 @@ export class AppService {
     return this.http.get<Items[]>(API + url);
   }
 
+  getNotItems(url: string): Observable<Items[]> {
+    return this.http.get<Items[]>(API + 'not/items/' + url);
+  }
+
   getRequests(url: String): Observable<Request[]> {
     return this.http.get<Request[]>(API + url);
   }
@@ -152,10 +156,43 @@ export class AppService {
       return this.http.get<Hourtable[]>(API + '/reservas/' + sala + '/semana/todas');
     }
   }
+
+  getViewSchedule(request: string): Observable<any> {
+    const endpoint = API + 'solicitudes/' + request + '/horario';
+    return this.http.get<any>(endpoint);
+  }
+
   putRequest(requestId: string, putRequest: PutRequest): Observable<any> {
     return this.http.put(API + 'solicitudes/reserva/' + requestId, putRequest, {
       responseType: 'json'
     });
   }
 
+  postImagenSala(room_id: string, pictureBase64: string): Observable<any> {
+    const endpoint = API + 'salas/' + room_id + '/picture/new';
+    return this.http.post(endpoint, {picture: pictureBase64}).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  putItemQuantity(room_id: string, item_id: string, putItem: number){
+    const endpoint = API + 'salas/' + room_id + '/' + item_id;
+    return this.http.put(endpoint, {quantity: putItem}).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  putRemoveItem(room_id: string, item_id: string):Observable<any>{
+    const endpoint = API + 'salas/' + room_id + '/' + item_id;
+    return this.http.delete(endpoint).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  postAddItem(room_id: string, item_id: string, postQuantity: number): Observable<any> {
+    const endpoint = API + 'salas/' + room_id + '/' + item_id;
+    return this.http.post(endpoint, {quantity: postQuantity}).pipe(
+      catchError(this.handleError)
+    );
+  }
 }

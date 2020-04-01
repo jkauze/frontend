@@ -39,11 +39,11 @@
                   <div class="tab-content">
                       <div class="tab-pane" id="especifica"> <!-- Especifica -->
                         <div class="dropdown">
-                            <button href="#" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-expanded="true" >
+                            <button href="#" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-expanded="true" data-container="true">
                                 Semana
                                 <strong class="caret"></strong>
                             </button>
-                        <ul class="dropdown-menu">
+                            <ul class="dropdown-menu" style="max-height:250px; overflow:auto;">
                                 <li><a (click)="specificWeek(1)">Semana 1</a></li>
                                 <li><a (click)="specificWeek(2)">Semana 2</a></li>
                                 <li><a (click)="specificWeek(3)">Semana 3</a></li>
