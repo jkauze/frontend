@@ -55,7 +55,6 @@ import { tableWeek } from 'app/horario/horario.component';
       </table>
     </mat-dialog-content>
     <mat-dialog-actions>
-      <button *ngIf="addItemName != 'Item' && postQuantity > 0" mat-button mat-dialog-close class="btn btn-success" (click)="addItem()">Guardar</button>
       <button mat-button mat-dialog-close class="btn btn-default">Cerrar</button>
     </mat-dialog-actions>
   `
