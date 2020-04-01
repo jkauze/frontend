@@ -6,7 +6,7 @@ import { tableWeek } from 'app/horario/horario.component';
 @Component({
   selector: 'app-dialog-schedule-reserved',
   template: `
-    <h2 mat-dialog-title> Horario </h2>
+    <h2 mat-dialog-title class="prueba"> Horario </h2>
     <mat-dialog-content>
       <h2> {{ weekTypeName }} </h2>
       <table mat-table [dataSource]="dataSource" class="table-bordered" summary="Horario del Laboratorio">
@@ -83,7 +83,7 @@ import { tableWeek } from 'app/horario/horario.component';
         </label>
       </div>
     </mat-dialog-content>
-    <mat-dialog-actions>
+    <mat-dialog-actions style="justify-content: flex-end">
       <button mat-button mat-dialog-close class="btn btn-default">Cerrar</button>
     </mat-dialog-actions>
   `,

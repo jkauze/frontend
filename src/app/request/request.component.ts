@@ -141,8 +141,8 @@ export class RequestComponent implements OnInit {
 
   viewSchedule(request: any){
     let dialogRef = this.dialog.open(DialogScheduleReservedComponent,{
-      height: '450px',
-      width: '600px',
+      height: '650px',
+      width: '575px',
       data: {
         dataKey: request
       }
