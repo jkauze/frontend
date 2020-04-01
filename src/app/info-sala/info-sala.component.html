@@ -42,8 +42,10 @@
 
   <div *ngIf="items.length > 0" class="card"> <!--Verificar con ngIf si items es vacio-->
     <div class="card-header card-header-info">
-      <h4 class="card-title">Componentes</h4>
-      <p class="card-category">Objetos que posee la sala</p>
+      <h4 class="card-title"><strong>
+        Componentes
+      </strong></h4>
+      <p class="card-category"><strong>Objetos que posee la sala</strong></p>
       <button *ngIf="edit && !editItems" type="button" class="btn btn-info" (click)="editarItems()">Editar</button>
       <button *ngIf="edit && !editItems" mat-raised-button class="btn btn-info" (click)="agregarItems()">Agregar</button>
       <button *ngIf="edit && !editItems" type="button" class="btn btn-info" (click)="eliminarItems()">Eliminar</button>

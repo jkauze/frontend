@@ -120,7 +120,7 @@
           <ng-container matColumnDef="Horario">
             <th mat-header-cell id="horarioU" *matHeaderCellDef class="align">Horario</th>
             <td mat-cell *matCellDef="let element">
-              <button mat-stroked-button>Ver horario</button>
+              <button mat-stroked-button (click)="viewSchedule(element)">Ver horario</button>
             </td>
           </ng-container>
 

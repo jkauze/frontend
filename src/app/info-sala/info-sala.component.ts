@@ -85,7 +85,6 @@ export class InfoSalaComponent implements OnInit {
         (err) => {console.log(err)}
       );
     }
-    this.ngOnInit();
   }
 
   editarItems(){
