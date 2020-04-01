@@ -195,4 +195,25 @@ export class AppService {
       catchError(this.handleError)
     );
   }
+  createRequest(requester: string, subject: string, room: string, quantity: number, 
+  material: string, semanas: string, horarioList: any[], isAdmin: boolean): Observable<any> {
+    let endpoint = isAdmin ? API + 'crear/reserva' : API + 'crear/solicitudes/reserva';
+    let body = [];
+    let request = {
+      requester: requester,
+      subject: subject,
+      room: room,
+      quantity: quantity,
+      material: material,
+      semanas: semanas.length > 2 ? semanas : +semanas,
+    };
+    body.push(request);
+    body.push(...horarioList);
+    return this.http.post(endpoint, body);
+  }
+
+  deleteUser(idRequest: string): Observable<any> {
+    return this.http.delete(API + 'eliminar/solicitud/reserva/' + idRequest);
+  }
+
 }

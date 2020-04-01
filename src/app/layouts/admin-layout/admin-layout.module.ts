@@ -10,6 +10,9 @@ import { LabfAdminComponent } from 'app/labf-admin/labf-admin.component';
 import { NewRoomsComponent } from 'app/new-rooms/new-rooms.component';
 import { MatTableModule } from '@angular/material/table';
 import { UserTypePipe } from 'app/pipes/user-type.pipe';
+import { MaterialListComponent } from '../../material-list/material-list.component';
+import { RejectReasonComponent } from '../../reject-reason/reject-reason.component';
+
 
 
 import {
@@ -31,6 +34,7 @@ import { LaboratoriosComponent } from 'app/laboratorios/laboratorios.component';
 import { HorarioComponent } from 'app/horario/horario.component';
 import { SalasUserComponent } from 'app/laboratorios/salas-user/salas-user.component';
 import { ConfirmRejectionComponent } from 'app/popups/dialogs/confirm-rejection/confirm-rejection.component';
+import { ConfirmRejectionMessageComponent } from 'app/popups/dialogs/confirm-rejection-message/confirm-rejection-message.component';
 import { ReservaComponent } from 'app/reserva/reserva.component';
 import { DialogSemanasEspecificasComponent } from 'app/dialogs/dialog-semanas-especificas.component';
 import { DialogTextFieldComponent } from 'app/dialogs/dialog-textfield.component';
@@ -76,10 +80,13 @@ import { DialogScheduleReservedComponent } from 'app/dialogs/dialog-schedule-res
     LabfAdminComponent,
     NewRoomsComponent,
     ConfirmRejectionComponent,
+    MaterialListComponent,
+    ConfirmRejectionMessageComponent,
     RequestStatusPipe,
     DialogUploadImageComponent,
     DialogAddItemComponent,
-    DialogScheduleReservedComponent
+    DialogScheduleReservedComponent,
+    RejectReasonComponent
   ],
   entryComponents: [
     DialogSemanasEspecificasComponent,
@@ -88,7 +95,10 @@ import { DialogScheduleReservedComponent } from 'app/dialogs/dialog-schedule-res
     ConfirmRejectionComponent,
     DialogUploadImageComponent,
     DialogAddItemComponent,
-    DialogScheduleReservedComponent
+    DialogScheduleReservedComponent,
+    MaterialListComponent,
+    ConfirmRejectionMessageComponent,
+    RejectReasonComponent
   ],
   providers: [
     MatDatepickerModule,
