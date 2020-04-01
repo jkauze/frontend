@@ -98,7 +98,7 @@ export class AppService {
   }
 
   getAdminLabs(): Observable<any[]> {
-    return this.http.get<any[]>(API + '/usuarios/admin');
+    return this.http.get<any[]>(API + 'usuarios/admin');
   }
 
   getTrimester(): Observable<Trimester[]> {
@@ -144,16 +144,16 @@ export class AppService {
  
   getSchedule(sala: string, option: string, semana: string): Observable<Hourtable[]> {
     if (option === "1"){
-      return this.http.get<Hourtable[]>(API + '/reservas/' + sala + '/semana/' + semana);
+      return this.http.get<Hourtable[]>(API + 'reservas/' + sala + '/semana/' + semana);
     }
     else  if (option === "2"){
-      return this.http.get<Hourtable[]>(API + '/reservas/' + sala + '/semana/impares');
+      return this.http.get<Hourtable[]>(API + 'reservas/' + sala + '/semana/impares');
     }
     else if (option === "3"){
-      return this.http.get<Hourtable[]>(API + '/reservas/' + sala + '/semana/pares');
+      return this.http.get<Hourtable[]>(API + 'reservas/' + sala + '/semana/pares');
     }
     else{
-      return this.http.get<Hourtable[]>(API + '/reservas/' + sala + '/semana/todas');
+      return this.http.get<Hourtable[]>(API + 'reservas/' + sala + '/semana/todas');
     }
   }
 
