@@ -79,7 +79,10 @@ export class RequestComponent implements OnInit {
       } else {
         console.log(request);
       }
-
+    }, error => {
+      if (error.error.error){
+        this.showSnackBar(error.error.error);
+      }  console.log(error.error.error);
     });
   }
 
