@@ -109,19 +109,19 @@ export class ReservaComponent implements OnInit {
     }
     else {
       for (let i = 0; i < data.length; i++) {
-        if (data[i].day === "lunes"){
+        if (data[i].day === "lunes" || data[i].day === "Lunes"){
           table[data[i].hour - 1].lunes = data[i].subject_id;
         }
-        else if(data[i].day === "martes"){
+        else if(data[i].day === "martes" || data[i].day === "Martes"){
           table[data[i].hour - 1].martes = data[i].subject_id;
         }
-        else if(data[i].day === "miercoles"){
+        else if(data[i].day === "miercoles" || data[i].day === "Miercoles"){
           table[data[i].hour - 1].miercoles = data[i].subject_id;
         }
-        else if(data[i].day === "jueves"){
+        else if(data[i].day === "jueves" || data[i].day === "Jueves"){
           table[data[i].hour - 1].jueves = data[i].subject_id;
         }
-        else if(data[i].day === "viernes") {
+        else if(data[i].day === "viernes" || data[i].day === "Viernes") {
           table[data[i].hour - 1].viernes = data[i].subject_id;
         }
       }
