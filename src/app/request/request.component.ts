@@ -95,6 +95,7 @@ export class RequestComponent implements OnInit {
     });
   }
 
+  // Modal con la razon de rechazo de la solicitud
   rejectReasonDialog(element) {
     this.dialog.open(RejectReasonComponent, {
       height:'300px',
@@ -139,6 +140,7 @@ export class RequestComponent implements OnInit {
     });
   }
 
+  // Modal de Horario
   viewSchedule(request: any){
     let dialogRef = this.dialog.open(DialogScheduleReservedComponent,{
       height: '650px',
@@ -152,10 +154,12 @@ export class RequestComponent implements OnInit {
     });
   }
   
+  // Mensajito que sale cuando abajo en los botones de si y no
   showSnackBar(message: string) {
     this._snackBar.open(message, null, { duration: 4000 });
   }
 
+  // Eliminar una peticion
   deletedUser(requestId: string) {
     this.appService.deleteUser(requestId).subscribe ( request => {
       const index = this.requests.findIndex(res => res.id === requestId);
