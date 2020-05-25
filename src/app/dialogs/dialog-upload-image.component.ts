@@ -22,7 +22,7 @@ import { ImageCroppedEvent } from 'ngx-image-cropper';
       Cargar Archivo
       <input type="file" data-max-size="2048" (change)="fileChangeEvent($event)" />
     </span>
-    <button mat-button mat-dialog-close mat-dialog-close={{croppedImage}} class="btn btn-success">Guardar</button>
+    <button mat-button mat-dialog-close mat-dialog-close={{croppedImage}} class="btn btn-success">Aceptar</button>
     <button mat-button mat-dialog-close mat-dialog-close={{croppedImage}} class="btn btn-danger" (click)="cancelar()">Cancelar</button>
   </mat-dialog-actions>
   `,

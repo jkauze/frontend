@@ -27,9 +27,9 @@
             <small>Esta sala pertenece a <a class="text-reset" routerLink="/laboratorios/salas/{{ room?.manager_id }}"><b>{{room?.manager_id}}</b></a>.</small>
           </p>
           <div *ngIf="edit" class="custom-control custom-switch">
-            <input *ngIf="room.is_active" type="checkbox" class="custom-control-input" id="customSwitch1">
-            <input *ngIf="!room.is_active" type="checkbox" class="custom-control-input" id="customSwitch1" checked>
-            <label class="custom-control-label" for="customSwitch1">Desactivar Sala</label>
+            <input type="checkbox" class="custom-control-input" id="customSwitch1" [(ngModel)]="room.is_active">
+
+            <label class="custom-control-label" for="customSwitch1">Sala Activada</label>
           </div>
           <p *ngIf="!edit" class="card-text">{{room?.description}}</p>
           <div *ngIf="edit" class="md-form">
@@ -49,7 +49,7 @@
       <button *ngIf="edit && !editItems" type="button" class="btn btn-info" (click)="editarItems()">Editar</button>
       <button *ngIf="edit && !editItems" mat-raised-button class="btn btn-info" (click)="agregarItems()">Agregar</button>
       <button *ngIf="edit && !editItems" type="button" class="btn btn-info" (click)="eliminarItems()">Eliminar</button>
-      <button *ngIf="eliminar" type="button" class="btn btn-success" (click)="ready()">Listo</button>
+      <button *ngIf="eliminar" type= "button" class="btn btn-success" (click)="ready()">Listo</button>
       <button *ngIf="editItems && !eliminar" type="button" class="btn btn-success" (click)="saveEditItems()">Guardar</button>
       <button *ngIf="editItems && !eliminar" type="button" class="btn btn-danger" (click)="cancelEditItems()">Cancelar</button>
     </div>

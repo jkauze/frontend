@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { environment } from 'environments/environment';
 import { USER_TYPE } from 'app/interfaces/user';
 import { Rooms } from 'app/interfaces/rooms';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { DialogUploadImageComponent } from 'app/dialogs/dialog-upload-image.component';
 import { DialogAddItemComponent } from 'app/dialogs/dialog-add-item.component';
 
@@ -34,7 +34,7 @@ export class InfoSalaComponent implements OnInit {
   public active: boolean = true;
   public edit: boolean = false;
 
-  constructor(public json: AppService, private activatedRoute: ActivatedRoute, public dialog: MatDialog) { 
+  constructor(public json: AppService, private activatedRoute: ActivatedRoute, public dialog: MatDialog, private _snackBar: MatSnackBar) { 
     this.idroom = this.activatedRoute.snapshot.params['rid'];
   }
 
@@ -73,8 +73,16 @@ export class InfoSalaComponent implements OnInit {
   sumbitEdit(){
     const changes = { name: this.room.name, description: this.room.description, is_active: String(this.room.is_active) };
     this.json.updateRoom(this.room.id,changes).subscribe(
-      (data) => {},
-      (err) => {console.log(err)}
+      (response) => {
+        if (response.message) {
+          this.showSnackBar(response.message);
+        } else if (response.error) {
+          this.showSnackBar(response.error);
+        } else {
+          console.log(response);
+        }
+      },
+      (error) => {this.showSnackBar("Hay reservas asignadas a esta sala, no se puede desactivar")}
     );
     this.edit = false;
     this.editItems = false;
@@ -151,4 +159,9 @@ export class InfoSalaComponent implements OnInit {
     this.eliminar = false;
     this.editItems = false;
   }
+
+  showSnackBar(message: string) {
+    this._snackBar.open(message, null, { duration: 4000 });
+  }
+
 }

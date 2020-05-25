@@ -52,16 +52,16 @@ export class HorarioComponent implements OnInit {
   mapear(data: Hourtable[]): tableWeek[]{
     let table = JSON.parse(JSON.stringify(ELEMENT_EMPTY));
     for (let i = 0; i < data.length; i++) {
-      if (data[i].day === "Lunes"){
+      if (data[i].day === "lunes"){
         table[data[i].hour - 1].lunes = data[i].subject_id;
       }
-      else if(data[i].day === "Martes"){
+      else if(data[i].day === "martes"){
         table[data[i].hour - 1].martes = data[i].subject_id;
       }
-      else if(data[i].day === "Miercoles"){
+      else if(data[i].day === "miercoles"){
         table[data[i].hour - 1].miercoles = data[i].subject_id;
       }
-      else if(data[i].day === "Jueves"){
+      else if(data[i].day === "jueves"){
         table[data[i].hour - 1].jueves = data[i].subject_id;
       }
       else{

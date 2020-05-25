@@ -130,7 +130,7 @@ export class ReservaComponent implements OnInit {
   }
 
   puedeReservar(): boolean {
-    if (this.materia != undefined && this.cantidad != 0  &&
+    if (this.materia != undefined && this.cantidad >= 0  &&
     this.cantidad != undefined && this.semanas != undefined) {
       const index = this.dataSource.findIndex(d => (
         d.lunesCheck == true || d.martesCheck == true || 
