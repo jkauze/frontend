@@ -151,11 +151,11 @@ export class ReservaComponent implements OnInit {
     // mapear horario
     this.dataSource.forEach( (h) => {
       for (var index in h) {
-        if ( index == 'lunesCheck' ) { let obj = { dia: 'lunes', hora: h.hora }; horario.push(obj) }
-        else if ( index == 'martesCheck' ) { let obj = { dia: 'martes', hora: h.hora }; horario.push(obj) }
-        else if ( index == 'miercolesCheck' ) { let obj = { dia: 'miercoles', hora: h.hora }; horario.push(obj) }
-        else if ( index == 'juevesCheck' ) { let obj = { dia: 'jueves', hora: h.hora }; horario.push(obj) }
-        else if ( index == 'viernesCheck' ) { let obj = { dia: 'viernes', hora: h.hora }; horario.push(obj) }
+        if ( index == 'lunesCheck' && h.lunesCheck) { let obj = { dia: 'lunes', hora: h.hora }; horario.push(obj) }
+        else if ( index == 'martesCheck' && h.martesCheck) { let obj = { dia: 'martes', hora: h.hora }; horario.push(obj) }
+        else if ( index == 'miercolesCheck' && h.miercolesCheck) { let obj = { dia: 'miercoles', hora: h.hora }; horario.push(obj) }
+        else if ( index == 'juevesCheck' && h.juevesCheck) { let obj = { dia: 'jueves', hora: h.hora }; horario.push(obj) }
+        else if ( index == 'viernesCheck' && h.viernesCheck) { let obj = { dia: 'viernes', hora: h.hora }; horario.push(obj) }
         else { } // otros horarios
       }
     })
@@ -189,4 +189,5 @@ export class ReservaComponent implements OnInit {
   showSnackBar(message: string) {
     this._snackBar.open(message, null, { duration: 4000 });
   }
+
 }

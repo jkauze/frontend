@@ -55,7 +55,7 @@
               <th mat-header-cell id="lunes" *matHeaderCellDef> Lunes </th>
               <td mat-cell *matCellDef="let element"> {{element.lunes}} 
                 <div class="form-check" *ngIf="element.lunes == '' || element.lunes == undefined">
-                  <input type="checkbox" [(ngModel)]="element.lunesCheck">
+                  <input type="checkbox" [(ngModel)]="element.lunesCheck"/>
                 </div>
               </td>
             </ng-container>
