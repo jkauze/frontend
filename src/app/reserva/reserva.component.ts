@@ -149,19 +149,19 @@ export class ReservaComponent implements OnInit {
     this.appService.isUserType(USER_TYPE.LAB_ADMIN).then(response => { isAdmin = response; })
     let horario = [];
     // mapear horario
-    this.dataSource.forEach( (h, index) => {
-      if ( h.lunesCheck ) { let obj = { dia: 'lunes', hora: index+1 }; horario.push(obj) }
-      else if ( h.lunesCheck ) { let obj = { dia: 'lunes', hora: index+1 }; horario.push(obj) }
-      else if ( h.martesCheck ) { let obj = { dia: 'martes', hora: index+1 }; horario.push(obj) }
-      else if ( h.miercolesCheck ) { let obj = { dia: 'miercoles', hora: index+1 }; horario.push(obj) }
-      else if ( h.juevesCheck ) { let obj = { dia: 'jueves', hora: index+1 }; horario.push(obj) }
-      else if ( h.viernesCheck ) { let obj = { dia: 'viernes', hora: index+1 }; horario.push(obj) }
-      else { } // otros horarios
+    this.dataSource.forEach( (h) => {
+      for (var index in h) {
+        if ( index == 'lunesCheck' ) { let obj = { dia: 'lunes', hora: h.hora }; horario.push(obj) }
+        else if ( index == 'martesCheck' ) { let obj = { dia: 'martes', hora: h.hora }; horario.push(obj) }
+        else if ( index == 'miercolesCheck' ) { let obj = { dia: 'miercoles', hora: h.hora }; horario.push(obj) }
+        else if ( index == 'juevesCheck' ) { let obj = { dia: 'jueves', hora: h.hora }; horario.push(obj) }
+        else if ( index == 'viernesCheck' ) { let obj = { dia: 'viernes', hora: h.hora }; horario.push(obj) }
+        else { } // otros horarios
+      }
     })
     let dialogFieldRef = this.dialog.open(DialogTextFieldComponent, {
       data: { title: 'Reserva', message: 'Especifique si requiere de algo adicional'}
     });
-
     dialogFieldRef.afterClosed().subscribe( result => {
       console.log(result);
       if (result != 'No') {
