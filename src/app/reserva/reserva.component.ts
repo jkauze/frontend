@@ -159,31 +159,29 @@ export class ReservaComponent implements OnInit {
         else { } // otros horarios
       }
     })
+    console.log(horario);
     let dialogFieldRef = this.dialog.open(DialogTextFieldComponent, {
       data: { title: 'Reserva', message: 'Especifique si requiere de algo adicional'}
     });
     dialogFieldRef.afterClosed().subscribe( result => {
-      console.log(this.materia);
       console.log(this.semanas);
-      if (result != 'No') {
-        // crear reserva
-        let material = result
-        this.appService.createRequest(
-          requester, 
-          this.materia, 
-          this.roomId, 
-          this.cantidad, 
-          material, 
-          this.semanas == 'especifica' ? this.semanaEspecifica.toString() : this.semanas, 
-          horario, 
-          isAdmin
-          )
-        .subscribe( response => {
-          console.log(response);
-          this.showSnackBar(response.message);
-          this.router.navigate(['dashboard']);
-        })
-      }
+      // crear reserva
+      let material = result
+      this.appService.createRequest(
+        requester, 
+        this.materia, 
+        this.roomId, 
+        this.cantidad, 
+        material, 
+        this.semanas == 'especifica' ? this.semanaEspecifica.toString() : this.semanas, 
+        horario, 
+        isAdmin
+        )
+      .subscribe( response => {
+        console.log(response);
+        this.showSnackBar(response.message);
+        this.router.navigate(['dashboard']);
+      })
     })
   }
 
