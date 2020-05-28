@@ -163,7 +163,8 @@ export class ReservaComponent implements OnInit {
       data: { title: 'Reserva', message: 'Especifique si requiere de algo adicional'}
     });
     dialogFieldRef.afterClosed().subscribe( result => {
-      console.log(result);
+      console.log(this.materia);
+      console.log(this.semanas);
       if (result != 'No') {
         // crear reserva
         let material = result

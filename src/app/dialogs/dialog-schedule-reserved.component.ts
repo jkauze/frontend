@@ -96,12 +96,14 @@ export class DialogScheduleReservedComponent implements OnInit {
   public dataBlock: tableWeek[];
   public weekType: string;
   public weekTypeName: string = '';
+  public specificWeek: boolean = false;
 
   constructor(public json: AppService, @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
     this.json.getViewSchedule(this.data.dataKey.id).subscribe((data) => {
       this.dataSourceReserved = this.mapear(data.shedule);
+      console.log(data.typeWeek);
       if (data.typeWeek == "pares"){ 
         this.weekType = "3";
         this.weekTypeName = "Semanas: Pares";
@@ -115,10 +117,11 @@ export class DialogScheduleReservedComponent implements OnInit {
         this.weekTypeName = "Semanas: Todas";
       }
       else{
+        this.specificWeek = true;
         this.weekType = data.typeWeek;
         this.weekTypeName = "Semana Especifica: " + data.typeWeek;
       }
-      if (this.weekType == "2" || this.weekType == "3" || this.weekType == "4"){
+      if ((this.weekType == "2" || this.weekType == "3" || this.weekType == "4") && this.specificWeek == false){
         this.json.getSchedule(data.shedule[0].room_id, this.weekType, null).subscribe((data) => {
           this.dataBlock= this.mapear(data);
           this.dataSource= this.merge(this.dataSourceReserved,this.dataBlock);
