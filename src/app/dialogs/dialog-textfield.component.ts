@@ -15,7 +15,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material";
         </div>
     </div>
     <div mat-dialog-actions align="center">
-        <button mat-button (click)="onClick('No')">Cancelar</button>
+        <button mat-button (click)="onClick('pepe10000')">Cancelar</button>
         <button mat-button (click)="onClick('Si')">Aceptar</button>
     </div>
     `,

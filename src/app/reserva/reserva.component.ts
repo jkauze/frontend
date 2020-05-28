@@ -150,6 +150,7 @@ export class ReservaComponent implements OnInit {
     let horario = [];
     // mapear horario
     this.dataSource.forEach( (h) => {
+      console.log(h);
       for (var index in h) {
         if ( index == 'lunesCheck' && h.lunesCheck) { let obj = { dia: 'lunes', hora: h.hora }; horario.push(obj) }
         else if ( index == 'martesCheck' && h.martesCheck) { let obj = { dia: 'martes', hora: h.hora }; horario.push(obj) }
@@ -159,29 +160,30 @@ export class ReservaComponent implements OnInit {
         else { } // otros horarios
       }
     })
-    console.log(horario);
     let dialogFieldRef = this.dialog.open(DialogTextFieldComponent, {
       data: { title: 'Reserva', message: 'Especifique si requiere de algo adicional'}
     });
     dialogFieldRef.afterClosed().subscribe( result => {
-      console.log(this.semanas);
+      // es pepe 10000 porque si en el caption del dialogo se escribe No, no se hace la reserva
+      if (result != 'pepe10000'){
       // crear reserva
-      let material = result
-      this.appService.createRequest(
-        requester, 
-        this.materia, 
-        this.roomId, 
-        this.cantidad, 
-        material, 
-        this.semanas == 'especifica' ? this.semanaEspecifica.toString() : this.semanas, 
-        horario, 
-        isAdmin
-        )
-      .subscribe( response => {
-        console.log(response);
-        this.showSnackBar(response.message);
-        this.router.navigate(['dashboard']);
-      })
+        let material = result
+        this.appService.createRequest(
+          requester, 
+          this.materia, 
+          this.roomId, 
+          this.cantidad, 
+          material, 
+          this.semanas == 'especifica' ? this.semanaEspecifica.toString() : this.semanas, 
+          horario, 
+          isAdmin
+          )
+        .subscribe( response => {
+          console.log(response);
+          this.showSnackBar(response.message);
+          this.router.navigate(['dashboard']);
+        })
+      }
     })
   }
 
