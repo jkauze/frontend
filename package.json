@@ -1,5 +1,5 @@
 {
-  "name": "Frontend del sistema de reserva del LDAC (MAC)",
+  "name": "frontend-sistema-de-reserva-ldac",
   "version": "2.3.0",
   "license": "MIT",
   "scripts": {
